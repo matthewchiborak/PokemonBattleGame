@@ -16,7 +16,7 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void updateArrowPosition();
 
-	bool seletingMove;
+	bool selectingMove;
 	int selected;
 	sf::Vector2f selectPositions[4];
 	sf::Vector2f movePositions[4];
