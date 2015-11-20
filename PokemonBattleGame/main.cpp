@@ -1,0 +1,87 @@
+#include <SFML/Graphics.hpp>
+#include <SFML\Audio.hpp>
+#include <SFML\Main.hpp>
+#include <SFML\Network.hpp>
+#include <SFML\System.hpp>
+#include <SFML\Window.hpp>
+
+#include "PokeText.h"
+#include "HealthBar.h"
+#include "BattleScreen.h"
+
+const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
+
+/*
+HealthBar Info
+Green = Bottom(112,248,168) Top(88,208,128)
+Yellow = Bottom(248,224,56) Top(200,168,8)
+Red = Bottom(248,88,56) Top(168,64,72)
+Black = Bottom(80,104,88) Top(72,64,88)
+
+OpPosition = (52,33) to (99,35)
+SelfPositon = (187,88) to (234,90)
+*/
+
+
+int main()
+{
+	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");
+	window.setFramerateLimit(120);
+
+	BattleScreen Screen(WIN_SIZE);
+
+	int health = 30;
+	int health2 = 30;
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			health += 1;
+			Screen.SetOPHealth(health);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			health -= 1;
+			Screen.SetOPHealth(health);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		{
+			health2 += 1;
+			Screen.SetSelfHealth(health2);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			health2 -= 1;
+			Screen.SetSelfHealth(health2);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			Screen.keyPressed(sf::Keyboard::Up);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			Screen.keyPressed(sf::Keyboard::Down);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			Screen.keyPressed(sf::Keyboard::Left);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			Screen.keyPressed(sf::Keyboard::Right);
+		}
+		window.clear();
+		window.draw(Screen);
+		window.display();
+	}
+
+	return 0;
+}
