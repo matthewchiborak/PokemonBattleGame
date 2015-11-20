@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{502522BB-54A8-45D3-85F3-0705C8A18742}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PokemonBattleGame</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-network-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\include\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)SFML\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BattleBar.cpp" />
+    <ClCompile Include="BattleScreen.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PokeText.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BattleBar.h" />
+    <ClInclude Include="BattleScreen.h" />
+    <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="PokeText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\arrow.png" />
+    <Image Include="Resources\battleBackgrounds.png" />
+    <Image Include="Resources\BattleBar.png" />
+    <Image Include="Resources\battleSelect.png" />
+    <Image Include="Resources\blaziken.png" />
+    <Image Include="Resources\Charizard.png" />
+    <Image Include="Resources\moveSelect.png" />
+    <Image Include="Resources\OpponetInfo.png" />
+    <Image Include="Resources\PokemonSprites\Back\001.png" />
+    <Image Include="Resources\PokemonSprites\Back\006.png" />
+    <Image Include="Resources\PokemonSprites\Back\009.png" />
+    <Image Include="Resources\PokemonSprites\Back\011.png" />
+    <Image Include="Resources\PokemonSprites\Back\018.png" />
+    <Image Include="Resources\PokemonSprites\Back\025.png" />
+    <Image Include="Resources\PokemonSprites\Back\041.png" />
+    <Image Include="Resources\PokemonSprites\Back\050.png" />
+    <Image Include="Resources\PokemonSprites\Back\059.png" />
+    <Image Include="Resources\PokemonSprites\Back\122.png" />
+    <Image Include="Resources\PokemonSprites\Back\129.png" />
+    <Image Include="Resources\PokemonSprites\Back\133.png" />
+    <Image Include="Resources\PokemonSprites\Back\134.png" />
+    <Image Include="Resources\PokemonSprites\Back\135.png" />
+    <Image Include="Resources\PokemonSprites\Back\136.png" />
+    <Image Include="Resources\PokemonSprites\Back\138.png" />
+    <Image Include="Resources\PokemonSprites\Back\143.png" />
+    <Image Include="Resources\PokemonSprites\Back\144.png" />
+    <Image Include="Resources\PokemonSprites\Back\145.png" />
+    <Image Include="Resources\PokemonSprites\Back\146.png" />
+    <Image Include="Resources\PokemonSprites\Back\150.png" />
+    <Image Include="Resources\PokemonSprites\Back\153.png" />
+    <Image Include="Resources\PokemonSprites\Back\155.png" />
+    <Image Include="Resources\PokemonSprites\Back\158.png" />
+    <Image Include="Resources\PokemonSprites\Back\163.png" />
+    <Image Include="Resources\PokemonSprites\Back\196.png" />
+    <Image Include="Resources\PokemonSprites\Back\197.png" />
+    <Image Include="Resources\PokemonSprites\Back\213.png" />
+    <Image Include="Resources\PokemonSprites\Back\214.png" />
+    <Image Include="Resources\PokemonSprites\Back\243.png" />
+    <Image Include="Resources\PokemonSprites\Back\244.png" />
+    <Image Include="Resources\PokemonSprites\Back\245.png" />
+    <Image Include="Resources\PokemonSprites\Back\250.png" />
+    <Image Include="Resources\PokemonSprites\Back\252.png" />
+    <Image Include="Resources\PokemonSprites\Back\257.png" />
+    <Image Include="Resources\PokemonSprites\Back\259.png" />
+    <Image Include="Resources\PokemonSprites\Back\304.png" />
+    <Image Include="Resources\PokemonSprites\Back\315.png" />
+    <Image Include="Resources\PokemonSprites\Back\331.png" />
+    <Image Include="Resources\PokemonSprites\Back\333.png" />
+    <Image Include="Resources\PokemonSprites\Back\343.png" />
+    <Image Include="Resources\PokemonSprites\Back\399.png" />
+    <Image Include="Resources\PokemonSprites\Back\445.png" />
+    <Image Include="Resources\PokemonSprites\Back\448.png" />
+    <Image Include="Resources\PokemonSprites\Back\461.png" />
+    <Image Include="Resources\PokemonSprites\Back\530.png" />
+    <Image Include="Resources\PokemonSprites\Back\623.png" />
+    <Image Include="Resources\PokemonSprites\Back\628.png" />
+    <Image Include="Resources\PokemonSprites\Back\655.png" />
+    <Image Include="Resources\PokemonSprites\Back\700.png" />
+    <Image Include="Resources\PokemonSprites\Back\701.png" />
+    <Image Include="Resources\PokemonSprites\Back\702.png" />
+    <Image Include="Resources\PokemonSprites\Back\706.png" />
+    <Image Include="Resources\PokemonSprites\Back\711.png" />
+    <Image Include="Resources\PokemonSprites\Front\001.png" />
+    <Image Include="Resources\PokemonSprites\Front\006.png" />
+    <Image Include="Resources\PokemonSprites\Front\009.png" />
+    <Image Include="Resources\PokemonSprites\Front\011.png" />
+    <Image Include="Resources\PokemonSprites\Front\018.png" />
+    <Image Include="Resources\PokemonSprites\Front\025.png" />
+    <Image Include="Resources\PokemonSprites\Front\041.png" />
+    <Image Include="Resources\PokemonSprites\Front\050.png" />
+    <Image Include="Resources\PokemonSprites\Front\059.png" />
+    <Image Include="Resources\PokemonSprites\Front\122.png" />
+    <Image Include="Resources\PokemonSprites\Front\129.png" />
+    <Image Include="Resources\PokemonSprites\Front\133.png" />
+    <Image Include="Resources\PokemonSprites\Front\134.png" />
+    <Image Include="Resources\PokemonSprites\Front\135.png" />
+    <Image Include="Resources\PokemonSprites\Front\136.png" />
+    <Image Include="Resources\PokemonSprites\Front\138.png" />
+    <Image Include="Resources\PokemonSprites\Front\143.png" />
+    <Image Include="Resources\PokemonSprites\Front\144.png" />
+    <Image Include="Resources\PokemonSprites\Front\145.png" />
+    <Image Include="Resources\PokemonSprites\Front\146.png" />
+    <Image Include="Resources\PokemonSprites\Front\150.png" />
+    <Image Include="Resources\PokemonSprites\Front\153.png" />
+    <Image Include="Resources\PokemonSprites\Front\155.png" />
+    <Image Include="Resources\PokemonSprites\Front\158.png" />
+    <Image Include="Resources\PokemonSprites\Front\163.png" />
+    <Image Include="Resources\PokemonSprites\Front\196.png" />
+    <Image Include="Resources\PokemonSprites\Front\197.png" />
+    <Image Include="Resources\PokemonSprites\Front\213.png" />
+    <Image Include="Resources\PokemonSprites\Front\214.png" />
+    <Image Include="Resources\PokemonSprites\Front\243.png" />
+    <Image Include="Resources\PokemonSprites\Front\244.png" />
+    <Image Include="Resources\PokemonSprites\Front\245.png" />
+    <Image Include="Resources\PokemonSprites\Front\250.png" />
+    <Image Include="Resources\PokemonSprites\Front\252.png" />
+    <Image Include="Resources\PokemonSprites\Front\257.png" />
+    <Image Include="Resources\PokemonSprites\Front\259.png" />
+    <Image Include="Resources\PokemonSprites\Front\304.png" />
+    <Image Include="Resources\PokemonSprites\Front\315.png" />
+    <Image Include="Resources\PokemonSprites\Front\331.png" />
+    <Image Include="Resources\PokemonSprites\Front\333.png" />
+    <Image Include="Resources\PokemonSprites\Front\343.png" />
+    <Image Include="Resources\PokemonSprites\Front\399.png" />
+    <Image Include="Resources\PokemonSprites\Front\445.png" />
+    <Image Include="Resources\PokemonSprites\Front\448.png" />
+    <Image Include="Resources\PokemonSprites\Front\461.png" />
+    <Image Include="Resources\PokemonSprites\Front\530.png" />
+    <Image Include="Resources\PokemonSprites\Front\623.png" />
+    <Image Include="Resources\PokemonSprites\Front\628.png" />
+    <Image Include="Resources\PokemonSprites\Front\655.png" />
+    <Image Include="Resources\PokemonSprites\Front\700.png" />
+    <Image Include="Resources\PokemonSprites\Front\701.png" />
+    <Image Include="Resources\PokemonSprites\Front\702.png" />
+    <Image Include="Resources\PokemonSprites\Front\706.png" />
+    <Image Include="Resources\PokemonSprites\Front\711.png" />
+    <Image Include="Resources\SelfInfo.png" />
+    <Image Include="Resources\SelfInfoFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\EmeraldPro.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

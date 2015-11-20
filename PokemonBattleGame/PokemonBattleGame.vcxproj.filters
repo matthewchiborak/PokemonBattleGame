@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\PokemonSprites">
+      <UniqueIdentifier>{5bfb4140-7e8b-41aa-b9d3-8dcd272909e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\PokemonSprites\Front">
+      <UniqueIdentifier>{6350d6f1-d172-4610-b712-630db286c07f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\PokemonSprites\Back">
+      <UniqueIdentifier>{0473d5a6-644b-4a26-8cb1-7df414b3b481}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PokeText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\arrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\battleBackgrounds.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\BattleBar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\battleSelect.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\blaziken.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Charizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\moveSelect.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\OpponetInfo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\SelfInfo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\SelfInfoFrame.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\001.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\006.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\009.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\011.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\018.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\025.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\041.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\050.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\059.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\122.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\129.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\133.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\134.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\135.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\136.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\138.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\143.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\144.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\145.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\146.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\150.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\153.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\155.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\158.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\163.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\196.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\197.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\213.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\214.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\243.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\244.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\245.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\250.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\252.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\257.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\259.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\304.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\315.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\331.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\333.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\343.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\399.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\445.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\448.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\461.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\530.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\623.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\628.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\655.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\700.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\701.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\702.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\706.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Front\711.png">
+      <Filter>Resource Files\PokemonSprites\Front</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\001.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\006.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\009.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\011.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\018.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\025.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\041.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\050.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\059.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\122.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\129.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\133.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\134.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\135.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\136.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\138.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\143.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\144.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\145.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\146.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\150.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\153.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\155.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\158.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\163.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\196.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\197.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\213.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\214.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\243.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\244.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\245.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\250.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\252.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\257.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\259.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\304.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\315.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\331.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\333.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\343.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\399.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\445.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\448.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\461.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\530.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\623.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\628.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\655.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\700.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\701.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\702.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\706.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\PokemonSprites\Back\711.png">
+      <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\EmeraldPro.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+</Project>
