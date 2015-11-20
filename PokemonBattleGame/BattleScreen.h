@@ -42,6 +42,6 @@ public:
 	void refresh();
 	void SetOPHealth(int health);
 	void SetSelfHealth(int health);
-	void keyPressed(sf::Keyboard::Key key);
+	void keysPressed(std::vector<sf::Keyboard::Key> key);
 };
 

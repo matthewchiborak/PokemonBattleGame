@@ -8,6 +8,7 @@
 #include "PokeText.h"
 #include "HealthBar.h"
 #include "BattleScreen.h"
+#include "KeyboardWrapper.h"
 
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
@@ -26,9 +27,15 @@ SelfPositon = (187,88) to (234,90)
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");
-	window.setFramerateLimit(120);
+	window.setFramerateLimit(60);
 
 	BattleScreen Screen(WIN_SIZE);
+	KeyboardWrapper keyboard;
+
+	keyboard.addKeyWatch(sf::Keyboard::Up);
+	keyboard.addKeyWatch(sf::Keyboard::Down);
+	keyboard.addKeyWatch(sf::Keyboard::Left);
+	keyboard.addKeyWatch(sf::Keyboard::Right);
 
 	int health = 30;
 	int health2 = 30;
@@ -62,22 +69,8 @@ int main()
 			Screen.SetSelfHealth(health2);
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			Screen.keyPressed(sf::Keyboard::Up);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			Screen.keyPressed(sf::Keyboard::Down);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			Screen.keyPressed(sf::Keyboard::Left);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			Screen.keyPressed(sf::Keyboard::Right);
-		}
+		Screen.keysPressed(keyboard.getPressedKeys());
+
 		window.clear();
 		window.draw(Screen);
 		window.display();

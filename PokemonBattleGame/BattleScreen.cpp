@@ -88,8 +88,11 @@ void BattleScreen::SetSelfHealth(int health)
 	refresh();
 }
 
-void BattleScreen::keyPressed(sf::Keyboard::Key key)
+void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 {
-	battleBar.keyPressed(key);
+	for (int i = 0; i < keys.size(); i++)
+	{
+		battleBar.keyPressed(keys[i]);
+	}
 	refresh();
 }
