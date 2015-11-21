@@ -152,19 +152,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttackCalculator.cpp" />
     <ClCompile Include="BattleBar.cpp" />
     <ClCompile Include="BattleScreen.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="KeyboardWrapper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Move.cpp" />
+    <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeText.cpp" />
+    <ClCompile Include="StoredStats.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackCalculator.h" />
     <ClInclude Include="BattleBar.h" />
     <ClInclude Include="BattleScreen.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="KeyboardWrapper.h" />
+    <ClInclude Include="Move.h" />
+    <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeText.h" />
+    <ClInclude Include="StoredStats.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\arrow.png" />
