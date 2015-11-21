@@ -24,7 +24,7 @@ void HealthBar::update()
 	verts[7].position = sf::Vector2f(topLeft + sf::Vector2f(0, 3));
 
 	//colour left rects
-	if (((float)HP / maxHP) < 0.2f)
+	if (((float)HP / maxHP) < 0.2f)//red health bar
 	{
 		verts[0].color = colours[2];
 		verts[1].color = colours[2];
@@ -36,7 +36,7 @@ void HealthBar::update()
 		verts[6].color = colours[6];
 		verts[7].color = colours[6];
 	}
-	else if (((float)HP / maxHP) < 0.5f)
+	else if (((float)HP / maxHP) < 0.5f)//yellow healthbar
 	{
 		verts[0].color = colours[1];
 		verts[1].color = colours[1];
@@ -49,7 +49,7 @@ void HealthBar::update()
 		verts[7].color = colours[5];
 	}
 
-	else
+	else//green health bar
 	{
 		verts[0].color = colours[0];
 		verts[1].color = colours[0];

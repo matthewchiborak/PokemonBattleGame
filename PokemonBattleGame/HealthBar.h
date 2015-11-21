@@ -4,12 +4,13 @@
 
 class HealthBar : public sf::Drawable
 {
+	//A class that handles the rendering of health bars on the battlescreen
 private:
-	sf::Color colours[8];
-	sf::VertexArray verts;
-	int HP, maxHP;
-	sf::Vector2f topLeft, bottomRight;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	sf::Color colours[8];//a array of colours to use
+	sf::VertexArray verts;// the vertexes used to draw the health bar
+	int HP, maxHP;// to store the current and max health values
+	sf::Vector2f topLeft, bottomRight;//the area across where to draw the healthbar (must not be more than 3 pixels high)
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the healthbar
 	void update();//update the texture to render
 public:
 	HealthBar();//Empty

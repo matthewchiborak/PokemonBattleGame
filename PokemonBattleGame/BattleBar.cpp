@@ -4,12 +4,12 @@
 
 void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	if (selectingMove)
+	if (selectingMove)//draw the move select screen
 	{
 		target.draw(moveSelect, states);
 		target.draw(arrow, states);
 	}
-	else
+	else//draw the option select screen
 	{
 		target.draw(bar, states);
 		target.draw(select, states);
@@ -19,6 +19,7 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void BattleBar::updateArrowPosition()
 {
+	//update the postion of the arrow based on what screen is being viewed
 	if (selectingMove)
 	{
 		arrow.setPosition(movePositions[selected]);
@@ -46,7 +47,8 @@ BattleBar::BattleBar()
 
 	arrowTex.loadFromFile("Resources/arrow.png");
 	arrow.setTexture(arrowTex);
-
+	
+	//save the positions of the arrow
 	selectingMove = false;
 	selected = 0;
 	selectPositions[0] = sf::Vector2f(128,121);
@@ -83,11 +85,12 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 	}
 	if (selected < 0)
 	{
+		//to handle negative values
 		selected += 4;
 	}
-	selected = selected % 4;
+	selected = selected % 4;//to handle values > 3
 
-	if (key == sf::Keyboard::Return)
+	if (key == sf::Keyboard::Return)//when enter is pressed
 	{
 		selected = 0;
 		selectingMove = !selectingMove;

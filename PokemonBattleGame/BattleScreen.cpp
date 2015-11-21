@@ -11,6 +11,8 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 
 	Screen.setScale(sf::Vector2f(WIN_SIZE.x / 240, WIN_SIZE.y / 160));
 
+	//load resources from external files
+
 	font.loadFromFile("Resources/EmeraldPro.ttf");
 
 	SelfName = PokeText("CHARIZARD", sf::Vector2f(155, 68), true, &font, 16);
@@ -47,10 +49,12 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	SelfPokemon.setTexture(SelfPokemonTex);
 	SelfPokemon.setPosition(40, 50);
 
+	//create the healthbars
 	OpHealth = HealthBar(30, 30, sf::Vector2f(52, 33), sf::Vector2f(100, 36));
 	SelfHealth = HealthBar(25, 60, sf::Vector2f(187, 88), sf::Vector2f(235, 91));
 
-	refresh();
+	refresh();//refresh the texture
+	//save a screenshot of the battle screen
 	//ScreenTex.getTexture().copyToImage().saveToFile("ScreenShot.png");
 }
 
@@ -77,18 +81,20 @@ void BattleScreen::refresh()
 
 void BattleScreen::SetOPHealth(int health)
 {
+	//change the opponet's healthbar and refresh the screen
 	OpHealth.setHealth(health);
 	refresh();
 }
 
 void BattleScreen::SetSelfHealth(int health)
 {
+	//change the user's health bar and health text. refresh the screen
 	SelfHealth.setHealth(health);
 	HealthText.setText(std::to_string(health) + "/ 60");
 	refresh();
 }
 
-void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
+void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to key presses
 {
 	for (int i = 0; i < keys.size(); i++)
 	{

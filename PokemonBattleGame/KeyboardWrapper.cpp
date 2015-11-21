@@ -19,12 +19,12 @@ std::vector<sf::Keyboard::Key> KeyboardWrapper::getPressedKeys()
 	{
 		if (sf::Keyboard::isKeyPressed(watchForPressed[i]))
 		{
-			if (!this->pressed[i])
+			if (!this->pressed[i])//if the key was not pressed last check and is now pressed
 			{
 				pressed.push_back(watchForPressed[i]);
 			}
 		}
-		this->pressed[i] = sf::Keyboard::isKeyPressed(watchForPressed[i]);
+		this->pressed[i] = sf::Keyboard::isKeyPressed(watchForPressed[i]);//save the current state of the key
 	}
 	return pressed;
 }
