@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BATTLEBAR_H
+#define BATTLEBAR_H
 #include "SFML\Graphics.hpp"
 class BattleBar : public sf::Drawable
 {
@@ -27,3 +28,4 @@ public:
 	~BattleBar();
 };
 
+#endif

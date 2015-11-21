@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYBOARDWRAPPER_H
+#define KEYBOARDWRAPPER_H
 #include <SFML\System.hpp>
 #include <SFML\Main.hpp>
 #include <SFML\Window.hpp>
@@ -13,4 +14,4 @@ public:
 	std::vector<sf::Keyboard::Key> getPressedKeys();
 	~KeyboardWrapper();
 };
-
+#endif

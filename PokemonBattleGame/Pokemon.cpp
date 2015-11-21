@@ -163,7 +163,7 @@ int Pokemon::getMaxHP()
 
 Move* Pokemon::getMove(int num)
 {
-    Move* wantedMove;
+    Move* wantedMove = nullptr;
     
     switch (num) {
         case 1:

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BATTLESCREEN_H
+#define BATTLESCREEN_H
 #include <SFML\Graphics.hpp>
 #include "PokeText.h"
 #include "HealthBar.h"
@@ -45,3 +46,4 @@ public:
 	void keysPressed(std::vector<sf::Keyboard::Key> key);
 };
 
+#endif

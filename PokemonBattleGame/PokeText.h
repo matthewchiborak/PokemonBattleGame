@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POKETEXT_H
+#define POKETEXT_H
 #include <SFML/Graphics.hpp>
 
 class PokeText : public sf::Drawable
@@ -19,3 +20,4 @@ public:
 	void move(sf::Vector2f delta);
 	void setHasShadow(bool hasShadow);
 };
+#endif

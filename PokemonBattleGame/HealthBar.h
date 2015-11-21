@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HEALTHBAR_H
+#define HEALTHBAR_H
 #include<SFML\Graphics.hpp>
 
 class HealthBar : public sf::Drawable
@@ -27,3 +28,4 @@ Black = Bottom(80,104,88) Top(72,64,88)
 OpPosition = (52,33) to (99,35)
 SelfPositon = (187,88) to (234,90)
 */
+#endif
