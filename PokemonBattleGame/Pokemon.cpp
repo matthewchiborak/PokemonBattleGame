@@ -66,6 +66,7 @@ Pokemon::Pokemon(std::vector<std::string> *moveInfo, std::string stats)//For cre
             temp="";
         }
     }
+    parsedStrings.push_back(temp);
     
     ID=std::stoi(parsedStrings.at(0));
     name=parsedStrings.at(1);
@@ -138,7 +139,8 @@ void Pokemon::updateStats(std::string stats)
             temp="";
         }
     }
-
+    parsedStrings.push_back(temp);
+    
     previousTurnHp=hp;
     hp=std::stoi(parsedStrings.at(0));
     att=std::stoi(parsedStrings.at(1));
@@ -149,7 +151,7 @@ void Pokemon::updateStats(std::string stats)
     evasion=std::stoi(parsedStrings.at(6));
     accuarcy=std::stoi(parsedStrings.at(7));
     currentStatis=std::stoi(parsedStrings.at(8));
-    isStruggling=std::stoi(parsedStrings.at(9));
+    isStruggling=std::stoi(parsedStrings.at(9))==1;
     move1->setPP(std::stoi(parsedStrings.at(10)));
     move2->setPP(std::stoi(parsedStrings.at(11)));
     move3->setPP(std::stoi(parsedStrings.at(12)));
@@ -192,17 +194,17 @@ std::string Pokemon::getType2()
     return type2;
 }
 
-int Pokemon::getEvasion()
+double Pokemon::getEvasion()
 {
     return evasion;
 }
 
-int Pokemon::getAccuracy()
+double Pokemon::getAccuracy()
 {
     return accuarcy;
 }
 
-int Pokemon::getAtt()
+double Pokemon::getAtt()
 {
     int tempAtt = att;
     if (currentStatis==1) {
@@ -210,15 +212,15 @@ int Pokemon::getAtt()
     }
     return tempAtt;
 }
-int Pokemon::getDef()
+double Pokemon::getDef()
 {
     return def;
 }
-int Pokemon::getSpAtt()
+double Pokemon::getSpAtt()
 {
     return spAtt;
 }
-int Pokemon::getSpDef()
+double Pokemon::getSpDef()
 {
     return spDef;
 }
@@ -263,7 +265,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
     
     for(int i=0; i<abs(direct); i++)
     {
-        result+=(100*aOrD);
+        (*result)+=(100*aOrD);
     }
     
     if (stat=="Att")
@@ -336,6 +338,13 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
             accuarcy*=sign;
         }
     }
+    else if(stat=="Recoil")
+    {
+        hp=hp-(maxHp/4);
+        (*result)+=80;
+    }
+    
+    
     if(currentStatis==0)
     {
     if(stat=="Burn")
@@ -383,7 +392,7 @@ int Pokemon::getSpeed()
 {
     int tempSpeed=speed;
     if (currentStatis==3) {
-        tempSpeed=tempSpeed-tempSpeed*(0.25);
+        tempSpeed=tempSpeed-tempSpeed*(0.25f);
     }
     return tempSpeed;
 }

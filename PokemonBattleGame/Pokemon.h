@@ -24,13 +24,13 @@ private:
     std::string type2;
     int hp;
     int maxHp;
-    int att;
-    int spAtt;
-    int def;
-    int spDef;
+    double att;
+    double spAtt;
+    double def;
+    double spDef;
     int speed;
-    int evasion;
-    int accuarcy;
+    double evasion;
+    double accuarcy;
     Move* move1;
     Move* move2;
     Move* move3;
@@ -50,12 +50,12 @@ public:
     Move* getMove(int num);
     std::string getType1();
     std::string getType2();
-    int getEvasion();
-    int getAccuracy();
-    int getAtt();
-    int getDef();
-    int getSpAtt();
-    int getSpDef();
+    double getEvasion();
+    double getAccuracy();
+    double getAtt();
+    double getDef();
+    double getSpAtt();
+    double getSpDef();
     void dealDamage(int damage); //Used by AttackCalculator
     int getHP();
     int getMaxHP();

@@ -8,10 +8,10 @@
 
 #include "StoredStats.h"
 
-StoredStats::StoredStats(std::vector<std::string>* statStrings, int index)
+StoredStats::StoredStats(std::string statString)
 {
     std::vector<std::string> parsedStrings;
-    std::stringstream ss(statStrings->at(index));
+    std::stringstream ss(statString);
     
     std::string temp="";
     char i;
@@ -27,6 +27,7 @@ StoredStats::StoredStats(std::vector<std::string>* statStrings, int index)
             temp="";
         }
     }
+    parsedStrings.push_back(temp);
     
     ID=std::stoi(parsedStrings.at(0));
     name=parsedStrings.at(1);

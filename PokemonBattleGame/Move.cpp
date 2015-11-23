@@ -27,6 +27,7 @@ Move::Move(std::vector<std::string> *moveInfo, int moveID)
             temp="";
         }
     }
+    parsedStrings.push_back(temp);
 
     
     //Split the string at the right ID location
@@ -38,9 +39,9 @@ Move::Move(std::vector<std::string> *moveInfo, int moveID)
     currentPP=std::stoi(parsedStrings.at(3));
     power=std::stoi(parsedStrings.at(4));
     accuracy=std::stoi(parsedStrings.at(5)); //Note a move that has no accuracy this value is a 0
-    physOrSpec=std::stoi(parsedStrings.at(6)); //true=physical false=special
+    physOrSpec=std::stoi(parsedStrings.at(6))==1; //true=physical false=special
     statChange=std::stoi(parsedStrings.at(7)); //Number of stages changed (+- 1 or +-2) Note I dont think there are any attacks that raise 3 stages but ill have to make a small change in AttackCalc if there is
-    statUser=std::stoi(parsedStrings.at(8)); //false=self true=foe
+    statUser=std::stoi(parsedStrings.at(8))==1; //false=self true=foe
     targetStat=parsedStrings.at(9);
     changeChance=std::stoi(parsedStrings.at(10));
     
@@ -57,10 +58,10 @@ Move::Move()
     power=50;
     accuracy=0; //Note a move that has no accuracy this value is a 0
     physOrSpec=1; //true=physical false=special
-    statChange=0; //Number of stages changed (+- 1 or +-2) Note I dont think there are any attacks that raise 3 stages but ill have to make a small change in AttackCalc if there is
-    statUser=1; //false=self true=foe
-    targetStat="NULL";
-    changeChance=0;
+    statChange=1; //Number of stages changed (+- 1 or +-2) Note I dont think there are any attacks that raise 3 stages but ill have to make a small change in AttackCalc if there is
+    statUser=0; //false=self true=foe
+    targetStat="Recoil";
+    changeChance=100;
     disabled=false;
 }
 

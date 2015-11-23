@@ -177,7 +177,7 @@ AttackCalculator::~AttackCalculator()
 int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHolder, std::string resultString, Pokemon* attacker, Pokemon* defender, int* usedMoveIndex)
 {
     //Returns 8 character string. Last char 0=no effect 1=miss 2=not very 3=normal 4=super effect
-    //Stats effected +10 if att 20 def 30 spatt 40-spdef 50-speed 60-eva 70-acc
+    //Stats effected +10 if att 20 def 30 spatt 40-spdef 50-speed 60-eva 70-acc 80-recoil
     //+100 if stat change +200 sharply change for defender, 300 400 for attacker
     
     //+1000 if crit
@@ -394,6 +394,10 @@ int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHol
             phraseCount++;
             temp="";
             break;
+        case 8:
+            resultHolder->push_back(attacker->getName()+" is damaged by recoil!");
+            phraseCount++;
+            temp="";
             
         default:
             break;
@@ -696,32 +700,38 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
         resultString = statusNew + statusOld + std::to_string(result);
         return resultString;
     }
-    else if(multiplier<1)
+    else if(multiplier<1&&usedMove->getPower()!=0)
     {
         result=2;
     }
-    else if(multiplier==1)
-    {
-        result=3;
-    }
-    else
+    else if(multiplier>1&&usedMove->getPower()!=0)
     {
         result=4;
     }
+    else
+    {
+        result=3;
+    }
     
     float STAB=1;//Same type attack bonus
+    if(usedMove->getPower()!=0)
+    {
     if(usedMove->getType()==attacker->getType1()||usedMove->getType()==attacker->getType2())
     {
         STAB=1.5;
     }
+    }
     
     float crit=1;//Check for a critical hit
+    if(usedMove->getPower()!=0)
+    {
     if(usedMove->getAccuracy()!=0)
     {
         if(rand()%16==15)
         {
             crit=1.5;
         }
+    }
     }
     int damage=0;
     

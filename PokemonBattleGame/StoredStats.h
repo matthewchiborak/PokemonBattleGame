@@ -39,7 +39,8 @@ private:
     int move3;
     int move4;
 public:
-    StoredStats(std::vector<std::string>* statStrings, int index);
+    //StoredStats(std::vector<std::string>* statStrings, int index);
+    StoredStats(std::string statString);
     int getID();
     std::string getName();
     std::string getType1();
