@@ -25,7 +25,8 @@ int main()
 	keyboard.addKeyWatch(sf::Keyboard::Down);
 	keyboard.addKeyWatch(sf::Keyboard::Left);
 	keyboard.addKeyWatch(sf::Keyboard::Right);
-	keyboard.addKeyWatch(sf::Keyboard::Return);
+	keyboard.addKeyWatch(sf::Keyboard::Z);
+	keyboard.addKeyWatch(sf::Keyboard::X);
 
 	//test variables to manipulating healthbars
 	int health = 30;

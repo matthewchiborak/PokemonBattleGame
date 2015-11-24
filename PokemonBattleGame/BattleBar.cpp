@@ -90,10 +90,21 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 	}
 	selected = selected % 4;//to handle values > 3
 
-	if (key == sf::Keyboard::Return)//when enter is pressed
+	if (key == sf::Keyboard::Z)//when Z is pressed (A button)
 	{
-		selected = 0;
-		selectingMove = !selectingMove;
+		if ((selected == 0 && selectingMove == false))
+		{
+			selected = 0;
+			selectingMove = !selectingMove;
+		}
+	}
+	if (key == sf::Keyboard::X)// when X is pressed (B button)
+	{
+		if (selectingMove == true)
+		{
+			selected = 0;
+			selectingMove = !selectingMove;
+		}
 	}
 
 	updateArrowPosition();
