@@ -12,11 +12,19 @@ bool FileReader::readPokemonFile(std::string fileName)
 {
     std::string line;
     std::ifstream myFile(fileName);
+	bool isFirst = true;
     if(myFile.is_open())
     {
         while (getline(myFile, line))
         {
-            storedPkmnStats.push_back(StoredStats(line));
+			if (isFirst)
+			{
+				isFirst = false;
+			}
+			else
+			{
+				storedPkmnStats.push_back(StoredStats(line));
+			}
         }
         myFile.close();
         return true;
@@ -31,11 +39,19 @@ bool FileReader::readMoveFile(std::string fileName)
 {
     std::string line;
     std::ifstream myFile(fileName);
+	bool isFirst = true;
     if(myFile.is_open())
     {
         while (getline(myFile, line))
         {
-            moveStats.push_back(line);
+			if (isFirst)
+			{
+				isFirst = false;
+			}
+			else
+			{
+				moveStats.push_back(line);
+			}
         }
         myFile.close();
         return true;
