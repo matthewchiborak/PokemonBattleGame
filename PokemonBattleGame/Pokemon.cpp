@@ -340,7 +340,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
     }
     else if(stat=="Recoil")
     {
-        hp=hp-(maxHp/4);
+        dealDamage(maxHp/4);
         (*result)+=80;
     }
     

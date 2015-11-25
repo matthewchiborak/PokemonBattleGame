@@ -51,7 +51,7 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 
 	//create the healthbars
 	OpHealth = HealthBar(30, 30, sf::Vector2f(52, 33), sf::Vector2f(100, 36));
-	SelfHealth = HealthBar(25, 60, sf::Vector2f(187, 88), sf::Vector2f(235, 91));
+	SelfHealth = HealthBar(250, 600, sf::Vector2f(187, 88), sf::Vector2f(235, 91));
 
 	refresh();//refresh the texture
 	//save a screenshot of the battle screen
@@ -90,7 +90,7 @@ void BattleScreen::SetSelfHealth(int health)
 {
 	//change the user's health bar and health text. refresh the screen
 	SelfHealth.setHealth(health);
-	HealthText.setText(std::to_string(health) + "/ 60");
+	HealthText.setText(std::to_string(health) + "/600");
 	refresh();
 }
 

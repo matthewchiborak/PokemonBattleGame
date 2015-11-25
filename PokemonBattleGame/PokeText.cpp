@@ -44,3 +44,15 @@ void PokeText::setHasShadow(bool hasShadow)
 {
 	this->hasShadow = hasShadow;
 }
+
+void PokeText::setLightText()
+{
+	this->text.setColor(sf::Color(248, 248, 248));
+	this->shadow.setColor(sf::Color(104, 86, 112));
+}
+
+void PokeText::setDarkText()
+{
+	this->text.setColor(sf::Color(72, 72, 72));
+	this->shadow.setColor(sf::Color(208, 208, 200));
+}

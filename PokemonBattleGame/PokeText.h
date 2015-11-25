@@ -20,5 +20,7 @@ public:
 	void setPosition(sf::Vector2f position);//set the postition
 	void move(sf::Vector2f delta);//move it from it's current position
 	void setHasShadow(bool hasShadow);//should the text have a shadow
+	void setLightText();
+	void setDarkText();
 };
 #endif

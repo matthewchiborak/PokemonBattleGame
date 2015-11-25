@@ -4,27 +4,34 @@
 
 void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	if (selectingMove)//draw the move select screen
+	switch (state)
 	{
-		target.draw(moveSelect, states);
-		target.draw(arrow, states);
-	}
-	else//draw the option select screen
-	{
+	case BattleBar::ACTION:
 		target.draw(bar, states);
 		target.draw(select, states);
 		target.draw(arrow, states);
+		break;
+	case BattleBar::MOVE:
+		target.draw(moveSelect, states);
+		target.draw(arrow, states);
+		break;
+	case BattleBar::TEXT:
+		target.draw(bar, states);
+		target.draw(displayText, states);
+		break;
+	default:
+		break;
 	}
 }
 
 void BattleBar::updateArrowPosition()
 {
 	//update the postion of the arrow based on what screen is being viewed
-	if (selectingMove)
+	if (state == MOVE)
 	{
 		arrow.setPosition(movePositions[selected]);
 	}
-	else
+	else if (state == ACTION)
 	{	
 		arrow.setPosition(selectPositions[selected]);
 	}
@@ -48,8 +55,13 @@ BattleBar::BattleBar()
 	arrowTex.loadFromFile("Resources/arrow.png");
 	arrow.setTexture(arrowTex);
 	
+	//create wanring for trying to use items
+	font.loadFromFile("Resources/EmeraldPro.ttf");
+	displayText = PokeText("OAK: Now is not the\n time to use that", sf::Vector2f(18, 118), true, &font, 15);
+	displayText.setLightText();
+
 	//save the positions of the arrow
-	selectingMove = false;
+	state = ACTION;
 	selected = 0;
 	selectPositions[0] = sf::Vector2f(128,121);
 	selectPositions[1] = sf::Vector2f(184, 121);
@@ -92,18 +104,35 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 
 	if (key == sf::Keyboard::Z)//when Z is pressed (A button)
 	{
-		if ((selected == 0 && selectingMove == false))
+		if (state == ACTION)
 		{
-			selected = 0;
-			selectingMove = !selectingMove;
+			if ((selected == 0))
+			{
+				selected = 0;
+				state = MOVE;
+			}
+			if (selected == 1)
+			{
+				state = TEXT;
+				displayText = PokeText("OAK: Now is not the time to use that", sf::Vector2f(18, 118), true, &font, 15);
+				displayText.setLightText();
+			}
+		}
+		else if (state == TEXT)
+		{
+			state = ACTION;
 		}
 	}
 	if (key == sf::Keyboard::X)// when X is pressed (B button)
 	{
-		if (selectingMove == true)
+		if (state == MOVE)
 		{
 			selected = 0;
-			selectingMove = !selectingMove;
+			state = ACTION;
+		}
+		else if (state == TEXT)
+		{
+			state = ACTION;
 		}
 	}
 
