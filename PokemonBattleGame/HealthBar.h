@@ -18,6 +18,7 @@ public:
 	HealthBar(int health, int maxHealth, sf::Vector2f topLeft, sf::Vector2f bottomRight);//must be used to create a valid healthbar
 	void setHealth(int health);//set the health value
 	void reset(int health, int maxHealth);//set the health and max health
+	void setPosition(sf::Vector2f position);
 };
 /*
 HealthBar Info

@@ -5,7 +5,7 @@ void BattleScreen::draw(sf::RenderTarget & target, sf::RenderStates states) cons
 	target.draw(Screen);
 }
 
-BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
+BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE) : testBox(sf::Vector2f(30, 30))
 {
 	ScreenTex.create(240, 160);
 
@@ -74,6 +74,7 @@ void BattleScreen::refresh()
 	ScreenTex.draw(HealthText);
 	ScreenTex.draw(SelfInfoFrame);
 	ScreenTex.draw(OpName);
+	ScreenTex.draw(testBox);
 
 	ScreenTex.display();
 	Screen.setTexture(ScreenTex.getTexture());

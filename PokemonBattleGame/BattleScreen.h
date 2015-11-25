@@ -4,6 +4,7 @@
 #include "PokeText.h"
 #include "HealthBar.h"
 #include "BattleBar.h"
+#include "PokeSelectBox.h"
 
 class BattleScreen : public sf::Drawable
 {
@@ -21,6 +22,8 @@ private:
 	HealthBar SelfHealth;
 
 	BattleBar battleBar;
+
+	PokeSelectBox testBox;
 
 	sf::RenderTexture ScreenTex;
 

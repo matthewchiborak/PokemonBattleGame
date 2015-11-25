@@ -125,3 +125,11 @@ void HealthBar::reset(int health, int maxHealth)
 	this->maxHP = maxHealth;
 	update();
 }
+
+void HealthBar::setPosition(sf::Vector2f position)
+{
+	sf::Vector2f size = bottomRight - topLeft;
+	topLeft = position;
+	bottomRight = topLeft + size;
+	update();
+}

@@ -78,29 +78,32 @@ BattleBar::BattleBar()
 
 void BattleBar::keyPressed(sf::Keyboard::Key key)
 {
-	//move the arrow
-	if (key == sf::Keyboard::Up)
+	if (state == MOVE || state == ACTION)
 	{
-		selected -= 2;
+		//move the arrow
+		if (key == sf::Keyboard::Up)
+		{
+			selected -= 2;
+		}
+		else if (key == sf::Keyboard::Down)
+		{
+			selected += 2;
+		}
+		else if (key == sf::Keyboard::Left)
+		{
+			selected -= 1;
+		}
+		else if (key == sf::Keyboard::Right)
+		{
+			selected += 1;
+		}
+		if (selected < 0)
+		{
+			//to handle negative values
+			selected += 4;
+		}
+		selected = selected % 4;//to handle values > 3
 	}
-	else if (key == sf::Keyboard::Down)
-	{
-		selected += 2;
-	}
-	else if (key == sf::Keyboard::Left)
-	{
-		selected -= 1;
-	}
-	else if (key == sf::Keyboard::Right)
-	{
-		selected += 1;
-	}
-	if (selected < 0)
-	{
-		//to handle negative values
-		selected += 4;
-	}
-	selected = selected % 4;//to handle values > 3
 
 	if (key == sf::Keyboard::Z)//when Z is pressed (A button)
 	{
@@ -115,6 +118,12 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 			{
 				state = TEXT;
 				displayText = PokeText("OAK: Now is not the time to use that", sf::Vector2f(18, 118), true, &font, 15);
+				displayText.setLightText();
+			}
+			if (selected == 3)
+			{
+				state = TEXT;
+				displayText = PokeText("Run?", sf::Vector2f(18, 118), true, &font, 15);
 				displayText.setLightText();
 			}
 		}

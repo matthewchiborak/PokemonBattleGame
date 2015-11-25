@@ -34,10 +34,14 @@ void PokeText::setText(std::string text)
 void PokeText::setPosition(sf::Vector2f position)
 {
 	this->pos = position;
+	text.setPosition(this->pos);
+	shadow.setPosition(this->pos+sf::Vector2f(1,1));
 }
 void PokeText::move(sf::Vector2f delta)
 {
 	this->pos += delta;
+	text.setPosition(this->pos);
+	shadow.setPosition(this->pos + sf::Vector2f(1, 1));
 }
 
 void PokeText::setHasShadow(bool hasShadow)
