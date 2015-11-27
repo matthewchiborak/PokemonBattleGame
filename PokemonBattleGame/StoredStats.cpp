@@ -44,10 +44,10 @@ StoredStats::StoredStats(std::string statString)
 	minSpDef = std::stoi(parsedStrings.at(12));
 	maxSpeed = std::stoi(parsedStrings.at(15));
 	minSpeed = std::stoi(parsedStrings.at(14));
-	//move1 = std::stoi(parsedStrings.at(16));
-	//move2 = std::stoi(parsedStrings.at(17));
-	//move3 = std::stoi(parsedStrings.at(18));
-	//move4 = std::stoi(parsedStrings.at(19));
+	move1 = std::stoi(parsedStrings.at(16));
+	move2 = std::stoi(parsedStrings.at(17));
+	move3 = std::stoi(parsedStrings.at(18));
+	move4 = std::stoi(parsedStrings.at(19));
 }
 
 int StoredStats::getID() {

@@ -11,6 +11,7 @@ void HealthBar::update()
 {
 	float size = (bottomRight.x - topLeft.x);
 	float middle = size * ((float)HP / maxHP);
+	verts.resize(16);
 	//top left rect
 	verts[0].position = sf::Vector2f(topLeft);
 	verts[1].position = sf::Vector2f(topLeft + sf::Vector2f(middle, 0));
@@ -133,3 +134,11 @@ void HealthBar::setPosition(sf::Vector2f position)
 	bottomRight = topLeft + size;
 	update();
 }
+
+void HealthBar::setPosition(sf::Vector2f topleft, sf::Vector2f bottomRight)
+{
+	this->topLeft = topLeft;
+	this->bottomRight = bottomRight;
+	update();
+}
+

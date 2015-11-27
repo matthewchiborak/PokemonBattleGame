@@ -156,12 +156,14 @@
     <ClCompile Include="BattleBar.cpp" />
     <ClCompile Include="BattleScreen.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="KeyboardWrapper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeSelectBox.cpp" />
+    <ClCompile Include="PokeSelectScreen.cpp" />
     <ClCompile Include="PokeText.cpp" />
     <ClCompile Include="StoredStats.cpp" />
   </ItemGroup>
@@ -170,11 +172,13 @@
     <ClInclude Include="BattleBar.h" />
     <ClInclude Include="BattleScreen.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="functions.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="KeyboardWrapper.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeSelectBox.h" />
+    <ClInclude Include="PokeSelectScreen.h" />
     <ClInclude Include="PokeText.h" />
     <ClInclude Include="StoredStats.h" />
   </ItemGroup>

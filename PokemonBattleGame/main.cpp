@@ -11,6 +11,7 @@
 #include "KeyboardWrapper.h"
 #include "FileReader.h"
 #include "Pokemon.h"
+#include "PokeSelectScreen.h"
 
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
@@ -19,7 +20,23 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");//create the window
 	window.setFramerateLimit(60);
 
+	FileReader fileReader;
+	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
+	{
+		std::cout << "Error could not read Pokemon List" << std::endl;
+	}
+	std::vector<Pokemon> pokemon;
+	for (int i = 0; i < fileReader.numPkmnStats(); i++)
+	{
+		pokemon.push_back(Pokemon(fileReader.getPokemonStats(i)));
+	}
+
+
 	BattleScreen Screen(WIN_SIZE);//create the battlescreen
+
+	PokeSelectScreen Screen2(WIN_SIZE);
+	Screen2.setPokemonList(&pokemon);
+
 	KeyboardWrapper keyboard;//create a keyboard wrapper to watch for key presses
 
 	//tell the keyboardWrapper what keys to watch
@@ -34,12 +51,7 @@ int main()
 	int health = 30;
 	int health2 = 30;
 
-	FileReader fileReader;
-	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
-	{
-		std::cout << "Error could not read Pokemon List" << std::endl;
-	}
-
+	Screen2.refresh();
 
 	while (window.isOpen())
 	{
@@ -72,11 +84,13 @@ int main()
 			health2 -= 1;
 			Screen.SetSelfHealth(health2);
 		}
+		std::vector<sf::Keyboard::Key> keys = keyboard.getPressedKeys();
 
-		Screen.keysPressed(keyboard.getPressedKeys());//send the pressed keys to the battleScreen
+		Screen.keysPressed(keys);//send the pressed keys to the battleScreen
+		Screen2.keysPressed(keys);
 
 		window.clear();//clear the window's frame buffer
-		window.draw(Screen);//draw the battlescreen to the frame buffer
+		window.draw(Screen2);//draw the battlescreen to the frame buffer
 		window.display();//display the frame buffer to the user.
 	}
 

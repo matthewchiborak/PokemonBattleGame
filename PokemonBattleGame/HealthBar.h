@@ -19,6 +19,7 @@ public:
 	void setHealth(int health);//set the health value
 	void reset(int health, int maxHealth);//set the health and max health
 	void setPosition(sf::Vector2f position);
+	void setPosition(sf::Vector2f topleft, sf::Vector2f bottomRight);
 };
 /*
 HealthBar Info
