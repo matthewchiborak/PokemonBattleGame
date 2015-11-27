@@ -43,6 +43,7 @@ private:
 public:
     Pokemon(StoredStats *pkmnInfo, std::vector<std::string> *moveInfo); //For creating your own Pokemon
     Pokemon(std::vector<std::string> *moveInfo, std::string stats);//For creating opponents Pokemon
+	Pokemon(StoredStats *pkmnInfo);//Temp while moves have not been implemneted
     ~Pokemon();
     std::string sendCreationStats();
     void updateStats(std::string stats);

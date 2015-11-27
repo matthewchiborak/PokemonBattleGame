@@ -23,8 +23,6 @@ private:
 
 	BattleBar battleBar;
 
-	PokeSelectBox testBox;
-
 	sf::RenderTexture ScreenTex;
 
 	sf::Texture OpInfoTex;

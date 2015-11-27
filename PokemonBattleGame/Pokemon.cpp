@@ -90,6 +90,41 @@ Pokemon::Pokemon(std::vector<std::string> *moveInfo, std::string stats)//For cre
     move4=new Move(moveInfo, std::stoi(parsedStrings.at(14)));
 }
 
+Pokemon::Pokemon(StoredStats * pkmnInfo)
+{
+	ID = (pkmnInfo->getID());
+	name = (pkmnInfo->getName());
+	type1 = (pkmnInfo->getType1());
+	type2 = (pkmnInfo->getType2());
+
+	int range = (pkmnInfo->getMaxhp()) - (pkmnInfo->getMinhp());
+	int temp = (pkmnInfo->getMinhp()) + rand() % range;
+
+	maxHp = temp;
+	hp = temp;
+	previousTurnHp = temp;
+
+	range = (pkmnInfo->getMaxAtt()) - (pkmnInfo->getMinAtt());
+	att = (pkmnInfo->getMinAtt()) + rand() % range;
+
+	range = (pkmnInfo->getMaxSpAtt()) - (pkmnInfo->getMinSpAtt());
+	spAtt = (pkmnInfo->getMinSpAtt()) + rand() % range;
+
+	range = (pkmnInfo->getMaxDef()) - (pkmnInfo->getMinDef());
+	def = (pkmnInfo->getMinDef()) + rand() % range;
+
+	range = (pkmnInfo->getMaxSpDef()) - (pkmnInfo->getMinSpDef());
+	spDef = (pkmnInfo->getMinSpDef()) + rand() % range;
+
+	range = (pkmnInfo->getMaxSpeed()) - (pkmnInfo->getMinSpeed());
+	speed = (pkmnInfo->getMinSpeed()) + rand() % range;
+
+	evasion = (100);
+	accuarcy = (100);
+	currentStatis = 0;
+	isStruggling = false;
+}
+
 Pokemon::~Pokemon()
 {
     delete move1;

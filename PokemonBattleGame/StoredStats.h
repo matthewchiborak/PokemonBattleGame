@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 //Each of these stores all the stats for one potential pokemon
 

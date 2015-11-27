@@ -26,6 +26,7 @@ public:
     bool readMoveFile(std::string fileName);
     std::vector<std::string>* getMoveInfo();
     StoredStats* getPokemonStats(int index);
+	int numPkmnStats();
 };
 
 #endif /* defined(__TypeChart__FileReader__) */

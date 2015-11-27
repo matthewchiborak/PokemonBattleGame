@@ -9,6 +9,8 @@
 #include "HealthBar.h"
 #include "BattleScreen.h"
 #include "KeyboardWrapper.h"
+#include "FileReader.h"
+#include "Pokemon.h"
 
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
@@ -31,6 +33,13 @@ int main()
 	//test variables to manipulating healthbars
 	int health = 30;
 	int health2 = 30;
+
+	FileReader fileReader;
+	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
+	{
+		std::cout << "Error could not read Pokemon List" << std::endl;
+	}
+
 
 	while (window.isOpen())
 	{

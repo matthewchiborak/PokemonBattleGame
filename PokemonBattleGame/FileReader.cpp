@@ -71,3 +71,9 @@ StoredStats* FileReader::getPokemonStats(int index)
 {
     return &storedPkmnStats.at(index);
 }
+
+int FileReader::numPkmnStats()
+{
+	return storedPkmnStats.size();
+}
+
