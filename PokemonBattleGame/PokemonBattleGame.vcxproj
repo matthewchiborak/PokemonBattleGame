@@ -166,6 +166,7 @@
     <ClCompile Include="PokeSelectScreen.cpp" />
     <ClCompile Include="PokeText.cpp" />
     <ClCompile Include="StoredStats.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackCalculator.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="PokeSelectScreen.h" />
     <ClInclude Include="PokeText.h" />
     <ClInclude Include="StoredStats.h" />
+    <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\arrow.png" />
