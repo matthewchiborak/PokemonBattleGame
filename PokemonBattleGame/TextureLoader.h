@@ -15,7 +15,6 @@ class TextureLoader
 private:
 	static std::vector<Texture*> textures;
 public:
-
 	TextureLoader();
 	bool loadTexture(std::string name, std::string location);//try to load the texture at the give location and save it under the given name
 	sf::Texture* getTexture(std::string name);//get a texture already loaded

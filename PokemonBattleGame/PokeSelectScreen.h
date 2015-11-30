@@ -5,6 +5,7 @@
 #include "Pokemon.h"
 #include "SFML\System.hpp"
 #include "TextureLoader.h"
+#include "PokeSelectBoxLarge.h"
 class PokeSelectScreen : public sf::Drawable
 {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
@@ -18,6 +19,7 @@ class PokeSelectScreen : public sf::Drawable
 
 	std::vector<Pokemon> *pokemon;
 	PokeSelectBox boxes[6];
+	PokeSelectBoxLarge largeBox;
 	int selected, top;
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
