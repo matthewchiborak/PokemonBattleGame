@@ -2,15 +2,13 @@
 #define BATTLEBAR_H
 #include "SFML\Graphics.hpp"
 #include "PokeText.h"
+#include "TextureLoader.h"
 class BattleBar : public sf::Drawable
 {
 	//This class is contains the selection at the bottom of the battle screen
 private:
 	//initialize variables for the required textures
-	sf::Texture barTex;
-	sf::Texture selectTex;
-	sf::Texture moveSelectTex;
-	sf::Texture arrowTex;
+	TextureLoader loader;
 
 	sf::Sprite bar;
 	sf::Sprite select;

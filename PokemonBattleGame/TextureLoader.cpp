@@ -1,5 +1,7 @@
 #include "TextureLoader.h"
 
+std::vector<Texture*> TextureLoader::textures;//initialize the static vector in TextureLoader
+
 TextureLoader::TextureLoader()
 {
 }
@@ -26,6 +28,17 @@ sf::Texture * TextureLoader::getTexture(std::string name)
 		}
 	}
 	return nullptr;
+}
+
+sf::Texture * TextureLoader::tryLoadTexture(std::string name, std::string location)
+{
+	sf::Texture* temp = getTexture(name);
+	if (temp == nullptr)
+	{
+		loadTexture(name, location);
+		return getTexture(name);
+	}
+	return temp;
 }
 
 

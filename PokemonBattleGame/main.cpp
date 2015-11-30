@@ -13,6 +13,7 @@
 #include "Pokemon.h"
 #include "PokeSelectScreen.h"
 
+
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
 int main()

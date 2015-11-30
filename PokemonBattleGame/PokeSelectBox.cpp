@@ -4,9 +4,6 @@ PokeSelectBox::PokeSelectBox(Pokemon *pokemon, sf::Vector2f position)
 {
 	this->pokemon = pokemon;
 	font.loadFromFile("Resources/EmeraldPro.ttf");
-	iconTex.loadFromFile("Resources/PokemonSprites/MenuSprites/"+itos(pokemon->getID())+".png");
-	boxTex.loadFromFile("Resources/pokemonSelection.png");
-	boxSelectedTex.loadFromFile("Resources/pokemonSelection2.png");
 
 	bar = HealthBar(pokemon->getHP(), pokemon->getMaxHP(), sf::Vector2f(0, 0), sf::Vector2f(48, 3));
 	level = PokeText("50", sf::Vector2f(48, 14), true, &font, 15);
@@ -18,9 +15,9 @@ PokeSelectBox::PokeSelectBox(Pokemon *pokemon, sf::Vector2f position)
 	health.setHasShadow(true);
 	health.setLightText();
 
-	box.setTexture(boxTex);
-	boxSelected.setTexture(boxSelectedTex);
-	icon.setTexture(iconTex);
+	box.setTexture(*loader.tryLoadTexture("PokeSelectBox", "Resources/pokemonSelection.png"));
+	boxSelected.setTexture(*loader.tryLoadTexture("PokeSelectBox2", "Resources/pokemonSelection2.png"));
+	icon.setTexture(*loader.tryLoadTexture("icon"+ itos(pokemon->getID()), "Resources/PokemonSprites/MenuSprites/" + itos(pokemon->getID()) + ".png"));
 	icon.setOrigin(10, 10);
 
 	setPosition(position);
@@ -30,10 +27,6 @@ PokeSelectBox::PokeSelectBox(Pokemon *pokemon, sf::Vector2f position)
 PokeSelectBox::PokeSelectBox(sf::Vector2f position)
 {
 	font.loadFromFile("Resources/EmeraldPro.ttf");
-	iconTex.loadFromFile("Resources/PokemonSprites/MenuSprites/213.png");
-	boxTex.loadFromFile("Resources/pokemonSelection.png");
-	boxSelectedTex.loadFromFile("Resources/pokemonSelection2.png");
-
 	
 	level = PokeText("50", sf::Vector2f(48, 14), true, &font, 15);
 	level.setLightText();
@@ -46,9 +39,9 @@ PokeSelectBox::PokeSelectBox(sf::Vector2f position)
 	health.setHasShadow(true);
 	health.setLightText();
 
-	box.setTexture(boxTex);
-	boxSelected.setTexture(boxSelectedTex);
-	icon.setTexture(iconTex);
+	box.setTexture(*loader.tryLoadTexture("PokeSelectBox", "Resources/pokemonSelection.png"));
+	boxSelected.setTexture(*loader.tryLoadTexture("PokeSelectBox2", "Resources/pokemonSelection2.png"));
+	icon.setTexture(*loader.tryLoadTexture("icon213", "Resources/PokemonSprites/MenuSprites/213.png"));
 	icon.setOrigin(10, 10);
 
 	setPosition(position);
@@ -57,8 +50,6 @@ PokeSelectBox::PokeSelectBox(sf::Vector2f position)
 PokeSelectBox::PokeSelectBox()
 {
 	font.loadFromFile("Resources/EmeraldPro.ttf");
-	boxTex.loadFromFile("Resources/pokemonSelection.png");
-	boxSelectedTex.loadFromFile("Resources/pokemonSelection2.png");
 
 	bar = HealthBar(1, 1, sf::Vector2f(0, 0), sf::Vector2f(48, 3));
 	level = PokeText("50", sf::Vector2f(48, 14), true, &font, 15);
@@ -68,8 +59,9 @@ PokeSelectBox::PokeSelectBox()
 	health = PokeText("100/100", sf::Vector2f(0, 0), true, &font, 15);
 	health.setLightText();
 	icon.setOrigin(10, 10);
-	box.setTexture(boxTex);
-	boxSelected.setTexture(boxSelectedTex);
+	box.setTexture(*loader.tryLoadTexture("PokeSelectBox", "Resources/pokemonSelection.png"));
+	boxSelected.setTexture(*loader.tryLoadTexture("PokeSelectBox2", "Resources/pokemonSelection2.png"));
+	icon.setTexture(*loader.tryLoadTexture("icon213", "Resources/PokemonSprites/MenuSprites/213.png"));
 }
 
 void PokeSelectBox::setPosition(sf::Vector2f position)
@@ -98,8 +90,7 @@ void PokeSelectBox::deselect()
 void PokeSelectBox::setPokemon(Pokemon *pokemon)
 {
 	this->pokemon = pokemon;
-	iconTex.loadFromFile("Resources/PokemonSprites/MenuSprites/" + itos(pokemon->getID()) + ".png");
-	icon.setTexture(iconTex);
+	icon.setTexture(*loader.tryLoadTexture("icon" + itos(pokemon->getID()), "Resources/PokemonSprites/MenuSprites/" + itos(pokemon->getID()) + ".png"));
 	setHealth(pokemon->getHP(), pokemon->getMaxHP());
 	name.setText(pokemon->getName());
 }

@@ -5,6 +5,7 @@
 #include "HealthBar.h"
 #include "BattleBar.h"
 #include "PokeSelectBox.h"
+#include "TextureLoader.h"
 
 class BattleScreen : public sf::Drawable
 {
@@ -13,6 +14,8 @@ class BattleScreen : public sf::Drawable
 private:
 	//initialize the required variables
 	sf::Font font;
+
+	TextureLoader loader;
 
 	PokeText SelfName;
 	PokeText OpName;
@@ -24,13 +27,6 @@ private:
 	BattleBar battleBar;
 
 	sf::RenderTexture ScreenTex;
-
-	sf::Texture OpInfoTex;
-	sf::Texture SelfInfoTex;
-	sf::Texture SelfInfoFrameTex;
-	sf::Texture BackgroundsTex;
-	sf::Texture OpPokemonTex;
-	sf::Texture SelfPokemonTex;
 
 	sf::Sprite Screen;
 	sf::Sprite OpInfo;

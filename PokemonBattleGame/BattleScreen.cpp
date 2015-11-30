@@ -20,33 +20,22 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	HealthText = PokeText("25/ 60", sf::Vector2f(197, 87), true, &font, 15);
 
 
-	OpInfoTex.loadFromFile("Resources/OpponetInfo.png");
-	OpInfo.setTexture(OpInfoTex);
+	OpInfo.setTexture(*loader.tryLoadTexture("OpInfo","Resources/OpponetInfo.png"));
 	OpInfo.setPosition(13, 16);
 
-
-	SelfInfoTex.loadFromFile("Resources/SelfInfo.png");
-	SelfInfo.setTexture(SelfInfoTex);
+	SelfInfo.setTexture(*loader.tryLoadTexture("SelfInfo", "Resources/SelfInfo.png"));
 	SelfInfo.setPosition(134, 70);
 
-
-	SelfInfoFrameTex.loadFromFile("Resources/SelfInfoFrame.png");
-	SelfInfoFrame.setTexture(SelfInfoFrameTex);
+	SelfInfoFrame.setTexture(*loader.tryLoadTexture("SelfInfoFrame", "Resources/SelfInfoFrame.png"));
 	SelfInfoFrame.setPosition(134, 70);
 
-
-	BackgroundsTex.loadFromFile("Resources/battleBackgrounds.png");
-	BackGround.setTexture(BackgroundsTex);
+	BackGround.setTexture(*loader.tryLoadTexture("BattleBackgrounds", "Resources/battleBackgrounds.png"));
 	BackGround.setTextureRect(sf::IntRect(1, 1, 240, 160));
 
-
-	OpPokemonTex.loadFromFile("Resources/blaziken.png");
-	OpPokemon.setTexture(OpPokemonTex);
+	OpPokemon.setTexture(*loader.tryLoadTexture("front257", "Resources/PokemonSprites/Front/257.png"));
 	OpPokemon.setPosition(140, 10);
 
-
-	SelfPokemonTex.loadFromFile("Resources/Charizard.png");
-	SelfPokemon.setTexture(SelfPokemonTex);
+	SelfPokemon.setTexture(*loader.tryLoadTexture("back6", "Resources/PokemonSprites/Back/6.png"));
 	SelfPokemon.setPosition(40, 50);
 
 	//create the healthbars

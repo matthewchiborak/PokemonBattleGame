@@ -40,20 +40,16 @@ void BattleBar::updateArrowPosition()
 BattleBar::BattleBar()
 {
 	//load textures
-	barTex.loadFromFile("Resources/BattleBar.png");
-	bar.setTexture(barTex);
+	bar.setTexture(*loader.tryLoadTexture("BattleBar", "Resources/BattleBar.png"));
 	bar.setPosition(0, 110);
 
-	selectTex.loadFromFile("Resources/battleSelect.png");
-	select.setTexture(selectTex);
+	select.setTexture(*loader.tryLoadTexture("BattleSelect", "Resources/battleSelect.png"));
 	select.setPosition(120, 110);
 
-	moveSelectTex.loadFromFile("Resources/moveSelect.png");
-	moveSelect.setTexture(moveSelectTex);
+	moveSelect.setTexture(*loader.tryLoadTexture("MoveSelect", "Resources/moveSelect.png"));
 	moveSelect.setPosition(0, 110);
 
-	arrowTex.loadFromFile("Resources/arrow.png");
-	arrow.setTexture(arrowTex);
+	arrow.setTexture(*loader.tryLoadTexture("arrow", "Resources/arrow.png"));
 	
 	//create wanring for trying to use items
 	font.loadFromFile("Resources/EmeraldPro.ttf");

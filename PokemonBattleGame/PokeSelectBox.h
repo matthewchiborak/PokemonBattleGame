@@ -5,9 +5,10 @@
 #include "HealthBar.h"
 #include "PokeText.h"
 #include "functions.h"
+#include "TextureLoader.h"
 class PokeSelectBox : public sf::Drawable
 {
-	sf::Texture boxTex, boxSelectedTex, iconTex;
+	TextureLoader loader;
 	sf::Sprite box, boxSelected, icon;
 	sf::Font font;
 	HealthBar bar;
