@@ -163,6 +163,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeSelectBox.cpp" />
+    <ClCompile Include="PokeSelectBoxLarge.cpp" />
     <ClCompile Include="PokeSelectScreen.cpp" />
     <ClCompile Include="PokeText.cpp" />
     <ClCompile Include="StoredStats.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeSelectBox.h" />
+    <ClInclude Include="PokeSelectBoxLarge.h" />
     <ClInclude Include="PokeSelectScreen.h" />
     <ClInclude Include="PokeText.h" />
     <ClInclude Include="StoredStats.h" />

@@ -4,14 +4,16 @@
 #include "PokeSelectBox.h"
 #include "Pokemon.h"
 #include "SFML\System.hpp"
+#include "TextureLoader.h"
 class PokeSelectScreen : public sf::Drawable
 {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
 	sf::Font font;
 
+	TextureLoader loader;
 	sf::RenderTexture screenTex;
 
-	sf::Texture selectScreenTex;
+	sf::Sprite background;
 	sf::Sprite selectScreen;
 
 	std::vector<Pokemon> *pokemon;

@@ -11,7 +11,7 @@ PokeSelectScreen::PokeSelectScreen(const sf::Vector2i WIN_SIZE)
 {
 	screenTex.create(240,160);
 	selectScreen.setScale(sf::Vector2f(WIN_SIZE.x / 240, WIN_SIZE.y / 160));
-	selectScreenTex.loadFromFile("Resources/PokemonSelectBackground.png");
+	background.setTexture(*loader.tryLoadTexture("PokeSelectBack", "Resources/PokemonSelectBackground.png"));
 	boxes[0].setPosition(sf::Vector2f(88, 10));
 	boxes[1].setPosition(sf::Vector2f(88, 34));
 	boxes[2].setPosition(sf::Vector2f(88, 58));
@@ -51,7 +51,7 @@ void PokeSelectScreen::refresh()
 	}
 
 	screenTex.clear();
-	screenTex.draw(sf::Sprite(selectScreenTex));
+	screenTex.draw(background);
 	for (int i = 0; i < 6; i++)
 	{
 		
