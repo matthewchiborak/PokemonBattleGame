@@ -18,7 +18,7 @@ PokeSelectScreen::PokeSelectScreen(const sf::Vector2i WIN_SIZE)
 	boxes[3].setPosition(sf::Vector2f(88, 82));
 	boxes[4].setPosition(sf::Vector2f(88, 106));
 	boxes[5].setPosition(sf::Vector2f(88, 130));
-	largeBox.setPosition(sf::Vector2f(2, 20));
+	largeBox.setPosition(sf::Vector2f(2, 5));
 	top = 0;
 	selected = 0;
 }

@@ -3,47 +3,13 @@
 PokeSelectBox::PokeSelectBox(Pokemon *pokemon, sf::Vector2f position)
 {
 	this->pokemon = pokemon;
-	font.loadFromFile("Resources/EmeraldPro.ttf");
-
-	bar = HealthBar(pokemon->getHP(), pokemon->getMaxHP(), sf::Vector2f(0, 0), sf::Vector2f(48, 3));
-	level = PokeText("50", sf::Vector2f(48, 14), true, &font, 15);
-	level.setLightText();
-	name = PokeText(pokemon->getName(), sf::Vector2f(0, 0), true, &font, 15);
-	name.setLightText();
-	health = PokeText("", sf::Vector2f(0, 0), true, &font, 15);
-	setHealth(pokemon->getHP(), pokemon->getMaxHP());
-	health.setHasShadow(true);
-	health.setLightText();
-
-	box.setTexture(*loader.tryLoadTexture("PokeSelectBox", "Resources/pokemonSelection.png"));
-	boxSelected.setTexture(*loader.tryLoadTexture("PokeSelectBox2", "Resources/pokemonSelection2.png"));
-	icon.setTexture(*loader.tryLoadTexture("icon"+ itos(pokemon->getID()), "Resources/PokemonSprites/MenuSprites/" + itos(pokemon->getID()) + ".png"));
-	icon.setOrigin(10, 10);
-
 	setPosition(position);
-	
+	setPokemon(pokemon);
 }
 
 PokeSelectBox::PokeSelectBox(sf::Vector2f position)
 {
-	font.loadFromFile("Resources/EmeraldPro.ttf");
-	
-	level = PokeText("50", sf::Vector2f(48, 14), true, &font, 15);
-	level.setLightText();
-	name = PokeText("SHUCKLE",sf::Vector2f(0,0),true,&font, 15);
-	name.setLightText();
-
-	health = PokeText("100/100", sf::Vector2f(0, 0), true, &font, 15);
-	bar = HealthBar(100, 100, sf::Vector2f(0, 0), sf::Vector2f(48, 3));
-	setHealth(100, 100);
-	health.setHasShadow(true);
-	health.setLightText();
-
-	box.setTexture(*loader.tryLoadTexture("PokeSelectBox", "Resources/pokemonSelection.png"));
-	boxSelected.setTexture(*loader.tryLoadTexture("PokeSelectBox2", "Resources/pokemonSelection2.png"));
-	icon.setTexture(*loader.tryLoadTexture("icon213", "Resources/PokemonSprites/MenuSprites/213.png"));
-	icon.setOrigin(10, 10);
-
+	PokeSelectBox();
 	setPosition(position);
 }
 
