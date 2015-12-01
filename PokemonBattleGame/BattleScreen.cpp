@@ -36,7 +36,7 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	OpPokemon.setPosition(140, 10);
 
 	SelfPokemon.setTexture(*loader.tryLoadTexture("back6", "Resources/PokemonSprites/Back/6.png"));
-	SelfPokemon.setPosition(40, 50);
+	SelfPokemon.setPosition(40, 54);
 
 	//create the healthbars
 	OpHealth = HealthBar(30, 30, sf::Vector2f(52, 33), sf::Vector2f(100, 36));
@@ -52,9 +52,9 @@ void BattleScreen::refresh()
 	ScreenTex.clear();
 
 	ScreenTex.draw(BackGround);
-	ScreenTex.draw(battleBar);
 	ScreenTex.draw(OpPokemon);
 	ScreenTex.draw(SelfPokemon);
+	ScreenTex.draw(battleBar);
 	ScreenTex.draw(OpHealth);
 	ScreenTex.draw(OpInfo);
 	ScreenTex.draw(SelfHealth);
@@ -91,3 +91,21 @@ void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to 
 	}
 	refresh();
 }
+
+void BattleScreen::setOppPokemon(Pokemon * p)
+{
+	oppPokemon = p;
+	OpHealth.reset(oppPokemon->getHP(), oppPokemon->getMaxHP());
+	OpPokemon.setTexture(*loader.tryLoadTexture("front" + itos(oppPokemon->getID()), "Resources/PokemonSprites/Front/" + itos(oppPokemon->getID()) + ".png"));
+	OpName.setText(oppPokemon->getName());
+}
+
+void BattleScreen::setSelfPokemon(Pokemon * p)
+{
+	selfPokemon = p;
+	SelfHealth.reset(selfPokemon->getHP(), selfPokemon->getMaxHP());
+	SelfPokemon.setTexture(*loader.tryLoadTexture("back" + itos(selfPokemon->getID()), "Resources/PokemonSprites/Back/" + itos(selfPokemon->getID()) + ".png"));
+	SelfName.setText(selfPokemon->getName());
+	SelfHealth.reset(selfPokemon->getHP(), selfPokemon->getMaxHP());
+}
+

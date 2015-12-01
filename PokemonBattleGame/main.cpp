@@ -48,6 +48,7 @@ int main()
 	keyboard.addKeyWatch(sf::Keyboard::Right);
 	keyboard.addKeyWatch(sf::Keyboard::Z);
 	keyboard.addKeyWatch(sf::Keyboard::X);
+	keyboard.addKeyWatch(sf::Keyboard::R);
 
 	//test variables to manipulating healthbars
 	int health = 30;
@@ -88,11 +89,22 @@ int main()
 		}
 		std::vector<sf::Keyboard::Key> keys = keyboard.getPressedKeys();
 
+		for (int i = 0; i < keys.size(); i++)
+		{
+			if (keys[i] == sf::Keyboard::R)
+			{
+				int j = rand() % pokemon.size();
+				Screen.setOppPokemon(&pokemon[j]);
+				j = rand() % pokemon.size();
+				Screen.setSelfPokemon(&pokemon[j]);
+			}
+		}
+
 		Screen.keysPressed(keys);//send the pressed keys to the battleScreen
 		Screen2.keysPressed(keys);
 
 		window.clear();//clear the window's frame buffer
-		window.draw(Screen2);//draw the battlescreen to the frame buffer
+		window.draw(Screen);//draw the battlescreen to the frame buffer
 		window.display();//display the frame buffer to the user.
 	}
 

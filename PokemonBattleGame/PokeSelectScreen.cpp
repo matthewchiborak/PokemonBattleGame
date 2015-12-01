@@ -135,3 +135,14 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 	}
 	refresh();
 }
+
+std::vector<Pokemon>* PokeSelectScreen::getParty(std::vector<Pokemon>* p, int amount)
+{
+	std::mutex mtx;
+	std::unique_lock<std::mutex> lock(mtx);
+	selectedPokemon = new std::vector<Pokemon>;
+	setPokemonList(p);
+	partySize = amount;
+	cv.wait(lock);
+	return selectedPokemon;
+}

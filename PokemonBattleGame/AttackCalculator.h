@@ -15,7 +15,7 @@
 class AttackCalculator
 {
 private:
-    double **chart;
+	double **chart;
     
 public:
     AttackCalculator();

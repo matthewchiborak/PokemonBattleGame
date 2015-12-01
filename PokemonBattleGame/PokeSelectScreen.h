@@ -1,6 +1,7 @@
 #ifndef POKESELECTSCREEN_H
 #define POKESELECTSCREEN_H
 #include <algorithm>
+#include <condition_variable>
 #include "SFML\Graphics.hpp"
 #include "PokeSelectBox.h"
 #include "Pokemon.h"
@@ -22,7 +23,9 @@ class PokeSelectScreen : public sf::Drawable
 	std::vector<Pokemon> *pokemon, *selectedPokemon;
 	PokeSelectBox boxes[6];
 	PokeSelectBoxLarge selectedBoxes[3];
-	int selected, top;
+	int selected, top, partySize;
+
+	std::condition_variable cv;
 
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
