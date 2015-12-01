@@ -17,9 +17,9 @@ class PokeSelectScreen : public sf::Drawable
 	sf::Sprite background;
 	sf::Sprite selectScreen;
 
-	std::vector<Pokemon> *pokemon;
+	std::vector<Pokemon> *pokemon, *selectedPokemon;
 	PokeSelectBox boxes[6];
-	PokeSelectBoxLarge largeBox;
+	PokeSelectBoxLarge largeBox, selectedBoxes[3];
 	int selected, top;
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
@@ -27,6 +27,7 @@ public:
 	void setPokemonList(std::vector<Pokemon>* p);
 	void refresh();
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
+	std::vector<Pokemon>* getParty(std::vector<Pokemon>* p, int amount);//will block untill the user selects their pokemon
 };
 
 #endif
