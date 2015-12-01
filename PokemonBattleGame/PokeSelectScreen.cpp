@@ -18,7 +18,6 @@ PokeSelectScreen::PokeSelectScreen(const sf::Vector2i WIN_SIZE)
 	boxes[3].setPosition(sf::Vector2f(88, 82));
 	boxes[4].setPosition(sf::Vector2f(88, 106));
 	boxes[5].setPosition(sf::Vector2f(88, 130));
-	largeBox.setPosition(sf::Vector2f(2, 5));
 	selectedBoxes[0].setPosition(sf::Vector2f(2,1));
 	selectedBoxes[1].setPosition(sf::Vector2f(2,51));
 	selectedBoxes[2].setPosition(sf::Vector2f(2,101));
@@ -63,7 +62,6 @@ void PokeSelectScreen::refresh()
 	{
 		screenTex.draw(selectedBoxes[i]);
 	}
-	//screenTex.draw(largeBox);
 	for (int i = 0; i < 6; i++)
 	{
 		screenTex.draw(boxes[i]);
@@ -89,7 +87,6 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 			{
 				top = selected;
 			}
-			largeBox.setPokemon(&pokemon->at(selected));
 		}
 		if (keys[i] == sf::Keyboard::Down)//fix issue arround setting top near the end of the pokemon list
 		{
@@ -103,7 +100,6 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 			{
 				top = selected -5;
 			}
-			largeBox.setPokemon(&pokemon->at(selected));
 		}
 		if (keys[i] == sf::Keyboard::Z)
 		{
@@ -111,6 +107,15 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 			{
 				selectedBoxes[selectedPokemon->size()].setPokemon(&pokemon->at(selected));
 				selectedPokemon->push_back(pokemon->at(selected));
+				pokemon->erase(pokemon->begin()+selected);
+				if (selected >= pokemon->size())
+				{
+					selected -=1;
+				}
+				if (top >= pokemon->size())
+				{
+					top -=1;
+				}
 			}
 
 		}
@@ -118,6 +123,7 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 		{
 			if (selectedPokemon->size() > 0)
 			{
+				pokemon->push_back(selectedPokemon->back());
 				selectedPokemon->pop_back();
 			}
 		}

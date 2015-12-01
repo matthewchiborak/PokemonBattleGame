@@ -19,7 +19,7 @@ class PokeSelectScreen : public sf::Drawable
 
 	std::vector<Pokemon> *pokemon, *selectedPokemon;
 	PokeSelectBox boxes[6];
-	PokeSelectBoxLarge largeBox, selectedBoxes[3];
+	PokeSelectBoxLarge selectedBoxes[3];
 	int selected, top;
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
