@@ -1,11 +1,13 @@
 #ifndef POKESELECTSCREEN_H
 #define POKESELECTSCREEN_H
+#include <algorithm>
 #include "SFML\Graphics.hpp"
 #include "PokeSelectBox.h"
 #include "Pokemon.h"
 #include "SFML\System.hpp"
 #include "TextureLoader.h"
 #include "PokeSelectBoxLarge.h"
+
 class PokeSelectScreen : public sf::Drawable
 {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
@@ -21,6 +23,7 @@ class PokeSelectScreen : public sf::Drawable
 	PokeSelectBox boxes[6];
 	PokeSelectBoxLarge selectedBoxes[3];
 	int selected, top;
+
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
 	~PokeSelectScreen();

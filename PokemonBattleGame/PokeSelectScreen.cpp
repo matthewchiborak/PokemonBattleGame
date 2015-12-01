@@ -1,5 +1,9 @@
 #include "PokeSelectScreen.h"
 
+bool PokeSort(Pokemon i, Pokemon j)
+{
+	return i.getID() < j.getID();
+}
 
 
 void PokeSelectScreen::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -125,6 +129,7 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 			{
 				pokemon->push_back(selectedPokemon->back());
 				selectedPokemon->pop_back();
+				std::sort(pokemon->begin(), pokemon->end(), PokeSort);
 			}
 		}
 	}

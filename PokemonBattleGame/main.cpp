@@ -20,6 +20,7 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");//create the window
 	window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(true);
 
 	FileReader fileReader;
 	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
