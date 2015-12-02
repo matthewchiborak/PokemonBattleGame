@@ -153,8 +153,8 @@ void BattleScreen::setRandomBackground()
 	sf::IntRect rect;
 	rect.height = 160;
 	rect.width = 240;
-	rect.top = b * 114 + 2*b;
-	rect.left = a * 240 + 2 * a;
+	rect.top = b * 114 + 2 * b + 1;
+	rect.left = a * 240 + 2 * a + 1;
 	BackGround.setTextureRect(rect);
 }
 
