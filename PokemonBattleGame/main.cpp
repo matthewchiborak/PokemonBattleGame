@@ -101,6 +101,7 @@ int main()
 				Screen.setOppPokemon(pokemon[j]);
 				j = rand() % pokemon.size();
 				Screen.setSelfPokemon(pokemon[j]);
+				Screen.setRandomBackground();
 			}
 		}
 

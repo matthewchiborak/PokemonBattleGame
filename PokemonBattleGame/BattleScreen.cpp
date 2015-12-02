@@ -146,3 +146,15 @@ void BattleScreen::setSelfPokemon(Pokemon * p)
 	refreshHealth();
 }
 
+void BattleScreen::setRandomBackground()
+{
+	int a = rand() % 3;
+	int b = rand() % 4;
+	sf::IntRect rect;
+	rect.height = 160;
+	rect.width = 240;
+	rect.top = b * 114 + 2*b;
+	rect.left = a * 240 + 2 * a;
+	BackGround.setTextureRect(rect);
+}
+

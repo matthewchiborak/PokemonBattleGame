@@ -48,6 +48,7 @@ public:
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
 	void setOppPokemon(Pokemon * p);
 	void setSelfPokemon(Pokemon * p);
+	void setRandomBackground();
 };
 
 #endif
