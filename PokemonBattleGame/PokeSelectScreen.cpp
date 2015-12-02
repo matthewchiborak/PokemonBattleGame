@@ -1,8 +1,8 @@
 #include "PokeSelectScreen.h"
 
-bool PokeSort(Pokemon i, Pokemon j)
+bool PokeSort(Pokemon *i, Pokemon *j)
 {
-	return i.getID() < j.getID();
+	return i->getID() < j->getID();
 }
 
 
@@ -28,7 +28,7 @@ PokeSelectScreen::PokeSelectScreen(const sf::Vector2i WIN_SIZE)
 	top = 0;
 	selected = 0;
 
-	selectedPokemon = new std::vector<Pokemon>;
+	selectedPokemon = nullptr;
 }
 
 PokeSelectScreen::~PokeSelectScreen()
@@ -36,7 +36,7 @@ PokeSelectScreen::~PokeSelectScreen()
 	delete selectedPokemon;
 }
 
-void PokeSelectScreen::setPokemonList(std::vector<Pokemon>* p)
+void PokeSelectScreen::setPokemonList(std::vector<Pokemon*>* p)
 {
 	this->pokemon = p;
 	refresh();
@@ -48,7 +48,7 @@ void PokeSelectScreen::refresh()
 	for (int i = 0; i < 6 && i < pokemon->size(); i++)
 	{
 		boxes[i].deselect();
-		boxes[i].setPokemon(&pokemon->at(index));
+		boxes[i].setPokemon(pokemon->at(index));
 		if (index == selected)
 		{
 			boxes[i].select();
@@ -62,9 +62,12 @@ void PokeSelectScreen::refresh()
 	
 	screenTex.clear();
 	screenTex.draw(background);
-	for (int i = 0; i < 3 && i < selectedPokemon->size(); i++)
+	if (selectedPokemon != nullptr)
 	{
-		screenTex.draw(selectedBoxes[i]);
+		for (int i = 0; i < 3 && i < selectedPokemon->size(); i++)
+		{
+			screenTex.draw(selectedBoxes[i]);
+		}
 	}
 	for (int i = 0; i < 6; i++)
 	{
@@ -105,44 +108,46 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 				top = selected -5;
 			}
 		}
-		if (keys[i] == sf::Keyboard::Z)
+		if (selectedPokemon != nullptr)
 		{
-			if (selectedPokemon->size() < 3)
+			if (keys[i] == sf::Keyboard::Z)
 			{
-				selectedBoxes[selectedPokemon->size()].setPokemon(&pokemon->at(selected));
-				selectedPokemon->push_back(pokemon->at(selected));
-				pokemon->erase(pokemon->begin()+selected);
-				if (selected >= pokemon->size())
+				if (selectedPokemon->size() < 3)
 				{
-					selected -=1;
+					selectedBoxes[selectedPokemon->size()].setPokemon(pokemon->at(selected));
+					selectedPokemon->push_back(pokemon->at(selected));
+					pokemon->erase(pokemon->begin() + selected);
+					if (selected >= pokemon->size())
+					{
+						selected -= 1;
+					}
+					if (top >= pokemon->size())
+					{
+						top -= 1;
+					}
 				}
-				if (top >= pokemon->size())
-				{
-					top -=1;
-				}
-			}
 
-		}
-		if (keys[i] == sf::Keyboard::X)
-		{
-			if (selectedPokemon->size() > 0)
+			}
+			if (keys[i] == sf::Keyboard::X)
 			{
-				pokemon->push_back(selectedPokemon->back());
-				selectedPokemon->pop_back();
-				std::sort(pokemon->begin(), pokemon->end(), PokeSort);
+				if (selectedPokemon->size() > 0)
+				{
+					pokemon->push_back(selectedPokemon->back());
+					selectedPokemon->pop_back();
+					std::sort(pokemon->begin(), pokemon->end(), PokeSort);
+				}
 			}
 		}
 	}
 	refresh();
 }
 
-std::vector<Pokemon>* PokeSelectScreen::getParty(std::vector<Pokemon>* p, int amount)
+void PokeSelectScreen::getParty(std::vector<Pokemon*>* pokemon, std::vector<Pokemon*> *selected, int amount)
 {
 	std::mutex mtx;
 	std::unique_lock<std::mutex> lock(mtx);
-	selectedPokemon = new std::vector<Pokemon>;
-	setPokemonList(p);
+	selectedPokemon = selected;
+	setPokemonList(pokemon);
 	partySize = amount;
 	cv.wait(lock);
-	return selectedPokemon;
 }

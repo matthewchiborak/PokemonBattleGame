@@ -31,10 +31,10 @@ int main()
 	{
 		std::cout << "Error could not read Move List" << std::endl;
 	}
-	std::vector<Pokemon> pokemon;
+	std::vector<Pokemon*> pokemon;
 	for (int i = 0; i < fileReader.numPkmnStats(); i++)
 	{
-		pokemon.push_back(Pokemon(fileReader.getPokemonStats(i),fileReader.getMoveInfo()));
+		pokemon.push_back(new Pokemon(fileReader.getPokemonStats(i),fileReader.getMoveInfo()));
 	}
 
 
@@ -98,9 +98,9 @@ int main()
 			if (keys[i] == sf::Keyboard::R)
 			{
 				int j = rand() % pokemon.size();
-				Screen.setOppPokemon(&pokemon[j]);
+				Screen.setOppPokemon(pokemon[j]);
 				j = rand() % pokemon.size();
-				Screen.setSelfPokemon(&pokemon[j]);
+				Screen.setSelfPokemon(pokemon[j]);
 			}
 		}
 
@@ -110,6 +110,11 @@ int main()
 		window.clear();//clear the window's frame buffer
 		window.draw(Screen);//draw the battlescreen to the frame buffer
 		window.display();//display the frame buffer to the user.
+	}
+
+	for (int i = 0; i < pokemon.size(); i++)
+	{
+		delete pokemon[i];
 	}
 
 	return 0;

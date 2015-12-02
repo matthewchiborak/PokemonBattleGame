@@ -127,10 +127,10 @@ Pokemon::Pokemon(StoredStats * pkmnInfo)
 
 Pokemon::~Pokemon()
 {
-    //delete move1;
-    //delete move2;
-    //delete move3;
-    //delete move4;
+    delete move1;
+    delete move2;
+    delete move3;
+    delete move4;
 }
 
 std::string Pokemon::sendCreationStats()

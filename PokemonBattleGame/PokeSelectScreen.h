@@ -20,7 +20,7 @@ class PokeSelectScreen : public sf::Drawable
 	sf::Sprite background;
 	sf::Sprite selectScreen;
 
-	std::vector<Pokemon> *pokemon, *selectedPokemon;
+	std::vector<Pokemon*> *pokemon, *selectedPokemon;
 	PokeSelectBox boxes[6];
 	PokeSelectBoxLarge selectedBoxes[3];
 	int selected, top, partySize;
@@ -30,10 +30,10 @@ class PokeSelectScreen : public sf::Drawable
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
 	~PokeSelectScreen();
-	void setPokemonList(std::vector<Pokemon>* p);
+	void setPokemonList(std::vector<Pokemon*>* p);
 	void refresh();
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
-	std::vector<Pokemon>* getParty(std::vector<Pokemon>* p, int amount);//will block untill the user selects their pokemon
+	void getParty(std::vector<Pokemon*>* pokemon, std::vector<Pokemon*> *selected, int amount);//will block untill the user selects their pokemon. "selected" is where the party is put.
 };
 
 #endif
