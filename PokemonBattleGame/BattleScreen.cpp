@@ -17,7 +17,7 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 
 	SelfName = PokeText("CHARIZARD", sf::Vector2f(155, 68), true, &font, 16);
 	OpName = PokeText("BLAZIKEN", sf::Vector2f(20, 13), true, &font, 16);
-	HealthText = PokeText("25/ 60", sf::Vector2f(197, 87), true, &font, 15);
+	HealthText = PokeText("25/ 60", sf::Vector2f(193, 87), true, &font, 15);
 
 	OpInfo.setTexture(*loader.tryLoadTexture("OpInfo","Resources/OpponetInfo.png"));
 	OpInfo.setPosition(13, 16);
@@ -82,6 +82,42 @@ void BattleScreen::SetSelfHealth(int health)
 	refresh();
 }
 
+void BattleScreen::refreshHealth()
+{
+	SelfHealth.setHealth(selfPokemon->getHP());
+	OpHealth.setHealth(oppPokemon->getHP());
+	std::stringstream s;
+	int hp = selfPokemon->getHP();
+	int maxHp = selfPokemon->getMaxHP();
+	if (hp > 100)
+	{
+		s << hp;
+	}
+	else if (hp > 10)
+	{
+		s << " " << hp;
+	}
+	else
+	{
+		s << "  " << hp;
+	}
+	s << "/";
+	if (maxHp > 100) 
+	{
+		s << maxHp;
+	}
+	else if (maxHp > 10)
+	{
+		s << " " << maxHp;
+	}
+	else
+	{
+		s << "  " << maxHp;
+	}
+	HealthText.setText(s.str());
+	refresh();
+}
+
 void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to key presses
 {
 	for (int i = 0; i < keys.size(); i++)
@@ -107,5 +143,6 @@ void BattleScreen::setSelfPokemon(Pokemon * p)
 	SelfName.setText(selfPokemon->getName());
 	SelfHealth.reset(selfPokemon->getHP(), selfPokemon->getMaxHP());
 	battleBar.setMoves(selfPokemon);
+	refreshHealth();
 }
 
