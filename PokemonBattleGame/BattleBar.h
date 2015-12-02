@@ -3,6 +3,9 @@
 #include "SFML\Graphics.hpp"
 #include "PokeText.h"
 #include "TextureLoader.h"
+#include "Move.h"
+#include "Pokemon.h"
+#include "functions.h"
 class BattleBar : public sf::Drawable
 {
 	//This class is contains the selection at the bottom of the battle screen
@@ -17,6 +20,12 @@ private:
 
 	sf::Font font;
 	PokeText displayText;
+	PokeText moveText[4];
+	PokeText PP;
+	PokeText moveType;
+
+	Pokemon *pokemon;
+	Move *moves[4];
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
 	void updateArrowPosition();//update the positon of the arrow
@@ -30,6 +39,7 @@ public:
 	BattleBar();
 	void keyPressed(sf::Keyboard::Key key);//respond of the keys pressed
 	void clicked(sf::Vector2i location);//respond to the position of the mouse click
+	void setMoves(Pokemon *p);//load the moves from the given Pokemon class
 	~BattleBar();
 };
 

@@ -27,10 +27,14 @@ int main()
 	{
 		std::cout << "Error could not read Pokemon List" << std::endl;
 	}
+	if (!fileReader.readMoveFile("Resources/Moves.csv"))
+	{
+		std::cout << "Error could not read Move List" << std::endl;
+	}
 	std::vector<Pokemon> pokemon;
 	for (int i = 0; i < fileReader.numPkmnStats(); i++)
 	{
-		pokemon.push_back(Pokemon(fileReader.getPokemonStats(i)));
+		pokemon.push_back(Pokemon(fileReader.getPokemonStats(i),fileReader.getMoveInfo()));
 	}
 
 

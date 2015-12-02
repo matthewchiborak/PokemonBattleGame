@@ -19,7 +19,6 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	OpName = PokeText("BLAZIKEN", sf::Vector2f(20, 13), true, &font, 16);
 	HealthText = PokeText("25/ 60", sf::Vector2f(197, 87), true, &font, 15);
 
-
 	OpInfo.setTexture(*loader.tryLoadTexture("OpInfo","Resources/OpponetInfo.png"));
 	OpInfo.setPosition(13, 16);
 
@@ -107,5 +106,6 @@ void BattleScreen::setSelfPokemon(Pokemon * p)
 	SelfPokemon.setTexture(*loader.tryLoadTexture("back" + itos(selfPokemon->getID()), "Resources/PokemonSprites/Back/" + itos(selfPokemon->getID()) + ".png"));
 	SelfName.setText(selfPokemon->getName());
 	SelfHealth.reset(selfPokemon->getHP(), selfPokemon->getMaxHP());
+	battleBar.setMoves(selfPokemon);
 }
 
