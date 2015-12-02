@@ -118,7 +118,27 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 		if (state == MOVE)
 		{
 			moveType.setText(moves[selected]->getType());
-			PP.setText(itos(moves[selected]->getCurrentPP()) + "  " + itos(moves[selected]->getMaxPP()));
+			int cPP = moves[selected]->getCurrentPP();
+			int maxPP = moves[selected]->getMaxPP();
+			std::stringstream s;
+			if (cPP < 10)
+			{
+				s << "  " << cPP;
+			}
+			else
+			{
+				s << cPP;
+			}
+			s << "  ";
+			if (maxPP < 10)
+			{
+				s << " " << maxPP;
+			}
+			else
+			{
+				s << maxPP;
+			}
+			PP.setText(s.str());
 		}
 	}
 
