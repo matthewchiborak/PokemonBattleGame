@@ -17,6 +17,7 @@ private:
 	sf::Sprite select;
 	sf::Sprite moveSelect;
 	sf::Sprite arrow;
+	sf::Sprite moveSelectFrame;
 
 	sf::Font font;
 	PokeText displayText;
