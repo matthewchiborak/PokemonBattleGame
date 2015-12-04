@@ -39,6 +39,10 @@ int main()
 
 
 	BattleScreen Screen(WIN_SIZE);//create the battlescreen
+	int j = rand() % pokemon.size();
+	Screen.setOppPokemon(pokemon[j]);
+	j = rand() % pokemon.size();
+	Screen.setSelfPokemon(pokemon[j]);
 
 	PokeSelectScreen Screen2(WIN_SIZE);
 	Screen2.setPokemonList(&pokemon);
@@ -69,28 +73,6 @@ int main()
 				window.close();
 		}
 		//insert code to run each frame after this
-
-		//test statements for manipulating the healthbars
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			health += 1;
-			Screen.SetOPHealth(health);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-			health -= 1;
-			Screen.SetOPHealth(health);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		{
-			health2 += 1;
-			Screen.SetSelfHealth(health2);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		{
-			health2 -= 1;
-			Screen.SetSelfHealth(health2);
-		}
 		std::vector<sf::Keyboard::Key> keys = keyboard.getPressedKeys();
 
 		for (int i = 0; i < keys.size(); i++)
