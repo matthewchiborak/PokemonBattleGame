@@ -38,6 +38,12 @@ public:
     //Example unb21324 means a supereffective attack that raised attackers defence one stage, was a critical hit, was their 2nd of their 4 attacks, and they are suffering from a burn. 
     std::string applyDamage(Pokemon* attacker, Pokemon* defender, int attackNo);
     bool effectedByStatis(Pokemon* attacker, int* result, std::string* statusOld);
+	int checkIfSwap(std::string recievedString);
+	std::string extractAttackString(std::string recievedString);
+	std::string extractAttackStats(std::string recievedString);
+	std::string extractDefenceString(std::string recievedString);
+	std::string extractCreationStats(std::string recievedString, int oneTwoOrThree);
+	std::string resultSwapTranslator(int swapCheck, Pokemon* newPokemon);
 };
 
 #endif /* defined(__TypeChart__AttackCalculator__) */
