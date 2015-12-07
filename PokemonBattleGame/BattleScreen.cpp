@@ -125,43 +125,43 @@ void BattleScreen::refreshHealth()
 	switch (oppPokemon->getCurrentStatis())
 	{
 		case 0:															// No Status Effect, set to blank texture
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/NoStatusIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/NoStatusIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 1:															// Burn Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/BurnIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/BurnIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 2:															// Frozen Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/FrozenIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/FrozenIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 3:															// Paraylyzed Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ParalyzeIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ParalyzeIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 4:															// Poison Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/PoisonIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/PoisonIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 5:															// Sleeping Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/SleepIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/SleepIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 6:															// Sleepin Status Effect (can wake up)
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/SleepIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/SleepIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 7:															// Confusion Status Effect
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ConfusionIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ConfusionIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		case 8:															// Confusion Status Effect (can hit)
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ConfusionIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ConfusionIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 		default:
-			opStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/NoStatusIcon.png"));
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/NoStatusIcon.png"));
 			opStatusEffect.setPosition(14, 29);
 			break;
 	}
@@ -170,43 +170,43 @@ void BattleScreen::refreshHealth()
 	switch (selfPokemon->getCurrentStatis())
 	{
 	case 0:															// No Status Effect, set to blank texture
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/NoStatusIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/NoStatusIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 1:															// Burn Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/BurnIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/BurnIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 2:															// Frozen Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/FrozenIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/FrozenIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 3:															// Paraylyzed Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ParalyzeIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ParalyzeIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 4:															// Poison Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/PoisonIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/PoisonIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 5:															// Sleeping Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/SleepIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/SleepIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 6:															// Sleepin Status Effect (can wake up)
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/SleepIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/SleepIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 7:															// Confusion Status Effect
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ConfusionIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ConfusionIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	case 8:															// Confusion Status Effect (can hit)
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/ConfusionIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ConfusionIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	default:
-		selfStatusEffect.setTexture(*loader.tryLoadTexture("StatusEffect", "Resources/Status/NoStatusIcon.png"));
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/NoStatusIcon.png"));
 		selfStatusEffect.setPosition(149, 85);
 		break;
 	}
