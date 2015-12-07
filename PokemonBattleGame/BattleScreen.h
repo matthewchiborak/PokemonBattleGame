@@ -37,6 +37,8 @@ private:
 	sf::Sprite BackGround;
 	sf::Sprite OpPokemon;
 	sf::Sprite SelfPokemon;
+	sf::Sprite opStatusEffect;
+	sf::Sprite selfStatusEffect;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw everything on to the render target
 public:

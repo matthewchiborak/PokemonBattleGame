@@ -28,6 +28,9 @@
     <Filter Include="Resource Files\Types">
       <UniqueIdentifier>{d8f52e19-fce0-48e2-84ea-0378984b15f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Status">
+      <UniqueIdentifier>{e4b7c7ce-18bf-4ce8-9c4e-0a3f4004e7bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -696,6 +699,30 @@
     </Image>
     <Image Include="Resources\Types\WaterIC.gif">
       <Filter>Resource Files\Types</Filter>
+    </Image>
+    <Image Include="Resources\Status\BurnIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\FaintIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\FrozenIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\NoStatusIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\SleepIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\ParalyzeIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\PoisonIcon.png">
+      <Filter>Resource Files\Status</Filter>
+    </Image>
+    <Image Include="Resources\Status\ConfusionIcon.png">
+      <Filter>Resource Files\Status</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

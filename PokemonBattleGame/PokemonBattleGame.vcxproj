@@ -359,6 +359,14 @@
     <Image Include="Resources\PokemonSprites\MenuSprites\9.png" />
     <Image Include="Resources\SelfInfo.png" />
     <Image Include="Resources\SelfInfoFrame.png" />
+    <Image Include="Resources\Status\BurnIcon.png" />
+    <Image Include="Resources\Status\ConfusionIcon.png" />
+    <Image Include="Resources\Status\FaintIcon.png" />
+    <Image Include="Resources\Status\FrozenIcon.png" />
+    <Image Include="Resources\Status\NoStatusIcon.png" />
+    <Image Include="Resources\Status\ParalyzeIcon.png" />
+    <Image Include="Resources\Status\PoisonIcon.png" />
+    <Image Include="Resources\Status\SleepIcon.png" />
     <Image Include="Resources\Types\BugIC.gif" />
     <Image Include="Resources\Types\DarkIC.gif" />
     <Image Include="Resources\Types\DragonIC.gif" />
