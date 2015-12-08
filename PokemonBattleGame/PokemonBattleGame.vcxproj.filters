@@ -31,6 +31,9 @@
     <Filter Include="Resource Files\Status">
       <UniqueIdentifier>{e4b7c7ce-18bf-4ce8-9c4e-0a3f4004e7bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Backgrounds">
+      <UniqueIdentifier>{0a5cbfac-2817-4e79-91be-bf5d483a8ddc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -723,6 +726,21 @@
     </Image>
     <Image Include="Resources\PokemonSprites\Back\711.png">
       <Filter>Resource Files\PokemonSprites\Back</Filter>
+    </Image>
+    <Image Include="Resources\Backgrounds\1.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resources\Backgrounds\2.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resources\Backgrounds\3.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resources\Backgrounds\4.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resources\Backgrounds\5.png">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

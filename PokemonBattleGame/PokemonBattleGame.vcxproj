@@ -188,6 +188,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\arrow.png" />
+    <Image Include="Resources\Backgrounds\1.png" />
+    <Image Include="Resources\Backgrounds\2.png" />
+    <Image Include="Resources\Backgrounds\3.png" />
+    <Image Include="Resources\Backgrounds\4.png" />
+    <Image Include="Resources\Backgrounds\5.png" />
     <Image Include="Resources\battleBackgrounds.png" />
     <Image Include="Resources\BattleBar.png" />
     <Image Include="Resources\battleSelect.png" />

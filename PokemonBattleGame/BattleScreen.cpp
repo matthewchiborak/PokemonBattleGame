@@ -28,8 +28,7 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	SelfInfoFrame.setTexture(*loader.tryLoadTexture("SelfInfoFrame", "Resources/SelfInfoFrame.png"));
 	SelfInfoFrame.setPosition(134, 70);
 
-	BackGround.setTexture(*loader.tryLoadTexture("BattleBackgrounds", "Resources/battleBackgrounds.png"));
-	BackGround.setTextureRect(sf::IntRect(1, 1, 240, 160));
+	BackGround.setTexture(*loader.tryLoadTexture("BattleBackground"+itos(1), "Resources/Backgrounds/"+itos(1)+".png"));
 
 	OpPokemon.setTexture(*loader.tryLoadTexture("front257", "Resources/PokemonSprites/Front/257.png"));
 	OpPokemon.setPosition(140, 10);
@@ -244,13 +243,7 @@ void BattleScreen::setSelfPokemon(Pokemon * p)
 
 void BattleScreen::setRandomBackground()
 {
-	int a = rand() % 3;
-	int b = rand() % 4;
-	sf::IntRect rect;
-	rect.height = 160;
-	rect.width = 240;
-	rect.top = b * 114 + 2 * b + 1;
-	rect.left = a * 240 + 2 * a + 1;
-	BackGround.setTextureRect(rect);
+	int a = 1+rand() % 5;
+	BackGround.setTexture(*loader.tryLoadTexture("BattleBackground" + itos(a), "Resources/Backgrounds/" + itos(a) + ".png"));
 }
 
