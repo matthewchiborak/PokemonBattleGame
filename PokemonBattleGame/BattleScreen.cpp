@@ -72,7 +72,7 @@ void BattleScreen::SetOPHealth(int health)
 {
 	//change the opponet's healthbar and refresh the screen
 	OpHealth.setHealth(health);
-	refresh();
+	//refresh();
 }
 
 void BattleScreen::SetSelfHealth(int health)
@@ -80,7 +80,7 @@ void BattleScreen::SetSelfHealth(int health)
 	//change the user's health bar and health text. refresh the screen
 	SelfHealth.setHealth(health);
 	HealthText.setText(std::to_string(health) + "/600");
-	refresh();
+	//refresh();
 }
 
 void BattleScreen::refreshHealth()
@@ -210,7 +210,7 @@ void BattleScreen::refreshHealth()
 		break;
 	}
 
-	refresh();
+	//refresh();
 }
 
 void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to key presses
@@ -245,5 +245,15 @@ void BattleScreen::setRandomBackground()
 {
 	int a = 1+rand() % 5;
 	BackGround.setTexture(*loader.tryLoadTexture("BattleBackground" + itos(a), "Resources/Backgrounds/" + itos(a) + ".png"));
+}
+
+void BattleScreen::resetBattleBarState()
+{
+	battleBar.resetState();
+}
+
+BattleBar::states BattleScreen::getBattleBarState()
+{
+	return battleBar.getState();
 }
 

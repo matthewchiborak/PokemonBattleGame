@@ -10,7 +10,6 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(bar, states);
 		target.draw(select, states);
 		target.draw(arrow, states);
-
 		break;
 	case BattleBar::MOVE:
 		target.draw(moveSelect, states);
@@ -28,6 +27,9 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(displayText, states);
 		break;
 	default:
+		target.draw(bar, states);
+		target.draw(select, states);
+		target.draw(arrow, states);
 		break;
 	}
 }
@@ -164,6 +166,7 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 			if (selected == 2)
 			{
 				//when the user wants to select a pokemon
+				state = SELECTION;
 			}
 			if (selected == 3)
 			{
@@ -215,6 +218,17 @@ void BattleBar::setMoves(Pokemon * p)
 void BattleBar::setWinSize(sf::Vector2i size)
 {
 	this->WIN_SIZE = size;
+}
+
+void BattleBar::resetState()
+{
+	selected = 0;
+	state = ACTION;
+}
+
+BattleBar::states BattleBar::getState()
+{
+	return state;
 }
 
 

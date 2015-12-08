@@ -34,7 +34,18 @@ void threadFucntion(BattleScreen *battle, PokeSelectScreen *select, FileReader *
 	select->getParty(&selected , 3);
 	*whatToDraw = 0;
 	battle->setSelfPokemon(selected[0]);
-	//whatToDraw = battle;
+	while (active)
+	{
+		if (battle->getBattleBarState() == BattleBar::SELECTION)
+		{
+			selected.clear();
+			*whatToDraw = 1;
+			select->getParty(&selected, 3);
+			battle->resetBattleBarState();
+			*whatToDraw = 0;
+			battle->setSelfPokemon(selected[0]);
+		}
+	}
 	for (int i = 0; i < pokemon.size(); i++)
 	{
 		delete pokemon[i];

@@ -136,7 +136,7 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 				else
 				{
 					selecting = false;
-					cv.notify_all();
+					cv.notify_one();
 				}
 
 			}
