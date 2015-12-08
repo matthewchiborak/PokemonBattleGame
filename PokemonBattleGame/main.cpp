@@ -25,7 +25,10 @@ int main()
 
 	// Create a client object and set the socket ip and port
 	Client myClient;
-	myClient.setSocket("99.248.220.4", 2000);
+	if (myClient.setSocket("99.248.220.4", 2000))				// Attempt to set the socket
+	{
+		//
+	}
 
 	FileReader fileReader;
 	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))

@@ -37,5 +37,7 @@ private:
 public:
 	Client();
 	~Client();
-	void setSocket(string ip, int port);
+	bool setSocket(string ip, int port);
+	void sendMessage(string msg);
+	string recieveMessage();
 };
