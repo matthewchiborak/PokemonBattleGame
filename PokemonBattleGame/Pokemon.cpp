@@ -97,6 +97,13 @@ Pokemon::Pokemon(std::vector<std::string> *moveInfo, std::string stats)//For cre
     move2=new Move(moveInfo, std::stoi(parsedStrings.at(12)));
     move3=new Move(moveInfo, std::stoi(parsedStrings.at(13)));
     move4=new Move(moveInfo, std::stoi(parsedStrings.at(14)));
+	attStart = att;
+	spAttStart = spAtt;
+	defStart = def;
+	spDefStart = spDef;
+	speedStart = speed;
+	evasionStart = 100;
+	accuarcyStart = 100;
 }
 
 Pokemon::Pokemon(StoredStats * pkmnInfo)
