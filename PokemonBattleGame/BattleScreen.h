@@ -51,6 +51,8 @@ public:
 	void setOppPokemon(Pokemon * p);
 	void setSelfPokemon(Pokemon * p);
 	void setRandomBackground();
+	void resetBattleBarState();
+	BattleBar::states getBattleBarState();
 };
 
 #endif

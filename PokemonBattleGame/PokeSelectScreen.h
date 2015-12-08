@@ -25,6 +25,8 @@ class PokeSelectScreen : public sf::Drawable
 	PokeSelectBoxLarge selectedBoxes[3];
 	int selected, top, partySize;
 
+	bool selecting;
+
 	std::condition_variable cv;
 
 public:
@@ -34,6 +36,7 @@ public:
 	void refresh();
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
 	void getParty(std::vector<Pokemon*>* pokemon, std::vector<Pokemon*> *selected, int amount);//will block untill the user selects their pokemon. "selected" is where the party is put.
+	void getParty(std::vector<Pokemon*>* party, int amount);
 };
 
 #endif
