@@ -95,13 +95,13 @@ void PokeSelectScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)
 				top = selected;
 			}
 		}
-		if (keys[i] == sf::Keyboard::Down)//fix issue arround setting top near the end of the pokemon list
+		if (keys[i] == sf::Keyboard::Down)			// Fix issue arround setting top near the end of the pokemon list
 		{
 			selected += 1;
-			if (selected >= pokemon->size())
+			if (selected >= pokemon->size())		// This is for when the selected pokemon is last one in the list
 			{
-				selected -= pokemon->size();
-				top = selected;
+				selected -= pokemon->size();		// Sets the pokemon to first one
+				top = selected;						// Reset the top to the first one
 			}
 			else if (selected > top + 5)
 			{

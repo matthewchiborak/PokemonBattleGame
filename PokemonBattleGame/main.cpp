@@ -12,6 +12,7 @@
 #include "FileReader.h"
 #include "Pokemon.h"
 #include "PokeSelectScreen.h"
+#include "client.h"
 
 
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
@@ -21,6 +22,10 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");//create the window
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
+
+	// Create a client object and set the socket ip and port
+	Client myClient;
+	myClient.setSocket("99.248.220.4", 2000);
 
 	FileReader fileReader;
 	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
