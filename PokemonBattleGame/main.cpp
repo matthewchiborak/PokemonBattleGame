@@ -20,11 +20,7 @@ const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
 void threadFucntion(BattleScreen *battle, PokeSelectScreen *select, FileReader *fileReader, int *whatToDraw, bool *active)
 {
-	std::vector<Pokemon*> party, pokemon, selected;
-	for (int i = 0; i < fileReader->numPkmnStats(); i++)
-	{
-		//pokemon.push_back(new Pokemon(fileReader->getPokemonStats(i), fileReader->getMoveInfo()));
-	}
+	std::vector<Pokemon*> party, selected;
 	*whatToDraw = 1;
 	select->getParty(&party , 3);
 	*whatToDraw = 0;
@@ -44,10 +40,6 @@ void threadFucntion(BattleScreen *battle, PokeSelectScreen *select, FileReader *
 			*whatToDraw = 0;
 			battle->setSelfPokemon(selected[0]);
 		}
-	}
-	for (int i = 0; i < pokemon.size(); i++)
-	{
-		delete pokemon[i];
 	}
 
 	for (int i = 0; i < party.size(); i++)

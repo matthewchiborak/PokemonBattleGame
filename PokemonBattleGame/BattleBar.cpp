@@ -171,7 +171,7 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 			if (selected == 3)
 			{
 				state = TEXT;
-				displayText = PokeText("Run?", sf::Vector2f(18, 118), true, &font, 15);
+				displayText = PokeText("No! There's no running\nfrom a TRAINER battle!", sf::Vector2f(18, 118), true, &font, 15);
 				displayText.setLightText();
 			}
 		}
@@ -229,6 +229,11 @@ void BattleBar::resetState()
 BattleBar::states BattleBar::getState()
 {
 	return state;
+}
+
+int BattleBar::getSelection()
+{
+	return selected;
 }
 
 

@@ -48,6 +48,7 @@ public:
 	void setWinSize(sf::Vector2i size);
 	void resetState();
 	BattleBar::states getState();
+	int getSelection();
 	~BattleBar();
 };
 
