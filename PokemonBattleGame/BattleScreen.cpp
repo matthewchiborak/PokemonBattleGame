@@ -35,7 +35,7 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	OpPokemon.setPosition(140, 10);
 
 	SelfPokemon.setTexture(*loader.tryLoadTexture("back6", "Resources/PokemonSprites/Back/6.png"));
-	SelfPokemon.setPosition(40, 54);
+	SelfPokemon.setPosition(40, 46);
 
 	//create the healthbars
 	OpHealth = HealthBar(30, 30, sf::Vector2f(52, 33), sf::Vector2f(100, 36));
