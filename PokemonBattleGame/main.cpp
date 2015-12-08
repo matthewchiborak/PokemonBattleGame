@@ -32,7 +32,7 @@ int main()
 	}
 	else																// On failure with the connection
 	{
-
+		
 	}
 
 	FileReader fileReader;
