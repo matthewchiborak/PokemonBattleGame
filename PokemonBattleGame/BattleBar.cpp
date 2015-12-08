@@ -161,6 +161,10 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 				displayText = PokeText("OAK: Now is not the time to use that", sf::Vector2f(18, 118), true, &font, 15);
 				displayText.setLightText();
 			}
+			if (selected == 2)
+			{
+				//when the user wants to select a pokemon
+			}
 			if (selected == 3)
 			{
 				state = TEXT;
@@ -206,6 +210,11 @@ void BattleBar::setMoves(Pokemon * p)
 	moveText[2].setText(moves[2]->getName());
 	moveText[3].setText(moves[3]->getName());
 	this->pokemon = p;
+}
+
+void BattleBar::setWinSize(sf::Vector2i size)
+{
+	this->WIN_SIZE = size;
 }
 
 

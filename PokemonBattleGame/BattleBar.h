@@ -25,13 +25,15 @@ private:
 	PokeText PP;
 	PokeText moveType;
 
+	sf::Vector2i WIN_SIZE;
+
 	Pokemon *pokemon;
 	Move *moves[4];
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
 	void updateArrowPosition();//update the positon of the arrow
 
-	enum states {ACTION,MOVE,TEXT};
+	enum states {ACTION,MOVE,TEXT,SELECTION};
 	states state;
 	int selected;//what is being selected (Fight,Bag, Pokemon, or Run) or (Move1, Move2, Move3,or Move4)
 	sf::Vector2f selectPositions[4];//coordinates for the arrow in the option select screen
@@ -41,6 +43,7 @@ public:
 	void keyPressed(sf::Keyboard::Key key);//respond of the keys pressed
 	void clicked(sf::Vector2i location);//respond to the position of the mouse click
 	void setMoves(Pokemon *p);//load the moves from the given Pokemon class
+	void setWinSize(sf::Vector2i size);
 	~BattleBar();
 };
 
