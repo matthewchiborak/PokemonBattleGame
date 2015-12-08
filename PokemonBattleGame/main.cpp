@@ -19,15 +19,20 @@ const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");//create the window
+	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");	// Create the window
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 
 	// Create a client object and set the socket ip and port
 	Client myClient;
-	if (myClient.setSocket("99.248.220.4", 2000))				// Attempt to set the socket
+	// Attempt to set the socket
+	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
 	{
-		//
+		
+	}
+	else																// On failure with the connection
+	{
+
 	}
 
 	FileReader fileReader;
