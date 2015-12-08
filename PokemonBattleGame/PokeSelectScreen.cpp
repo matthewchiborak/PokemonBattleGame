@@ -38,6 +38,7 @@ PokeSelectScreen::PokeSelectScreen(const sf::Vector2i WIN_SIZE)
 
 PokeSelectScreen::~PokeSelectScreen()
 {
+	cv.notify_all();
 }
 
 void PokeSelectScreen::setPokemonList(std::vector<Pokemon*>* p)
@@ -75,7 +76,7 @@ void PokeSelectScreen::refresh()
 				screenTex.draw(selectedBoxes[i]);
 			}
 		}
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 6 && i < pokemon->size(); i++)
 		{
 			screenTex.draw(boxes[i]);
 		}
@@ -161,6 +162,7 @@ void PokeSelectScreen::getParty(std::vector<Pokemon*>* pokemon, std::vector<Poke
 	selectedPokemon = selected;
 	setPokemonList(pokemon);
 	partySize = amount;
+	selecting = true;
 	cv.wait(lock);
 }
 

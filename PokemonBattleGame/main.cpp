@@ -25,22 +25,21 @@ void threadFucntion(BattleScreen *battle, PokeSelectScreen *select, FileReader *
 	{
 		//pokemon.push_back(new Pokemon(fileReader->getPokemonStats(i), fileReader->getMoveInfo()));
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		int j = rand() % fileReader->numPkmnStats();
-		party.push_back(new Pokemon(fileReader->getPokemonStats(i), fileReader->getMoveInfo()));
-	}
 	*whatToDraw = 1;
-	select->getParty(&selected , 3);
+	select->getParty(&party , 3);
 	*whatToDraw = 0;
+	selected.push_back(party[0]);
+	party.erase(party.begin());
 	battle->setSelfPokemon(selected[0]);
 	while (active)
 	{
 		if (battle->getBattleBarState() == BattleBar::SELECTION)
 		{
+			party.push_back(selected[0]);
 			selected.clear();
 			*whatToDraw = 1;
-			select->getParty(&selected, 3);
+			select->getParty(&party, &selected, 1);
+			//select->getParty(&selected, 1);
 			battle->resetBattleBarState();
 			*whatToDraw = 0;
 			battle->setSelfPokemon(selected[0]);
