@@ -316,12 +316,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		//Block here to read
 		//Result-oppo-yours
-		std::string testRecievedString = client->recieveMessage();
+		//std::string testRecievedString = client->recieveMessage();
 		//std::string testRecievedString = "unb21324-10,20,30,40,50,60,70,80,0,0,10,10,10,10-100,200,300,400,500,600,700,800,1,0,8,8,8,8";
 
 		//THESE ARE ALSO FOR THE UI
 		std::string swapString = "";
-		int checkedSwap = testCalc.checkIfSwap(testRecievedString);
+		int checkedSwap = testCalc.checkIfSwap(response);
 		std::vector<std::string> responsePhraseHolder;
 		int usedMoveIndex;
 		int numberOfPhrases;
@@ -336,9 +336,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else //ITS AN ATTACK
 			{
-				std::string translatedResult = testCalc.extractAttackString(testRecievedString);
-				std::string translatedYourStats = testCalc.extractAttackStats(testRecievedString);
-				std::string translatedOppoStats = testCalc.extractDefenceString(testRecievedString);
+				std::string translatedResult = testCalc.extractAttackString(response);
+				std::string translatedYourStats = testCalc.extractAttackStats(response);
+				std::string translatedOppoStats = testCalc.extractDefenceString(response);
 
 				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, translatedResult, activeOppoPokemon, activePokemon, &usedMoveIndex);
 				activePokemon->updateStats(translatedYourStats);
@@ -466,12 +466,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		//Block here to read
 
 		//Result-oppo-yours
-		std::string testRecievedString2 = client->recieveMessage();
+		//std::string testRecievedString2 = client->recieveMessage();
 		//std::string testRecievedString2 = "unb21324-10,20,30,40,50,60,70,80,0,0,10,10,10,10-100,200,300,400,500,600,700,800,1,0,8,8,8,8";
 
 		//THESE ARE ALSO FOR THE UI
 		swapString = "";
-		checkedSwap = testCalc.checkIfSwap(testRecievedString);
+		checkedSwap = testCalc.checkIfSwap(response);
 
 
 		if (recievedPlacing == "1")
@@ -484,9 +484,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else //ITS AN ATTACK
 			{
-				std::string translatedResult = testCalc.extractAttackString(testRecievedString);
-				std::string translatedYourStats = testCalc.extractAttackStats(testRecievedString);
-				std::string translatedOppoStats = testCalc.extractDefenceString(testRecievedString);
+				std::string translatedResult = testCalc.extractAttackString(response);
+				std::string translatedYourStats = testCalc.extractAttackStats(response);
+				std::string translatedOppoStats = testCalc.extractDefenceString(response);
 
 				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, translatedResult, activeOppoPokemon, activePokemon, &usedMoveIndex);
 				activePokemon->updateStats(translatedYourStats);
