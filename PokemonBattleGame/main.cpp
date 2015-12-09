@@ -103,18 +103,21 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	// Create three send and recieve statements for to send your three pokemon and recieve the opponents 3 pokemon
 	std::string ourPokemonStats = objStr->uP1->sendCreationStats() + "~";			// Send first pokemon stats to server
 	std::cout << "Our Pokemon 1 Stats: " << ourPokemonStats << std::endl;
+	client->sendMessage(ourPokemonStats);
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 1 Stats: " << oppoPokemonStats << std::endl;
  
 	ourPokemonStats = objStr->uP2->sendCreationStats() + "~";						// Send second pokemon stats to server
 	std::cout << "Our Pokemon 2 Stats: " << ourPokemonStats << std::endl;
+	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive second opponent pokemon
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 2 Stats: " << oppoPokemonStats << std::endl;
 
 	ourPokemonStats = objStr->uP3->sendCreationStats() + "~";						// Send third pokemon stats to server
 	std::cout << "Our Pokemon 3 Stats: " << ourPokemonStats << std::endl;
+	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive third opponent pokemon
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 3 Stats: " << oppoPokemonStats << std::endl;
