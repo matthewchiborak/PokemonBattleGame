@@ -311,7 +311,6 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			client->sendMessage(syncString);									// Send random syncstring
 			response3 = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
 			std::cout << "Not my turn response: " << response3 << std::endl;
-			objStr->bScreen->refreshHealth();
 		}
 
 
@@ -344,6 +343,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 				activeOppoPokemon->updateStats(response2);
 				activePokemon->updateStats(response3);
+				objStr->bScreen->refreshHealth();
 				/*activePokemon->updateStats(translatedYourStats);
 				activeOppoPokemon->updateStats(translatedOppoStats);*/
 
@@ -458,7 +458,6 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			client->sendMessage(syncString);									// Send random syncstring
 			response3 = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
 			std::cout << "Not my turn response: " << response3 << std::endl;
-			objStr->bScreen->refreshHealth();
 		}
 
 
@@ -490,6 +489,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 				activeOppoPokemon->updateStats(response2);
 				activePokemon->updateStats(response3);
+				objStr->bScreen->refreshHealth();
 				/*activePokemon->updateStats(translatedYourStats);
 				activeOppoPokemon->updateStats(translatedOppoStats);*/
 
