@@ -32,7 +32,7 @@ Move::Move(std::vector<std::string> *moveInfo, int moveID)
     
     //Split the string at the right ID location
     disabled=false;
-    moveID=std::stoi(parsedStrings.at(0));
+    this->moveID=std::stoi(parsedStrings.at(0));
     name=parsedStrings.at(1);
     type=parsedStrings.at(2);
     maxPP=std::stoi(parsedStrings.at(3));
