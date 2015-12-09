@@ -303,12 +303,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
-			objStr->currentPokemon->updateStats(response);
+			objStr->currentOpponentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
 			
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
-			objStr->currentOpponentPokemon->updateStats(response);
+			objStr->currentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
 			objStr->bScreen->refreshHealth();
 		}
@@ -436,12 +436,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
-			objStr->currentPokemon->updateStats(response);
+			objStr->currentOpponentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
-			objStr->currentOpponentPokemon->updateStats(response);
+			objStr->currentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
 			objStr->bScreen->refreshHealth();
 		}
