@@ -365,6 +365,22 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		else
 		{
 			//OUTPUT ALL THE STRING FROM THE STRING HOLDER NOTE THAT THE USED MOVE INDEX IS WHERE THE HEALTH SHOULD PROBABLY DECREASE
+			std::vector<string> resultHolder;
+			int usedMoveIndex;
+			int numberOfString = 0;
+			if (recievedPlacing == "1")
+			{
+				numberOfString = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+			}
+			else
+			{
+				numberOfString = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+			}
+
+			for (int i = 0; i < numberOfString; i++)
+			{
+				std::cout << resultHolder.at(i);
+			}
 		}
 
 		//OTHER TURN
