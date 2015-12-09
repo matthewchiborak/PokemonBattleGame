@@ -50,35 +50,35 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	//Connect
 
 	Client *client = objStr->client;
-	int userInput = objStr->bScreen->getUserInput();
-	
-	if (userInput != 0)
-	{
-		if (userInput == 5)
-		{
-			std::vector<Pokemon*> selected;
-			*objStr->whatToDraw = 1;
-			objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
-			objStr->currentPokemon = selected[0];
-			objStr->userParty.push_back(objStr->currentPokemon);
-			objStr->bScreen->resetBattleBarState();
-			*objStr->whatToDraw = 0;
-			objStr->bScreen->setSelfPokemon(selected[0]);
-			if (selected[0] == objStr->uP1)
-			{
-				userInput = 5;
-			}
-			else if (selected[0] == objStr->uP2)
-			{
-				userInput = 6;
-			}
-			else if (selected[0] == objStr->uP3)
-			{
-				userInput = 7;
-			}
-		}
-		std::cout << userInput << std::endl;
-	}
+	//int userInput = objStr->bScreen->getUserInput();
+	//
+	//if (userInput != 0)
+	//{
+	//	if (userInput == 5)
+	//	{
+	//		std::vector<Pokemon*> selected;
+	//		*objStr->whatToDraw = 1;
+	//		objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
+	//		objStr->currentPokemon = selected[0];
+	//		objStr->userParty.push_back(objStr->currentPokemon);
+	//		objStr->bScreen->resetBattleBarState();
+	//		*objStr->whatToDraw = 0;
+	//		objStr->bScreen->setSelfPokemon(selected[0]);
+	//		if (selected[0] == objStr->uP1)
+	//		{
+	//			userInput = 5;
+	//		}
+	//		else if (selected[0] == objStr->uP2)
+	//		{
+	//			userInput = 6;
+	//		}
+	//		else if (selected[0] == objStr->uP3)
+	//		{
+	//			userInput = 7;
+	//		}
+	//	}
+	//	std::cout << userInput << std::endl;
+	//}
 	//Pick Pokemon
 	//Select pokemon gives index ->
 	int selectedPokemon1 = 0;
@@ -101,15 +101,15 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	yourPokemon[2] = &oppoPokemon3;
 
 	// Create three send and recieve statements for to send your three pokemon and recieve the opponents 3 pokemon
-	std::string ourPokemonStats = testPokemon1.sendCreationStats() + "~";			// Send first pokemon stats to server
+	std::string ourPokemonStats = objStr->uP1->sendCreationStats() + "~";			// Send first pokemon stats to server
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
-	ourPokemonStats = testPokemon2.sendCreationStats() + "~";			// Send second pokemon stats to server
+	ourPokemonStats = objStr->uP2->sendCreationStats() + "~";			// Send second pokemon stats to server
 	oppoPokemonStats = client->recieveMessage();						// Receive second opponent pokemon
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
-	ourPokemonStats = testPokemon3.sendCreationStats() + "~";			// Send third pokemon stats to server
+	ourPokemonStats = objStr->uP3->sendCreationStats() + "~";			// Send third pokemon stats to server
 	oppoPokemonStats = client->recieveMessage();						// Receive third opponent pokemon
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
