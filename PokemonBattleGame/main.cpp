@@ -74,7 +74,13 @@ void turnFunction(Client *client)										// All the game logic will go in here
 	//}
 
 	//Connect
-
+	// Create a client object and set the socket ip and port
+	Client myClient;
+	// Attempt to set the socket
+	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
+	{
+		// Start the turn thread
+	}
 	//Pick Pokemon
 	//Select pokemon gives index ->
 	int selectedPokemon1 = 0;
@@ -410,17 +416,7 @@ int main()
 	int whatToDraw;
 	bool active = true;
 
-	// Create a client object and set the socket ip and port
-	Client myClient;
-	// Attempt to set the socket
-	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
-	{
-		// Start the turn thread
-	}
-	//else																// On failure with the connection
-	//{
 
-	//}
 
 	FileReader fileReader;
 	if (!fileReader.readPokemonFile("Resources/Pokemon_List.csv"))
@@ -461,7 +457,6 @@ int main()
 	keyboard.addKeyWatch(sf::Keyboard::Right);
 	keyboard.addKeyWatch(sf::Keyboard::Z);
 	keyboard.addKeyWatch(sf::Keyboard::X);
-	keyboard.addKeyWatch(sf::Keyboard::R);
 
 	//test variables to manipulating healthbars
 	int health = 30;

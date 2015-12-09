@@ -224,6 +224,7 @@ void BattleBar::resetState()
 {
 	selected = 0;
 	state = ACTION;
+	updateArrowPosition();
 }
 
 BattleBar::states BattleBar::getState()
