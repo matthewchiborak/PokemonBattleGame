@@ -5,6 +5,7 @@
 #include <SFML\System.hpp>
 #include <SFML\Window.hpp>
 #include <thread>
+#include <time.h>
 
 #include "PokeText.h"
 #include "HealthBar.h"
@@ -144,7 +145,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), recievedStats);*/
 
 
-	Pokemon* activePokemon = &testPokemon1;
+	Pokemon* activePokemon = objStr->currentPokemon;
 	Pokemon* activeOppoPokemon = objStr->oP1;
 
 	std::string endOfTurnMessage = "0";
@@ -655,6 +656,8 @@ int main()
 	//test variables to manipulating healthbars
 	int health = 30;
 	int health2 = 30;
+
+	srand(time(NULL);
 
 	Screen2.refresh();
 
