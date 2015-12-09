@@ -108,6 +108,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 1 Stats: " << oppoPokemonStats << std::endl;
+	objStr->currentOpponentPokemon = objStr->oP1;
+	objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
  
 	ourPokemonStats = objStr->uP2->sendCreationStats() + "~";						// Send second pokemon stats to server
 	std::cout << "Our Pokemon 2 Stats: " << ourPokemonStats << std::endl;
@@ -387,7 +389,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//client->sendMessage(stringToBeSent);
 
 				// Send the response, attacker stats, defender stats
-				std::string stringToBeSent = responseString;									// Send first response stats to server
+				stringToBeSent = responseString;									// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
