@@ -298,17 +298,18 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SENT TO SERVER
 			//client->sendMessage(syncString);
 			client->sendMessage(syncString);									// Send random syncstring
-			response = client->recieveMessage();					// Receive message and then ui will change based on this
+			response = client->recieveMessage();								// Receive message and then ui will change based on this
 			std::cout << "Not my turn response: " << response << std::endl;
 
+			std::string response2;
 			client->sendMessage(syncString);									// Send random syncstring
-			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
-			objStr->currentOpponentPokemon->updateStats(response);
+			response2 = client->recieveMessage();								// Get response and then update the stats for our pokemon
+			objStr->currentOpponentPokemon->updateStats(response2);
 			std::cout << "Not my turn response: " << response << std::endl;
 			
 			client->sendMessage(syncString);									// Send random syncstring
-			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
-			objStr->currentPokemon->updateStats(response);
+			response2 = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
+			objStr->currentPokemon->updateStats(response2);
 			std::cout << "Not my turn response: " << response << std::endl;
 			objStr->bScreen->refreshHealth();
 		}
@@ -336,13 +337,13 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else //ITS AN ATTACK
 			{
-				std::string translatedResult = testCalc.extractAttackString(response);
-				std::string translatedYourStats = testCalc.extractAttackStats(response);
-				std::string translatedOppoStats = testCalc.extractDefenceString(response);
+				//std::string translatedResult = testCalc.extractAttackString(response);
+				//std::string translatedYourStats = testCalc.extractAttackStats(response);
+				//std::string translatedOppoStats = testCalc.extractDefenceString(response);
 
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, translatedResult, activeOppoPokemon, activePokemon, &usedMoveIndex);
-				activePokemon->updateStats(translatedYourStats);
-				activeOppoPokemon->updateStats(translatedOppoStats);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				/*activePokemon->updateStats(translatedYourStats);
+				activeOppoPokemon->updateStats(translatedOppoStats);*/
 
 			}
 		}
@@ -366,18 +367,16 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			//OUTPUT ALL THE STRING FROM THE STRING HOLDER NOTE THAT THE USED MOVE INDEX IS WHERE THE HEALTH SHOULD PROBABLY DECREASE
 			std::vector<string> resultHolder;
-			int usedMoveIndex;
-			int numberOfString = 0;
 			if (recievedPlacing == "1")
 			{
-				numberOfString = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
 			}
 			else
 			{
-				numberOfString = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 			}
 
-			for (int i = 0; i < numberOfString; i++)
+			for (int i = 0; i < numberOfPhrases; i++)
 			{
 				std::cout << resultHolder.at(i);
 			}
@@ -450,15 +449,16 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			response = client->recieveMessage();					// Receive message and then ui will change based on this
 			std::cout << "Not my turn response: " << response << std::endl;
 
+			std::string response2;
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
-			objStr->currentOpponentPokemon->updateStats(response);
-			std::cout << "Not my turn response: " << response << std::endl;
+			objStr->currentOpponentPokemon->updateStats(response2);
+			std::cout << "Not my turn response: " << response2 << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
-			objStr->currentPokemon->updateStats(response);
-			std::cout << "Not my turn response: " << response << std::endl;
+			objStr->currentPokemon->updateStats(response2);
+			std::cout << "Not my turn response: " << response2 << std::endl;
 			objStr->bScreen->refreshHealth();
 		}
 
