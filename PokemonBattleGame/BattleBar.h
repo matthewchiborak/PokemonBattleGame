@@ -6,6 +6,7 @@
 #include "Move.h"
 #include "Pokemon.h"
 #include "functions.h"
+#include <condition_variable>
 class BattleBar : public sf::Drawable
 {
 public: 
@@ -32,6 +33,8 @@ private:
 	Pokemon *pokemon;
 	Move *moves[4];
 
+	std::condition_variable cv;
+
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw the object
 	void updateArrowPosition();//update the positon of the arrow
 
@@ -49,6 +52,7 @@ public:
 	void resetState();
 	BattleBar::states getState();
 	int getSelection();
+	void showMessage(std::string message);
 	~BattleBar();
 };
 
