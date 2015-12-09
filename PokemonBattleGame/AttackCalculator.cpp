@@ -674,7 +674,7 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     
     if (skipRest) {
         result=result+(attackNo*10000);
-        resultString = statusNew + statusOld + std::to_string(result);
+        resultString = statusDirect+statusNew + statusOld + std::to_string(result);
         return resultString;
     }
     
@@ -689,7 +689,7 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     {
         result=1;
         result=result+(attackNo*10000);
-        resultString = statusNew + statusOld + std::to_string(result);
+        resultString = statusDirect+statusNew + statusOld + std::to_string(result);
         return resultString;
     }
     
@@ -697,7 +697,7 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     double multiplier = calcMultiplier(usedMove->getType(), defender->getType1(), defender->getType2());
     if (multiplier==0) {
         result=result+(attackNo*10000);
-        resultString = statusNew + statusOld + std::to_string(result);
+        resultString = statusDirect+ statusNew + statusOld + std::to_string(result);
         return resultString;
     }
     else if(multiplier<1&&usedMove->getPower()!=0)
