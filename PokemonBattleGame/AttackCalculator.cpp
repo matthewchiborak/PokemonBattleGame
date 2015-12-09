@@ -438,7 +438,7 @@ int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHol
     
     if(currentStatus=="b")
     {
-        resultHolder->push_back(attacker->getName()+" turn damage from burn!");
+        resultHolder->push_back(attacker->getName()+" took damage from burn!");
         phraseCount++;
     }
     else if(currentStatus=="a")
@@ -797,7 +797,7 @@ int AttackCalculator::checkIfSwap(std::string recievedString)
 	{
 		return (int)recievedString.at(4);
 	}
-	else if (tempString == "Faint")
+	else if (tempString == "Fain")
 	{
 		return 4;
 	}
