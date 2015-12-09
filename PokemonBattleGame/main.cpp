@@ -257,19 +257,19 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//client->sendMessage(stringToBeSent);
 
 				// Send the response, attacker stats, defender stats
-				std::string stringToBeSent = responseString;									// Send first response stats to server
+				std::string stringToBeSent = responseString + "~";									// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
-				stringToBeSent = attackersNewStats;												// Send first response stats to server
+				stringToBeSent = attackersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
-				stringToBeSent = defendersNewStats;												// Send first response stats to server
+				stringToBeSent = defendersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
@@ -389,19 +389,19 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//client->sendMessage(stringToBeSent);
 
 				// Send the response, attacker stats, defender stats
-				stringToBeSent = responseString;									// Send first response stats to server
+				stringToBeSent = responseString + "~";									// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
-				stringToBeSent = attackersNewStats;												// Send first response stats to server
+				stringToBeSent = attackersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
-				stringToBeSent = defendersNewStats;												// Send first response stats to server
+				stringToBeSent = defendersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
