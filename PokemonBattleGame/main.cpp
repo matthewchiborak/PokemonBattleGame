@@ -298,7 +298,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SENT TO SERVER
 			//client->sendMessage(syncString);
 			client->sendMessage(syncString);									// Send random syncstring
-			std::string response = client->recieveMessage();					// Receive message and then ui will change based on this
+			response = client->recieveMessage();					// Receive message and then ui will change based on this
 			std::cout << "Not my turn response: " << response << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
