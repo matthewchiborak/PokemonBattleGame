@@ -240,7 +240,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		std::string recievedPlacing = client->recieveMessage();
 		std::cout << "Their speed: " << recievedPlacing << std::endl;
 		//std::string recievedPlacing = "1";
-		std::string responseString = "";
+		//std::string responseString = "";
 
 		if (recievedPlacing == "1")
 		{
@@ -248,17 +248,17 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
 
-				responseString = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
+				response = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
 
 				std::string attackersNewStats = activePokemon->getNewStats();
 				std::string defendersNewStats = activeOppoPokemon->getNewStats();
 
-				//std::string stringToBeSent = responseString + "-" + attackersNewStats + "-" + defendersNewStats + "~";
+				//std::string stringToBeSent = response + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
 				//client->sendMessage(stringToBeSent);
 
 				// Send the response, attacker stats, defender stats
-				std::string stringToBeSent = responseString + "~";									// Send first response stats to server
+				std::string stringToBeSent = response + "~";									// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
@@ -351,7 +351,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, responseString, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 			}
 
 		}
@@ -396,17 +396,17 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
 
-				responseString = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
+				response = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
 
 				std::string attackersNewStats = activePokemon->getNewStats();
 				std::string defendersNewStats = activeOppoPokemon->getNewStats();
 
-				std::string stringToBeSent = responseString + "-" + attackersNewStats + "-" + defendersNewStats + "~";
+				std::string stringToBeSent = response + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
 				//client->sendMessage(stringToBeSent);
 
 				// Send the response, attacker stats, defender stats
-				stringToBeSent = responseString + "~";									// Send first response stats to server
+				stringToBeSent = response + "~";									// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
@@ -498,7 +498,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, responseString, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 			}
 
 
