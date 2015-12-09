@@ -146,7 +146,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 
 	Pokemon* activePokemon = objStr->currentPokemon;
-	Pokemon* activeOppoPokemon = objStr->oP1;
+	Pokemon* activeOppoPokemon = objStr->currentOpponentPokemon;
 
 	std::string endOfTurnMessage = "0";
 	std::string response;
