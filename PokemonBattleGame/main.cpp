@@ -453,8 +453,29 @@ void threadFunction(ObjectStorage *objectStorage, bool *active)
 
 	// Create a client object and set the socket ip and port
 	Client myClient;
+
+	std::ifstream portFileReader("Resources/ServerIP.txt");
+	std::string line;
+	std::string IPString;
+	std::string portString;
+
+	if (portFileReader.is_open())
+	{
+		getline(portFileReader, line);
+		IPString = line;
+		getline(portFileReader, line);
+		portString = line;
+		portFileReader.close();
+	}
+	else
+	{
+		std::cout << "Could not read port\n";
+	}
+
+	int myPort = std::stoi(portString);
+
 	// Attempt to set the socket
-	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
+	if (myClient.setSocket(IPString, myPort))						//	On Success with connecting to the server
 	{
 		objectStorage->client = &myClient;
 

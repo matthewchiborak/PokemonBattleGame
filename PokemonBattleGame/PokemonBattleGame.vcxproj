@@ -396,6 +396,9 @@
   <ItemGroup>
     <Font Include="Resources\EmeraldPro.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\ServerIP.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

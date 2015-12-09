@@ -46,6 +46,9 @@ string Client::recieveMessage()							// Recieve Message from the client
 		else
 			text += buffer[i];
 	}
-	
+	if (text == "Server is closing")					// If server is closing then it will show an error 
+	{
+		// Figure out some way to signal both threads to stop execution
+	}
 	return text;
 }
