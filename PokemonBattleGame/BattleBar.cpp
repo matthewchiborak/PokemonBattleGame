@@ -183,6 +183,7 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 		else if (state == TEXT)
 		{
 			state = ACTION;
+			cv.notify_all();
 		}
 	}
 	if (key == sf::Keyboard::X)// when X is pressed (B button)
@@ -240,6 +241,16 @@ BattleBar::states BattleBar::getState()
 int BattleBar::getSelection()
 {
 	return selected;
+}
+
+void BattleBar::showMessage(std::string message)
+{
+	std::mutex mtx;
+	std::unique_lock<std::mutex> lock(mtx);
+	state = TEXT;
+	displayText = PokeText(message, sf::Vector2f(18, 118), true, &font, 15);
+	displayText.setLightText();
+	cv.wait(lock);
 }
 
 

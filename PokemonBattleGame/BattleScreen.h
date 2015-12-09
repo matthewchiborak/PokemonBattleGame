@@ -57,6 +57,7 @@ public:
 	void setSelfPokemon(Pokemon * p);
 	void setRandomBackground();
 	void resetBattleBarState();
+	void showMessage(std::string message);
 	int getUserInput();
 	BattleBar::states getBattleBarState();
 };

@@ -266,6 +266,11 @@ void BattleScreen::resetBattleBarState()
 	battleBar.resetState();
 }
 
+void BattleScreen::showMessage(std::string message)
+{
+	battleBar.showMessage(message);
+}
+
 int BattleScreen::getUserInput()
 {
 	std::mutex mtx;
