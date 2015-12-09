@@ -152,6 +152,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::string response;
 	std::string response2;
 	std::string response3;
+	objStr->bScreen->showMessage("It's time to du-du-du-du-DUEL!!\n");
 	do {
 
 		//Turn starts
@@ -564,10 +565,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (objStr->uP1->getHP() != 0 || objStr->uP2->getHP() != 0 || objStr->uP2->getHP() != 0)	// You win!
 			{
 				std::cout << "You win!\n";
+				objStr->bScreen->showMessage("You win!\n");
 			}
 			else	// You lose.
 			{
 				std::cout << "You came second!\n";
+				objStr->bScreen->showMessage("You came second!\n");
 			}
 
 		}
