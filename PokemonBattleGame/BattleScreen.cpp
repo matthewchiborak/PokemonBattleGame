@@ -28,14 +28,13 @@ BattleScreen::BattleScreen(const sf::Vector2i WIN_SIZE)
 	SelfInfoFrame.setTexture(*loader.tryLoadTexture("SelfInfoFrame", "Resources/SelfInfoFrame.png"));
 	SelfInfoFrame.setPosition(134, 70);
 
-	BackGround.setTexture(*loader.tryLoadTexture("BattleBackgrounds", "Resources/battleBackgrounds.png"));
-	BackGround.setTextureRect(sf::IntRect(1, 1, 240, 160));
+	BackGround.setTexture(*loader.tryLoadTexture("BattleBackground"+itos(1), "Resources/Backgrounds/"+itos(1)+".png"));
 
 	OpPokemon.setTexture(*loader.tryLoadTexture("front257", "Resources/PokemonSprites/Front/257.png"));
 	OpPokemon.setPosition(140, 10);
 
 	SelfPokemon.setTexture(*loader.tryLoadTexture("back6", "Resources/PokemonSprites/Back/6.png"));
-	SelfPokemon.setPosition(40, 54);
+	SelfPokemon.setPosition(40, 46);
 
 	//create the healthbars
 	OpHealth = HealthBar(30, 30, sf::Vector2f(52, 33), sf::Vector2f(100, 36));
@@ -62,6 +61,8 @@ void BattleScreen::refresh()
 	ScreenTex.draw(HealthText);
 	ScreenTex.draw(SelfInfoFrame);
 	ScreenTex.draw(OpName);
+	ScreenTex.draw(opStatusEffect);
+	ScreenTex.draw(selfStatusEffect);
 
 	ScreenTex.display();
 	Screen.setTexture(ScreenTex.getTexture());
@@ -71,7 +72,7 @@ void BattleScreen::SetOPHealth(int health)
 {
 	//change the opponet's healthbar and refresh the screen
 	OpHealth.setHealth(health);
-	refresh();
+	//refresh();
 }
 
 void BattleScreen::SetSelfHealth(int health)
@@ -79,7 +80,7 @@ void BattleScreen::SetSelfHealth(int health)
 	//change the user's health bar and health text. refresh the screen
 	SelfHealth.setHealth(health);
 	HealthText.setText(std::to_string(health) + "/600");
-	refresh();
+	//refresh();
 }
 
 void BattleScreen::refreshHealth()
@@ -115,7 +116,101 @@ void BattleScreen::refreshHealth()
 		s << "  " << maxHp;
 	}
 	HealthText.setText(s.str());
-	refresh();
+
+	// Set status effect for the pokemon
+	
+
+	// Set a status effect for opponent
+	switch (oppPokemon->getCurrentStatis())
+	{
+		case 0:															// No Status Effect, set to blank texture
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/NoStatusIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 1:															// Burn Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/BurnIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 2:															// Frozen Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/FrozenIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 3:															// Paraylyzed Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ParalyzeIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 4:															// Poison Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/PoisonIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 5:															// Sleeping Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/SleepIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 6:															// Sleepin Status Effect (can wake up)
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/SleepIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 7:															// Confusion Status Effect
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ConfusionIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		case 8:															// Confusion Status Effect (can hit)
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/ConfusionIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+		default:
+			opStatusEffect.setTexture(*loader.tryLoadTexture("OppStatusEffect", "Resources/Status/NoStatusIcon.png"));
+			opStatusEffect.setPosition(14, 29);
+			break;
+	}
+
+	// Set status effect for our pokemon
+	switch (selfPokemon->getCurrentStatis())
+	{
+	case 0:															// No Status Effect, set to blank texture
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/NoStatusIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 1:															// Burn Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/BurnIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 2:															// Frozen Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/FrozenIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 3:															// Paraylyzed Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ParalyzeIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 4:															// Poison Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/PoisonIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 5:															// Sleeping Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/SleepIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 6:															// Sleepin Status Effect (can wake up)
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/SleepIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 7:															// Confusion Status Effect
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ConfusionIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	case 8:															// Confusion Status Effect (can hit)
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/ConfusionIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	default:
+		selfStatusEffect.setTexture(*loader.tryLoadTexture("SelfStatusEffect", "Resources/Status/NoStatusIcon.png"));
+		selfStatusEffect.setPosition(149, 85);
+		break;
+	}
+
+	//refresh();
 }
 
 void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to key presses
@@ -144,5 +239,21 @@ void BattleScreen::setSelfPokemon(Pokemon * p)
 	SelfHealth.reset(selfPokemon->getHP(), selfPokemon->getMaxHP());
 	battleBar.setMoves(selfPokemon);
 	refreshHealth();
+}
+
+void BattleScreen::setRandomBackground()
+{
+	int a = 1+rand() % 5;
+	BackGround.setTexture(*loader.tryLoadTexture("BattleBackground" + itos(a), "Resources/Backgrounds/" + itos(a) + ".png"));
+}
+
+void BattleScreen::resetBattleBarState()
+{
+	battleBar.resetState();
+}
+
+BattleBar::states BattleScreen::getBattleBarState()
+{
+	return battleBar.getState();
 }
 

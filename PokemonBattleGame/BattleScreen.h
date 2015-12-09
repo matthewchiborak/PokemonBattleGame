@@ -37,6 +37,8 @@ private:
 	sf::Sprite BackGround;
 	sf::Sprite OpPokemon;
 	sf::Sprite SelfPokemon;
+	sf::Sprite opStatusEffect;
+	sf::Sprite selfStatusEffect;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;//draw everything on to the render target
 public:
@@ -48,6 +50,9 @@ public:
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
 	void setOppPokemon(Pokemon * p);
 	void setSelfPokemon(Pokemon * p);
+	void setRandomBackground();
+	void resetBattleBarState();
+	BattleBar::states getBattleBarState();
 };
 
 #endif

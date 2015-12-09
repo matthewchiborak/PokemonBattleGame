@@ -783,3 +783,165 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     resultString = statusDirect + statusNew + statusOld + std::to_string(result);
     return resultString;
 }
+
+int AttackCalculator::checkIfSwap(std::string recievedString)
+{
+	std::string tempString = "";
+
+	for (int i = 0; i<4; i++)
+	{
+		tempString += recievedString.at(i);
+	}
+
+	if (tempString == "swap")
+	{
+		return (int)recievedString.at(4);
+	}
+	else
+	{
+		return 0;
+	}
+}
+std::string AttackCalculator::extractAttackString(std::string recievedString)
+{
+	std::stringstream ss(recievedString);
+
+	std::string temp = "";
+	char i;
+
+	while (ss >> i)
+	{
+		temp += i;
+
+		if (ss.peek() == '-')
+		{
+			ss.ignore();
+			return temp;
+		}
+	}
+	return temp;
+}
+std::string AttackCalculator::extractAttackStats(std::string recievedString)
+{
+	std::stringstream ss(recievedString);
+
+	std::string temp = "";
+	int count = 0;
+	char i;
+
+	while (ss >> i)
+	{
+		temp += i;
+
+		if (ss.peek() == '-')
+		{
+			ss.ignore();
+			if (count != 0)
+			{
+				temp = "";
+				count++;
+			}
+			else
+			{
+				return temp;
+			}
+		}
+	}
+	return temp;
+}
+std::string AttackCalculator::extractDefenceString(std::string recievedString)
+{
+	std::stringstream ss(recievedString);
+
+	std::string temp = "";
+	char i;
+
+	while (ss >> i)
+	{
+		temp += i;
+
+		if (ss.peek() == '-')
+		{
+			ss.ignore();
+
+			temp = "";
+		}
+	}
+	return temp;
+}
+
+std::string AttackCalculator::extractCreationStats(std::string recievedString, int oneTwoOrThree)
+{
+	std::stringstream ss(recievedString);
+	int count = 0;
+	std::string temp = "";
+	char i;
+
+	if (oneTwoOrThree == 1)
+	{
+
+
+		while (ss >> i)
+		{
+			temp += i;
+
+			if (ss.peek() == '-')
+			{
+				ss.ignore();
+				return temp;
+			}
+		}
+	}
+	else if (oneTwoOrThree == 2)
+	{
+		while (ss >> i)
+		{
+			temp += i;
+
+			if (ss.peek() == '-')
+			{
+				ss.ignore();
+				if (count != 0)
+				{
+					temp = "";
+					count++;
+				}
+				else
+				{
+					return temp;
+				}
+			}
+		}
+
+	}
+	else
+	{
+		while (ss >> i)
+		{
+			temp += i;
+
+			if (ss.peek() == '-')
+			{
+				ss.ignore();
+
+				temp = "";
+			}
+		}
+	}
+
+	return temp;
+}
+
+std::string AttackCalculator::resultSwapTranslator(int swapCheck, Pokemon* newPokemon)
+{
+	std::string result = "";
+	if (swapCheck == 0)
+	{
+		return result;
+	}
+	else
+	{
+		result = result + "Sent out " + newPokemon->getName() + "\n";
+	}
+	return result;
+}

@@ -31,6 +31,13 @@ private:
     int speed;
     double evasion;
     double accuarcy;
+	double attStart;
+	double spAttStart;
+	double defStart;
+	double spDefStart;
+	int speedStart;
+	double evasionStart;
+	double accuarcyStart;
     Move* move1;
     Move* move2;
     Move* move3;

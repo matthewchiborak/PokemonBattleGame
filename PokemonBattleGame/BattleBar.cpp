@@ -10,7 +10,6 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(bar, states);
 		target.draw(select, states);
 		target.draw(arrow, states);
-
 		break;
 	case BattleBar::MOVE:
 		target.draw(moveSelect, states);
@@ -19,6 +18,7 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(moveText[1], states);
 		target.draw(moveText[2], states);
 		target.draw(moveText[3], states);
+		target.draw(moveSelectFrame,states);
 		target.draw(PP, states);
 		target.draw(moveType, states);
 		break;
@@ -27,6 +27,9 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(displayText, states);
 		break;
 	default:
+		target.draw(bar, states);
+		target.draw(select, states);
+		target.draw(arrow, states);
 		break;
 	}
 }
@@ -56,18 +59,21 @@ BattleBar::BattleBar()
 	moveSelect.setTexture(*loader.tryLoadTexture("MoveSelect", "Resources/moveSelect.png"));
 	moveSelect.setPosition(0, 110);
 
+	moveSelectFrame.setTexture(*loader.tryLoadTexture("MoveSelectFrame","Resources/moveSelectFrame.png"));
+	moveSelectFrame.setPosition(0, 110);
+
 	arrow.setTexture(*loader.tryLoadTexture("arrow", "Resources/arrow.png"));
-	
+
 	//create wanring for trying to use items
 	font.loadFromFile("Resources/EmeraldPro.ttf");
 	displayText = PokeText("OAK: Now is not the\n time to use that", sf::Vector2f(18, 118), true, &font, 15);
 	displayText.setLightText();
 
 	//create Move text
-	moveText[0] = PokeText("Move1", sf::Vector2f(16,117), true, &font, 16);
-	moveText[1] = PokeText("Move2", sf::Vector2f(88,117), true, &font, 16);
-	moveText[2] = PokeText("Move3", sf::Vector2f(16,133), true, &font, 16);
-	moveText[3] = PokeText("Move4", sf::Vector2f(88,133), true, &font, 16);
+	moveText[0] = PokeText("Move1", sf::Vector2f(12,117), true, &font, 16);
+	moveText[1] = PokeText("Move2", sf::Vector2f(89,117), true, &font, 16);
+	moveText[2] = PokeText("Move3", sf::Vector2f(12,133), true, &font, 16);
+	moveText[3] = PokeText("Move4", sf::Vector2f(89,133), true, &font, 16);
 
 	PP = PokeText("40  40", sf::Vector2f(202,115), true, &font, 16);
 	moveType = PokeText("NORMAL", sf::Vector2f(192,132), true, &font, 16);
@@ -80,10 +86,10 @@ BattleBar::BattleBar()
 	selectPositions[2] = sf::Vector2f(128, 137);
 	selectPositions[3] = sf::Vector2f(184,137);
 
-	movePositions[0] = sf::Vector2f(9,124);
-	movePositions[1] = sf::Vector2f(81,124);
-	movePositions[2] = sf::Vector2f(9,140);
-	movePositions[3] = sf::Vector2f(81,140);
+	movePositions[0] = sf::Vector2f(6,124);
+	movePositions[1] = sf::Vector2f(83,124);
+	movePositions[2] = sf::Vector2f(6,140);
+	movePositions[3] = sf::Vector2f(83,140);
 
 	updateArrowPosition();
 }
@@ -157,6 +163,11 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 				displayText = PokeText("OAK: Now is not the time to use that", sf::Vector2f(18, 118), true, &font, 15);
 				displayText.setLightText();
 			}
+			if (selected == 2)
+			{
+				//when the user wants to select a pokemon
+				state = SELECTION;
+			}
 			if (selected == 3)
 			{
 				state = TEXT;
@@ -187,6 +198,7 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 
 void BattleBar::clicked(sf::Vector2i location)
 {
+
 }
 
 void BattleBar::setMoves(Pokemon * p)
@@ -201,6 +213,22 @@ void BattleBar::setMoves(Pokemon * p)
 	moveText[2].setText(moves[2]->getName());
 	moveText[3].setText(moves[3]->getName());
 	this->pokemon = p;
+}
+
+void BattleBar::setWinSize(sf::Vector2i size)
+{
+	this->WIN_SIZE = size;
+}
+
+void BattleBar::resetState()
+{
+	selected = 0;
+	state = ACTION;
+}
+
+BattleBar::states BattleBar::getState()
+{
+	return state;
 }
 
 

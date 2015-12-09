@@ -39,6 +39,15 @@ Pokemon::Pokemon(StoredStats *pkmnInfo, std::vector<std::string> *moveInfo) //Fo
     
     evasion=(100);
     accuarcy=(100);
+
+	attStart = att;
+	spAttStart = spAtt;
+	defStart = def;
+	spDefStart = spDef;
+	speedStart = speed;
+	evasionStart = 100;
+	accuarcyStart = 100;
+
     currentStatis=0;
     isStruggling=false;
     move1= new Move(moveInfo, pkmnInfo->getMove1());
@@ -88,6 +97,13 @@ Pokemon::Pokemon(std::vector<std::string> *moveInfo, std::string stats)//For cre
     move2=new Move(moveInfo, std::stoi(parsedStrings.at(12)));
     move3=new Move(moveInfo, std::stoi(parsedStrings.at(13)));
     move4=new Move(moveInfo, std::stoi(parsedStrings.at(14)));
+	attStart = att;
+	spAttStart = spAtt;
+	defStart = def;
+	spDefStart = spDef;
+	speedStart = speed;
+	evasionStart = 100;
+	accuarcyStart = 100;
 }
 
 Pokemon::Pokemon(StoredStats * pkmnInfo)
@@ -127,10 +143,10 @@ Pokemon::Pokemon(StoredStats * pkmnInfo)
 
 Pokemon::~Pokemon()
 {
-    //delete move1;
-    //delete move2;
-    //delete move3;
-    //delete move4;
+    delete move1;
+    delete move2;
+    delete move3;
+    delete move4;
 }
 
 std::string Pokemon::sendCreationStats()
@@ -308,7 +324,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         (*result)+=10;
         for(int i=0; i<abs(direct); i++)
         {
-            att=att*sign;
+            att=attStart*sign;
         }
     }
     else if (stat=="Def")
@@ -316,7 +332,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         (*result)+=20;
         for(int i=0; i<abs(direct); i++)
         {
-            def=def*sign;
+            def=defStart*sign;
         }
     }
     else if (stat=="SpAtt")
@@ -324,7 +340,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         (*result)+=30;
         for(int i=0; i<abs(direct); i++)
         {
-            spAtt=spAtt*sign;
+            spAtt=spAttStart*sign;
         }
     }
     else if (stat=="SpDef")
@@ -332,7 +348,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         (*result)+=40;
         for(int i=0; i<abs(direct); i++)
         {
-            spDef*=sign;
+            spDef=spDefStart*sign;
         }
     }
     else if (stat=="Speed")
@@ -340,7 +356,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         (*result)+=50;
         for(int i=0; i<abs(direct); i++)
         {
-            speed*=sign;
+            speed=speedStart*sign;
         }
     }
     else if (stat=="Eva")
@@ -355,7 +371,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         
         for(int i=0; i<abs(direct); i++)
         {
-            evasion*=sign;
+            evasion=evasionStart*sign;
         }
     }
     else if (stat=="Acc")
@@ -370,7 +386,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         
         for(int i=0; i<abs(direct); i++)
         {
-            accuarcy*=sign;
+            accuarcy=accuarcyStart*sign;
         }
     }
     else if(stat=="Recoil")
