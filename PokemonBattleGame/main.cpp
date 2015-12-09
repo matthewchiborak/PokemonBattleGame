@@ -29,6 +29,7 @@ public:
 	int *whatToDraw; // 0 = battle screen, 1 = selectscreen;
 	std::vector<Pokemon*> userParty;
 	Pokemon* currentPokemon;
+	Pokemon* currentOpponentPokemon;
 	Pokemon *uP1, *uP2, *uP3;//user's pokemon
 	Pokemon *oP1, *oP2, *oP3;//opponets's pokemon
 	Client *client;
@@ -145,7 +146,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	Pokemon* activeOppoPokemon = objStr->oP1;
 
 	std::string endOfTurnMessage = "0";
-
+	std::string response;
 	do {
 
 		//Turn starts
@@ -249,9 +250,29 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::string attackersNewStats = activePokemon->getNewStats();
 				std::string defendersNewStats = activeOppoPokemon->getNewStats();
 
-				std::string stringToBeSent = responseString + "-" + attackersNewStats + "-" + defendersNewStats + "~";
+				//std::string stringToBeSent = responseString + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
+				//client->sendMessage(stringToBeSent);
+
+				// Send the response, attacker stats, defender stats
+				std::string stringToBeSent = responseString;									// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
+				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = attackersNewStats;												// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = defendersNewStats;												// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -272,7 +293,20 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			std::string syncString = "Not my turn~";
 			//SENT TO SERVER
-			client->sendMessage(syncString);
+			//client->sendMessage(syncString);
+			client->sendMessage(syncString);									// Send random syncstring
+			std::string response = client->recieveMessage();					// Receive message and then ui will change based on this
+			std::cout << "Not my turn response: " << response << std::endl;
+
+			client->sendMessage(syncString);									// Send random syncstring
+			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
+			objStr->currentPokemon->updateStats(response);
+			std::cout << "Not my turn response: " << response << std::endl;
+			
+			client->sendMessage(syncString);									// Send random syncstring
+			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
+			objStr->currentOpponentPokemon->updateStats(response);
+			std::cout << "Not my turn response: " << response << std::endl;
 		}
 
 
@@ -350,7 +384,26 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 				std::string stringToBeSent = responseString + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
+				//client->sendMessage(stringToBeSent);
+
+				// Send the response, attacker stats, defender stats
+				std::string stringToBeSent = responseString;									// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
+				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = attackersNewStats;												// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = defendersNewStats;												// Send first response stats to server
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -370,8 +423,21 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		else
 		{
 			std::string syncString = "Not my turn~";
-			client->sendMessage(syncString);
+			//client->sendMessage(syncString);
 			//SENT TO SERVER
+			client->sendMessage(syncString);									// Send random syncstring
+			std::string response = client->recieveMessage();					// Receive message and then ui will change based on this
+			std::cout << "Not my turn response: " << response << std::endl;
+
+			client->sendMessage(syncString);									// Send random syncstring
+			response = client->recieveMessage();								// Get response and then update the stats for our pokemon
+			objStr->currentPokemon->updateStats(response);
+			std::cout << "Not my turn response: " << response << std::endl;
+
+			client->sendMessage(syncString);									// Send random syncstring
+			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
+			objStr->currentOpponentPokemon->updateStats(response);
+			std::cout << "Not my turn response: " << response << std::endl;
 		}
 
 
