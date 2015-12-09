@@ -72,22 +72,37 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	yourPokemon[1] = &oppoPokemon2;
 	yourPokemon[2] = &oppoPokemon3;
 
-	std::string creationString = testPokemon1.sendCreationStats() + "-" + testPokemon2.sendCreationStats() + "-" + testPokemon3.sendCreationStats() + "~";
+	// Create three send and recieve statements for to send your three pokemon and recieve the opponents 3 pokemon
+	std::string ourPokemonStats = testPokemon1.sendCreationStats() + "~";			// Send first pokemon stats to server
+	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
+	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
+
+	std::string ourPokemonStats = testPokemon2.sendCreationStats() + "~";			// Send second pokemon stats to server
+	std::string oppoPokemonStats = client->recieveMessage();						// Receive second opponent pokemon
+	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
+
+	std::string ourPokemonStats = testPokemon3.sendCreationStats() + "~";			// Send third pokemon stats to server
+	std::string oppoPokemonStats = client->recieveMessage();						// Receive third opponent pokemon
+	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
+
+
+	//std::string creationString = testPokemon1.sendCreationStats() + "-" + testPokemon2.sendCreationStats() + "-" + testPokemon3.sendCreationStats() + "~";
 
 	//!!!Send pokemon stats through server and recieve other players!!!
-	client->sendMessage(creationString);
-	std::string recievedCreationString = client->recieveMessage();
+	//client->sendMessage(creationString);
+	//std::string recievedCreationString = client->recieveMessage();
 	//std::string recievedCreationString = oppoPokemon1.sendCreationStats() + "-" + oppoPokemon2.sendCreationStats() + "-" + oppoPokemon3.sendCreationStats();
 
 	//Oppenents pokemon made from recieved data
 
 	//std::string testExtractingCS = "655,Delphox2,Fire,Psychic,135,135,100,50,50,50,50,1,3,2,1-Ifyouseethissomethingbroke";
-	std::string recievedStats = testCalc.extractCreationStats(recievedCreationString, 1);
+	/*std::string recievedStats = testCalc.extractCreationStats(recievedCreationString, 1);
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), recievedStats);
 	recievedStats = testCalc.extractCreationStats(recievedCreationString, 2);
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), recievedStats);
 	recievedStats = testCalc.extractCreationStats(recievedCreationString, 3);
-	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), recievedStats);
+	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), recievedStats);*/
+
 
 	Pokemon* activePokemon = &testPokemon1;
 	Pokemon* activeOppoPokemon = objStr->oP1;
