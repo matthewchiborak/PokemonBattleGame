@@ -552,7 +552,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		std::string recievedMessage = client->recieveMessage();
 		//std::string recievedMessage = "0";
 
-		if (recievedMessage != "0" || recievedMessage != "4")
+		if (recievedMessage != "0" && recievedMessage != "4")
 		{
 			int newPoke = std::stoi(recievedMessage);
 			activeOppoPokemon = yourPokemon[newPoke];
