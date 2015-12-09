@@ -657,7 +657,7 @@ int main()
 	int health = 30;
 	int health2 = 30;
 
-	srand(time(NULL);
+	srand(time(NULL));
 
 	Screen2.refresh();
 
