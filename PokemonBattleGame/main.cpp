@@ -274,7 +274,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
-
+				objStr->bScreen->refreshHealth();
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -309,6 +309,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
 			objStr->currentOpponentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
+			objStr->bScreen->refreshHealth();
 		}
 
 
@@ -406,6 +407,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+				objStr->bScreen->refreshHealth();
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -428,7 +430,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//client->sendMessage(syncString);
 			//SENT TO SERVER
 			client->sendMessage(syncString);									// Send random syncstring
-			std::string response = client->recieveMessage();					// Receive message and then ui will change based on this
+			response = client->recieveMessage();					// Receive message and then ui will change based on this
 			std::cout << "Not my turn response: " << response << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
@@ -440,6 +442,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			response = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
 			objStr->currentOpponentPokemon->updateStats(response);
 			std::cout << "Not my turn response: " << response << std::endl;
+			objStr->bScreen->refreshHealth();
 		}
 
 
