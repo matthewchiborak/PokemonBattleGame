@@ -43,6 +43,8 @@ string Client::recieveMessage()							// Recieve Message from the client
 	{
 		if (buffer[i] == '~')
 			break;
+		else if (buffer[i] == '?')
+			break;
 		else
 			text += buffer[i];
 	}
