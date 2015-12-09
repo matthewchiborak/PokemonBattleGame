@@ -223,8 +223,12 @@ void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to 
 			if (battleBar.getState() == BattleBar::MOVESELECTED)
 			{
 				userInput = battleBar.getSelection() + 1;
-				std::cout << userInput << std::endl;
 				battleBar.resetState();
+				cv.notify_all();
+			}
+			if (battleBar.getState() == BattleBar::SELECTION)
+			{
+				userInput = 5;
 				cv.notify_all();
 			}
 		}

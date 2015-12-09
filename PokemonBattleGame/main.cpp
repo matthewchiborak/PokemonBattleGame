@@ -51,6 +51,34 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 	Client *client = objStr->client;
 	int userInput = objStr->bScreen->getUserInput();
+	
+	if (userInput != 0)
+	{
+		if (userInput == 5)
+		{
+			std::vector<Pokemon*> selected;
+			*objStr->whatToDraw = 1;
+			objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
+			objStr->currentPokemon = selected[0];
+			objStr->userParty.push_back(objStr->currentPokemon);
+			objStr->bScreen->resetBattleBarState();
+			*objStr->whatToDraw = 0;
+			objStr->bScreen->setSelfPokemon(selected[0]);
+			if (selected[0] == objStr->uP1)
+			{
+				userInput = 5;
+			}
+			else if (selected[0] == objStr->uP2)
+			{
+				userInput = 6;
+			}
+			else if (selected[0] == objStr->uP3)
+			{
+				userInput = 7;
+			}
+		}
+		std::cout << userInput << std::endl;
+	}
 	//Pick Pokemon
 	//Select pokemon gives index ->
 	int selectedPokemon1 = 0;
@@ -77,12 +105,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
-	std::string ourPokemonStats = testPokemon2.sendCreationStats() + "~";			// Send second pokemon stats to server
-	std::string oppoPokemonStats = client->recieveMessage();						// Receive second opponent pokemon
+	ourPokemonStats = testPokemon2.sendCreationStats() + "~";			// Send second pokemon stats to server
+	oppoPokemonStats = client->recieveMessage();						// Receive second opponent pokemon
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
-	std::string ourPokemonStats = testPokemon3.sendCreationStats() + "~";			// Send third pokemon stats to server
-	std::string oppoPokemonStats = client->recieveMessage();						// Receive third opponent pokemon
+	ourPokemonStats = testPokemon3.sendCreationStats() + "~";			// Send third pokemon stats to server
+	oppoPokemonStats = client->recieveMessage();						// Receive third opponent pokemon
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 
 
@@ -116,9 +144,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		//Either pick a move, swap or run
 		bool successSelection = false;
 		int userInput = objStr->bScreen->getUserInput();
+		std::cout << userInput << std::endl;
 		if (userInput != 0)
 		{
-			if (userInput = 5)
+			if (userInput == 5)
 			{
 					std::vector<Pokemon*> selected;
 					*objStr->whatToDraw = 1;
@@ -128,15 +157,15 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					objStr->bScreen->resetBattleBarState();
 					*objStr->whatToDraw = 0;
 					objStr->bScreen->setSelfPokemon(selected[0]);
-					if (selected[0] = objStr->oP1)
+					if (objStr->currentPokemon = objStr->uP1)
 					{
-						userInput = 5;
+						userInput == 5;
 					}
-					else if (selected[0] = objStr->oP2)
+					else if (objStr->currentPokemon == objStr->uP2)
 					{
 						userInput = 6;
 					}
-					else if (selected[0] = objStr->oP3)
+					else if (objStr->currentPokemon == objStr->uP3)
 					{
 						userInput = 7;
 					}
