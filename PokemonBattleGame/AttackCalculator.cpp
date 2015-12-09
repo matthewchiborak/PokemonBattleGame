@@ -797,6 +797,10 @@ int AttackCalculator::checkIfSwap(std::string recievedString)
 	{
 		return (int)recievedString.at(4);
 	}
+	else if (tempString == "Faint")
+	{
+		return 4;
+	}
 	else
 	{
 		return 0;
