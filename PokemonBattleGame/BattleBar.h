@@ -9,7 +9,7 @@
 class BattleBar : public sf::Drawable
 {
 public: 
-	enum states { ACTION, MOVE, TEXT, SELECTION };
+	enum states { ACTION, MOVE, TEXT, SELECTION, MOVESELECTED };
 	//This class is contains the selection at the bottom of the battle screen
 private:
 	//initialize variables for the required textures

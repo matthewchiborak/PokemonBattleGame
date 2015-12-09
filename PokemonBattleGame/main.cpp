@@ -37,7 +37,7 @@ public:
 void turnFunction(ObjectStorage *objStr)										// All the game logic will go in here
 {
 	AttackCalculator testCalc;
-	FileReader testReader;
+	FileReader testReader = *objStr->fileReader;
 	//if (testReader.readPokemonFile("/Users/Matt/Desktop/PokemonStats.txt"))		// Change location of the PokemonStats file
 	//{
 	//	std::cout << "Pkmn read success\n";
@@ -50,7 +50,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	//Connect
 
 	Client *client = objStr->client;
-
+	int userInput = objStr->bScreen->getUserInput();
 	//Pick Pokemon
 	//Select pokemon gives index ->
 	int selectedPokemon1 = 0;
@@ -83,14 +83,14 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 	//std::string testExtractingCS = "655,Delphox2,Fire,Psychic,135,135,100,50,50,50,50,1,3,2,1-Ifyouseethissomethingbroke";
 	std::string recievedStats = testCalc.extractCreationStats(recievedCreationString, 1);
-	Pokemon localOppoPokemon1(testReader.getMoveInfo(), recievedStats);
+	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), recievedStats);
 	recievedStats = testCalc.extractCreationStats(recievedCreationString, 2);
-	Pokemon localOppoPokemon2(testReader.getMoveInfo(), recievedStats);
+	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), recievedStats);
 	recievedStats = testCalc.extractCreationStats(recievedCreationString, 3);
-	Pokemon localOppoPokemon3(testReader.getMoveInfo(), recievedStats);
+	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), recievedStats);
 
 	Pokemon* activePokemon = &testPokemon1;
-	Pokemon* activeOppoPokemon = &localOppoPokemon1;
+	Pokemon* activeOppoPokemon = objStr->oP1;
 
 	std::string endOfTurnMessage = "0";
 
@@ -100,7 +100,33 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		//Either pick a move, swap or run
 		bool successSelection = false;
-		int userInput = 0;
+		int userInput = objStr->bScreen->getUserInput();
+		if (userInput != 0)
+		{
+			if (userInput = 5)
+			{
+					std::vector<Pokemon*> selected;
+					*objStr->whatToDraw = 1;
+					objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
+					objStr->currentPokemon = selected[0];
+					objStr->userParty.push_back(objStr->currentPokemon);
+					objStr->bScreen->resetBattleBarState();
+					*objStr->whatToDraw = 0;
+					objStr->bScreen->setSelfPokemon(selected[0]);
+					if (selected[0] = objStr->oP1)
+					{
+						userInput = 5;
+					}
+					else if (selected[0] = objStr->oP2)
+					{
+						userInput = 6;
+					}
+					else if (selected[0] = objStr->oP3)
+					{
+						userInput = 7;
+					}
+			}
+		}
 		while (!successSelection)
 		{
 			//User Picks an option. 1,2,3,4 Are the attacks, 5, 6, 7 are swap and 8 is run
@@ -377,7 +403,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	} while (endOfTurnMessage != "4");
 }
 
-void threadFucntion(ObjectStorage *objectStorage, bool *active)
+void threadFunction(ObjectStorage *objectStorage, bool *active)
 {
 	std::vector<Pokemon*> selected;
 
@@ -397,22 +423,24 @@ void threadFucntion(ObjectStorage *objectStorage, bool *active)
 		objectStorage->currentPokemon = objectStorage->uP1;
 		objectStorage->bScreen->setSelfPokemon(objectStorage->currentPokemon);
 
-		while (active)													// This will run continuously
-		{
-			if (objectStorage->bScreen->getBattleBarState() == BattleBar::SELECTION)
-			{
-				selected.clear();
-				*objectStorage->whatToDraw = 1;
-				objectStorage->sScreen->getParty(&objectStorage->userParty, &selected, 1);
-				objectStorage->currentPokemon = selected[0];
-				objectStorage->userParty.push_back(objectStorage->currentPokemon);
-				objectStorage->bScreen->resetBattleBarState();
-				*objectStorage->whatToDraw = 0;
-				objectStorage->bScreen->setSelfPokemon(selected[0]);
-			}
+		turnFunction(objectStorage);
 
-		}
-		//turnFunction(objectStorage);
+		//while (active)													// This will run continuously
+		//{
+		//	if (objectStorage->bScreen->getBattleBarState() == BattleBar::SELECTION)
+		//	{
+		//		selected.clear();
+		//		*objectStorage->whatToDraw = 1;
+		//		objectStorage->sScreen->getParty(&objectStorage->userParty, &selected, 1);
+		//		objectStorage->currentPokemon = selected[0];
+		//		objectStorage->userParty.push_back(objectStorage->currentPokemon);
+		//		objectStorage->bScreen->resetBattleBarState();
+		//		*objectStorage->whatToDraw = 0;
+		//		objectStorage->bScreen->setSelfPokemon(selected[0]);
+		//	}
+
+		//}
+		
 	}
 	else
 	{
@@ -465,7 +493,7 @@ int main()
 	objectStorage.fileReader = &fileReader;
 	objectStorage.whatToDraw = &whatToDraw;
 
-	std::thread  thread(threadFucntion,&objectStorage,&active);
+	std::thread  thread(threadFunction,&objectStorage,&active);
 
 	KeyboardWrapper keyboard;//create a keyboard wrapper to watch for key presses
 
@@ -494,17 +522,17 @@ int main()
 		//insert code to run each frame after this
 		std::vector<sf::Keyboard::Key> keys = keyboard.getPressedKeys();
 
-		for (int i = 0; i < keys.size(); i++)
-		{
-			if (keys[i] == sf::Keyboard::R)
-			{
-				int j = rand() % pokemon.size();
-				Screen.setOppPokemon(pokemon[j]);
-				j = rand() % pokemon.size();
-				Screen.setSelfPokemon(pokemon[j]);
-				Screen.setRandomBackground();
-			}
-		}
+		//for (int i = 0; i < keys.size(); i++)
+		//{
+		//	if (keys[i] == sf::Keyboard::R)
+		//	{
+		//		int j = rand() % pokemon.size();
+		//		Screen.setOppPokemon(pokemon[j]);
+		//		j = rand() % pokemon.size();
+		//		Screen.setSelfPokemon(pokemon[j]);
+		//		Screen.setRandomBackground();
+		//	}
+		//}
 
 		window.clear();//clear the window's frame buffer
 		switch (whatToDraw)

@@ -218,6 +218,16 @@ void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to 
 	for (int i = 0; i < keys.size(); i++)
 	{
 		battleBar.keyPressed(keys[i]);
+		if (keys[i] == sf::Keyboard::Z)//check if the user selected a move
+		{
+			if (battleBar.getState() == BattleBar::MOVESELECTED)
+			{
+				userInput = battleBar.getSelection() + 1;
+				std::cout << userInput << std::endl;
+				battleBar.resetState();
+				cv.notify_all();
+			}
+		}
 	}
 	refresh();
 }
@@ -250,6 +260,17 @@ void BattleScreen::setRandomBackground()
 void BattleScreen::resetBattleBarState()
 {
 	battleBar.resetState();
+}
+
+int BattleScreen::getUserInput()
+{
+	std::mutex mtx;
+	std::unique_lock<std::mutex> lock(mtx);
+	
+	userInput = 0;
+
+	cv.wait(lock);
+	return userInput;
 }
 
 BattleBar::states BattleScreen::getBattleBarState()

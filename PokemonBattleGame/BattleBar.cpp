@@ -12,6 +12,7 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(arrow, states);
 		break;
 	case BattleBar::MOVE:
+	case BattleBar::MOVESELECTED:
 		target.draw(moveSelect, states);
 		target.draw(arrow, states);
 		target.draw(moveText[0], states);
@@ -174,6 +175,10 @@ void BattleBar::keyPressed(sf::Keyboard::Key key)
 				displayText = PokeText("No! There's no running\nfrom a TRAINER battle!", sf::Vector2f(18, 118), true, &font, 15);
 				displayText.setLightText();
 			}
+		}
+		else if (state == MOVE)
+		{
+			state = MOVESELECTED;
 		}
 		else if (state == TEXT)
 		{

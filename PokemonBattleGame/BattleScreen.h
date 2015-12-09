@@ -1,6 +1,7 @@
 #ifndef BATTLESCREEN_H
 #define BATTLESCREEN_H
 #include <SFML\Graphics.hpp>
+#include <condition_variable>
 #include "PokeText.h"
 #include "HealthBar.h"
 #include "BattleBar.h"
@@ -28,6 +29,10 @@ private:
 
 	BattleBar battleBar;
 
+	std::condition_variable cv;
+	int userInput;
+	bool waitingForInput;
+
 	sf::RenderTexture ScreenTex;
 
 	sf::Sprite Screen;
@@ -52,6 +57,7 @@ public:
 	void setSelfPokemon(Pokemon * p);
 	void setRandomBackground();
 	void resetBattleBarState();
+	int getUserInput();
 	BattleBar::states getBattleBarState();
 };
 
