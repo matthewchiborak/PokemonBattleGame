@@ -20,47 +20,21 @@
 
 const sf::Vector2i WIN_SIZE(960, 640);//The size of the window.
 
-void threadFucntion(BattleScreen *battle, PokeSelectScreen *select, FileReader *fileReader, int *whatToDraw, bool *active)
+struct ObjectStorage
 {
-	std::vector<Pokemon*> party, pokemon, selected;
-	for (int i = 0; i < fileReader->numPkmnStats(); i++)
-	{
-		//pokemon.push_back(new Pokemon(fileReader->getPokemonStats(i), fileReader->getMoveInfo()));
-	}
-	*whatToDraw = 1;
-	select->getParty(&party , 3);
-	*whatToDraw = 0;
-	selected.push_back(party[0]);
-	party.erase(party.begin());
-	battle->setSelfPokemon(selected[0]);
-	while (active)													// This will run continuously
-	{
-		if (battle->getBattleBarState() == BattleBar::SELECTION)
-		{
-			party.push_back(selected[0]);
-			selected.clear();
-			*whatToDraw = 1;
-			select->getParty(&party, &selected, 1);
-			//select->getParty(&selected, 1);
-			battle->resetBattleBarState();
-			*whatToDraw = 0;
-			battle->setSelfPokemon(selected[0]);
-		}
+public:
+	BattleScreen *bScreen;
+	PokeSelectScreen *sScreen;
+	FileReader *fileReader;
+	int *whatToDraw; // 0 = battle screen, 1 = selectscreen;
+	std::vector<Pokemon*> userParty;
+	Pokemon* currentPokemon;
+	Pokemon *uP1, *uP2, *uP3;//user's pokemon
+	Pokemon *oP1, *oP2, *oP3;//opponets's pokemon
+	Client *client;
+};
 
-	}
-	for (int i = 0; i < pokemon.size(); i++)
-	{
-		delete pokemon[i];
-	}
-
-	for (int i = 0; i < party.size(); i++)
-	{
-		delete party[i];
-	}
-
-}
-
-void turnFunction(Client *client)										// All the game logic will go in here
+void turnFunction(ObjectStorage *objStr)										// All the game logic will go in here
 {
 	AttackCalculator testCalc;
 	FileReader testReader;
@@ -74,13 +48,9 @@ void turnFunction(Client *client)										// All the game logic will go in here
 	//}
 
 	//Connect
-	// Create a client object and set the socket ip and port
-	Client myClient;
-	// Attempt to set the socket
-	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
-	{
-		// Start the turn thread
-	}
+
+	Client *client = objStr->client;
+
 	//Pick Pokemon
 	//Select pokemon gives index ->
 	int selectedPokemon1 = 0;
@@ -95,9 +65,9 @@ void turnFunction(Client *client)										// All the game logic will go in here
 	Pokemon oppoPokemon2(testReader.getPokemonStats(selectedPokemon2), testReader.getMoveInfo());
 	Pokemon oppoPokemon3(testReader.getPokemonStats(selectedPokemon3), testReader.getMoveInfo());
 
-	myPokemon[0] = &testPokemon1;
-	myPokemon[1] = &testPokemon2;
-	myPokemon[2] = &testPokemon3;
+	myPokemon[0] = objStr->uP1;
+	myPokemon[1] = objStr->uP2;
+	myPokemon[2] = objStr->uP3;
 	yourPokemon[0] = &oppoPokemon1;
 	yourPokemon[1] = &oppoPokemon2;
 	yourPokemon[2] = &oppoPokemon3;
@@ -407,6 +377,49 @@ void turnFunction(Client *client)										// All the game logic will go in here
 	} while (endOfTurnMessage != "4");
 }
 
+void threadFucntion(ObjectStorage *objectStorage, bool *active)
+{
+	std::vector<Pokemon*> selected;
+
+	// Create a client object and set the socket ip and port
+	Client myClient;
+	// Attempt to set the socket
+	if (myClient.setSocket("99.248.220.4", 2000))						//	On Success with connecting to the server
+	{
+		objectStorage->client = &myClient;
+
+		*objectStorage->whatToDraw = 1;
+		objectStorage->sScreen->getParty(&objectStorage->userParty, 3);
+		*objectStorage->whatToDraw = 0;
+		objectStorage->uP1 = objectStorage->userParty[0];
+		objectStorage->uP2 = objectStorage->userParty[1];
+		objectStorage->uP3 = objectStorage->userParty[2];
+		objectStorage->currentPokemon = objectStorage->uP1;
+		objectStorage->bScreen->setSelfPokemon(objectStorage->currentPokemon);
+
+		while (active)													// This will run continuously
+		{
+			if (objectStorage->bScreen->getBattleBarState() == BattleBar::SELECTION)
+			{
+				selected.clear();
+				*objectStorage->whatToDraw = 1;
+				objectStorage->sScreen->getParty(&objectStorage->userParty, &selected, 1);
+				objectStorage->currentPokemon = selected[0];
+				objectStorage->userParty.push_back(objectStorage->currentPokemon);
+				objectStorage->bScreen->resetBattleBarState();
+				*objectStorage->whatToDraw = 0;
+				objectStorage->bScreen->setSelfPokemon(selected[0]);
+			}
+
+		}
+		//turnFunction(objectStorage);
+	}
+	else
+	{
+		std::cout << "Error Connecting to server \n";
+	}
+}
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WIN_SIZE.x,WIN_SIZE.y), "Pokemon Battlescreen Test");	// Create the window
@@ -446,7 +459,13 @@ int main()
 
 	whatToDraw = 0;
 
-	std::thread  thread(threadFucntion, &Screen, &Screen2, &fileReader,&whatToDraw,&active);
+	ObjectStorage objectStorage;
+	objectStorage.bScreen = &Screen;
+	objectStorage.sScreen = &Screen2;
+	objectStorage.fileReader = &fileReader;
+	objectStorage.whatToDraw = &whatToDraw;
+
+	std::thread  thread(threadFucntion,&objectStorage,&active);
 
 	KeyboardWrapper keyboard;//create a keyboard wrapper to watch for key presses
 
