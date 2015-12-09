@@ -529,12 +529,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 		}
 
-		std::string endMessageToSend = "0";
+		std::string endMessageToSend = "0~";
 
 		//END OF MESSAGE TRANSACTION
 		if (activePokemon->getHP() != 0)
 		{
-			endMessageToSend = "0";
+			endMessageToSend = "0~";
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
@@ -543,7 +543,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//User selects new pokemon 1,2, or 3
 			int selection = 2;
 			activePokemon = myPokemon[1];
-			endMessageToSend = "2"; //Or 2 or 3 Whatever they picked and send it
+			endMessageToSend = "2~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
@@ -556,6 +556,20 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			int newPoke = std::stoi(recievedMessage);
 			activeOppoPokemon = yourPokemon[newPoke];
+		}
+		if (recievedMessage == "4")									// If the game has ended
+		{
+			endOfTurnMessage = "4";
+			// Check if we still have pokemon left
+			if (objStr->uP1->getHP() != 0 || objStr->uP2->getHP() != 0 || objStr->uP2->getHP() != 0)	// You win!
+			{
+				std::cout << "You win!\n";
+			}
+			else	// You lose.
+			{
+				std::cout << "You came second!\n";
+			}
+
 		}
 
 	} while (endOfTurnMessage != "4");
