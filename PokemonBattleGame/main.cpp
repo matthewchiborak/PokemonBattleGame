@@ -609,7 +609,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
-		else if (objStr->uP1->getHP() == 0 || objStr->uP2->getHP() == 0 || objStr->uP2->getHP() == 0)
+		else if (objStr->uP1->getHP() == 0 && objStr->uP2->getHP() == 0 && objStr->uP2->getHP() == 0)
 		{
 			endMessageToSend = "4~";
 			//SEND THIS
@@ -622,6 +622,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			activePokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
+			std::cout << "End Message I am sending: " << endMessageToSend << "\n";
 			client->sendMessage(endMessageToSend);
 		}
 
