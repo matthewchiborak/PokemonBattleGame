@@ -280,6 +280,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 				objStr->bScreen->refreshHealth();
+				objStr->bScreen->refresh(); //asdfg
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -360,6 +361,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				activeOppoPokemon->updateStats(response2);
 				activePokemon->updateStats(response3);
 				objStr->bScreen->refreshHealth();
+				objStr->bScreen->refresh(); //asdfg
 				/*activePokemon->updateStats(translatedYourStats);
 				activeOppoPokemon->updateStats(translatedOppoStats);*/
 
@@ -467,6 +469,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 				objStr->bScreen->refreshHealth();
+				objStr->bScreen->refresh(); //asdfg
 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
@@ -547,6 +550,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				activeOppoPokemon->updateStats(response2);
 				activePokemon->updateStats(response3);
 				objStr->bScreen->refreshHealth();
+				objStr->bScreen->refresh(); //asdfg
 				/*activePokemon->updateStats(translatedYourStats);
 				activeOppoPokemon->updateStats(translatedOppoStats);*/
 
@@ -640,6 +644,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			activeOppoPokemon = yourPokemon[newPoke-1];
 			objStr->bScreen->setOppPokemon(activeOppoPokemon);
 			objStr->bScreen->refreshHealth();
+			objStr->bScreen->refresh(); //asdfg
 		}
 		if (recievedMessage == "4")									// If the game has ended
 		{
