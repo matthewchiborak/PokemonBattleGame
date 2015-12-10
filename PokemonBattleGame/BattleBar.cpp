@@ -207,7 +207,7 @@ void BattleBar::clicked(sf::Vector2i location)
 
 }
 
-void BattleBar::setMoves(Pokemon * p)
+void BattleBar::setMoves(Pokemon * p)//updates the move texts and saves the moves from the given pokemon
 {
 	moves[0] = p->getMove(1);
 	moves[1] = p->getMove(2);
@@ -221,16 +221,11 @@ void BattleBar::setMoves(Pokemon * p)
 	this->pokemon = p;
 }
 
-void BattleBar::setWinSize(sf::Vector2i size)
-{
-	this->WIN_SIZE = size;
-}
-
 void BattleBar::resetState()
 {
-	selected = 0;
-	state = ACTION;
-	updateArrowPosition();
+	selected = 0;// set the selected positino to the upper left
+	state = ACTION;//set the state to ACTION (selecting Fight,Pokemon, "Bag" or "Run")
+	updateArrowPosition();//update the position of the arrow
 }
 
 BattleBar::states BattleBar::getState()
