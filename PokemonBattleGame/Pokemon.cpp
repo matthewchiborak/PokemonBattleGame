@@ -314,10 +314,28 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         sign=0.5;
     }
     
-    for(int i=0; i<abs(direct); i++)
-    {
-        (*result)+=(100*aOrD);
-    }
+	int absDirect = abs(direct);
+
+	if (aOrD == 1)
+	{
+		(*result) += 100;
+
+		if (absDirect>1)
+		{
+			(*result) += 100;
+		}
+	}
+	else if (aOrD == 2)
+	{
+		(*result) += 300;
+
+		if (absDirect>1)
+		{
+			(*result) += 100;
+		}
+	}
+        
+    
     
     if (stat=="Att")
     {

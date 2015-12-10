@@ -176,174 +176,185 @@ AttackCalculator::~AttackCalculator()
 
 int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHolder, std::string resultString, Pokemon* attacker, Pokemon* defender, int* usedMoveIndex)
 {
-    //Returns 8 character string. Last char 0=no effect 1=miss 2=not very 3=normal 4=super effect
-    //Stats effected +10 if att 20 def 30 spatt 40-spdef 50-speed 60-eva 70-acc 80-recoil
-    //+100 if stat change +200 sharply change for defender, 300 400 for attacker
-    
-    //+1000 if crit
-    //10000s digit is the attack Number
-    //1st char is direction of stat change n=none u=up d=down
-    //2nd is status defender gets this turn n=none b=burn f=frozen p=paralyze a=poison s=sleeping c=confused
-    //3rd is status already had same letters as above plus P=paralyzed but attack works F=thaw S=woke up C=confused but attack works 0=snap out of confusion
-    //Example unb21324 means a supereffective attack that raised attackers defence one stage, was a critical hit, was their 2nd of their 4 attacks, and they are suffering from a burn.
+	//Returns 8 character string. Last char 0=no effect 1=miss 2=not very 3=normal 4=super effect
+	//Stats effected +10 if att 20 def 30 spatt 40-spdef 50-speed 60-eva 70-acc 80-recoil
+	//+100 if stat change +200 sharply change for defender, 300 400 for attacker
 
-    
-    std::vector<std::string> parsedStrings;
-    std::stringstream ss(resultString);
-    
-    std::string tempChar="";
-    char i;
-    
-    while(ss>>i)
-    {
-        tempChar+=i;
-        parsedStrings.push_back(tempChar);
-        tempChar="";
-    }
-    
-    std::string directStatus = parsedStrings.at(0);
-    std::string newStatus = parsedStrings.at(1);
-    std::string currentStatus = parsedStrings.at(2);
-    int attackNo = std::stoi(parsedStrings.at(3));
-    int crit = std::stoi(parsedStrings.at(4));
-    int statJump = std::stoi(parsedStrings.at(5));
-    int statEffed = std::stoi(parsedStrings.at(6));
-    int effective = std::stoi(parsedStrings.at(7));
-    
-    int phraseCount=0;
-    std::string temp="";
-    
-    //Attack phrase
-    //int posResult = abs(result);
-    //int attackNo = posResult/1000000;
-    //int nowStatis = (posResult-(attackNo*1000000))/100000;
-    //int attackNo = posResult/10000;
-    //int crit = (posResult-(attackNo*10000))/1000;
-    //int statJump = ((posResult-(attackNo*10000))-crit*1000)/100;
-    //int statEffed = (((posResult-(attackNo*10000))-crit*1000)-(statJump*100))/10;
-    //int effective = ((((posResult-(attackNo*10000))-crit*1000)-(statJump*100))-(statEffed*10));
-    
-    //Currently under status of sleep confuse para freeze
-    if(currentStatus=="f")
-    {
-        resultHolder->push_back(attacker->getName()+" is frozen solid!");
-        phraseCount++;
-    }
-    else if(currentStatus=="F")
-    {
-        resultHolder->push_back(attacker->getName()+" thawed out!");
-        phraseCount++;
-    }
-    else if(currentStatus=="p"||currentStatus=="P")
-    {
-        resultHolder->push_back(attacker->getName()+" is paralyzed!");
-        phraseCount++;
-        if(currentStatus=="p")
-        {
-            resultHolder->push_back(attacker->getName()+" is fully paralyzed!");
-            phraseCount++;
-        }
-    }
-    else if(currentStatus=="s")
-    {
-        resultHolder->push_back(attacker->getName()+" is fast asleep!");
-        phraseCount++;
-    }
-    else if(currentStatus=="S")
-    {
-        resultHolder->push_back(attacker->getName()+" woke up!");
-        phraseCount++;
-    }
-    else if(currentStatus=="c"||currentStatus=="C")
-    {
-        resultHolder->push_back(attacker->getName()+" is confused!");
-        phraseCount++;
-        if(currentStatus=="c")
-        {
-            resultHolder->push_back(attacker->getName()+" hurt itself in its confusion!");
-            phraseCount++;
-        }
-        
-    }
-    else if(currentStatus=="o")
-    {
-        resultHolder->push_back(attacker->getName()+" snaped out of confusion!");
-        phraseCount++;
-    }
-   
-    
-    if(currentStatus!="f"&&currentStatus!="s"&&currentStatus!="p"&&currentStatus!="c")
-    {
-        temp=attacker->getName()+" used ";
-        temp=temp+attacker->getMove(attackNo)->getName()+"!";
-        resultHolder->push_back(temp);
-        *usedMoveIndex=phraseCount;
-        phraseCount++;
-        temp="";
-    }
-    
-    
-    
-    //Crit phrase
-    
-    if (crit==1) {
-        resultHolder->push_back("Critical hit!");
-        phraseCount++;
-    }
-    
-    
-    
-    //Effectiveness phrase
-    
-    switch (effective) {
-        case 0:
-            temp="It had no effect on "+defender->getName()+"...";
-            resultHolder->push_back(temp);
-            phraseCount++;
-            temp="";
-            break;
-        case 1:
-            temp=attacker->getName()+"'s attack missed!";
-            resultHolder->push_back(temp);
-            phraseCount++;
-            temp="";
-            break;
-        case 2:
-            temp="It's not very effective...";
-            resultHolder->push_back(temp);
-            phraseCount++;
-            temp="";
-            break;
-        case 4:
-            temp="It's super effective!";
-            resultHolder->push_back(temp);
-            phraseCount++;
-            temp="";
-            break;
-        default:
-            break;
-    }
-    
-       
-    
-    
-    //Stat changes
-    std::string direction = " rose!";
-    std::string effectedName = defender->getName()+"'s";
-    std::string twoStages="";
-    if(directStatus=="d")
-    {
-        direction=" fell!";
-    }
-    if (statJump>=3) {
-        effectedName = attacker->getName()+"'s";
-    }
+	//+1000 if crit
+	//10000s digit is the attack Number
+	//1st char is direction of stat change n=none u=up d=down
+	//2nd is status defender gets this turn n=none b=burn f=frozen p=paralyze a=poison s=sleeping c=confused
+	//3rd is status already had same letters as above plus P=paralyzed but attack works F=thaw S=woke up C=confused but attack works 0=snap out of confusion
+	//Example unb21324 means a supereffective attack that raised attackers defence one stage, was a critical hit, was their 2nd of their 4 attacks, and they are suffering from a burn.
+
+
+	std::vector<std::string> parsedStrings;
+	std::stringstream ss(resultString);
+
+	std::string tempChar = "";
+	char i;
+
+	while (ss >> i)
+	{
+		tempChar += i;
+		parsedStrings.push_back(tempChar);
+		tempChar = "";
+	}
+
+	std::string directStatus = parsedStrings.at(0);
+	std::string newStatus = parsedStrings.at(1);
+	std::string currentStatus = parsedStrings.at(2);
+	int attackNo = std::stoi(parsedStrings.at(3));
+	int crit = std::stoi(parsedStrings.at(4));
+	int statJump = std::stoi(parsedStrings.at(5));
+	int statEffed = std::stoi(parsedStrings.at(6));
+	int effective = std::stoi(parsedStrings.at(7));
+
+	int phraseCount = 0;
+	std::string temp = "";
+
+	//Attack phrase
+	//int posResult = abs(result);
+	//int attackNo = posResult/1000000;
+	//int nowStatis = (posResult-(attackNo*1000000))/100000;
+	//int attackNo = posResult/10000;
+	//int crit = (posResult-(attackNo*10000))/1000;
+	//int statJump = ((posResult-(attackNo*10000))-crit*1000)/100;
+	//int statEffed = (((posResult-(attackNo*10000))-crit*1000)-(statJump*100))/10;
+	//int effective = ((((posResult-(attackNo*10000))-crit*1000)-(statJump*100))-(statEffed*10));
+
+	//Currently under status of sleep confuse para freeze
+	if (currentStatus == "f")
+	{
+		resultHolder->push_back(attacker->getName() + " is frozen solid!");
+		phraseCount++;
+	}
+	else if (currentStatus == "F")
+	{
+		resultHolder->push_back(attacker->getName() + " thawed out!");
+		phraseCount++;
+	}
+	else if (currentStatus == "p" || currentStatus == "P")
+	{
+		resultHolder->push_back(attacker->getName() + " is paralyzed!");
+		phraseCount++;
+		if (currentStatus == "p")
+		{
+			resultHolder->push_back(attacker->getName() + " is fully paralyzed!");
+			phraseCount++;
+		}
+	}
+	else if (currentStatus == "s")
+	{
+		resultHolder->push_back(attacker->getName() + " is fast asleep!");
+		phraseCount++;
+	}
+	else if (currentStatus == "S")
+	{
+		resultHolder->push_back(attacker->getName() + " woke up!");
+		phraseCount++;
+	}
+	else if (currentStatus == "c" || currentStatus == "C")
+	{
+		resultHolder->push_back(attacker->getName() + " is confused!");
+		phraseCount++;
+		if (currentStatus == "c")
+		{
+			resultHolder->push_back(attacker->getName() + " hurt itself in its confusion!");
+			phraseCount++;
+		}
+
+	}
+	else if (currentStatus == "o")
+	{
+		resultHolder->push_back(attacker->getName() + " snaped out of confusion!");
+		phraseCount++;
+	}
+
+
+	if (currentStatus != "f"&&currentStatus != "s"&&currentStatus != "p"&&currentStatus != "c")
+	{
+		temp = attacker->getName() + " used ";
+		temp = temp + attacker->getMove(attackNo)->getName() + "!";
+		resultHolder->push_back(temp);
+		*usedMoveIndex = phraseCount;
+		phraseCount++;
+		temp = "";
+	}
+
+
+
+	//Crit phrase
+
+	if (crit == 1) {
+		resultHolder->push_back("Critical hit!");
+		phraseCount++;
+	}
+
+
+
+	//Effectiveness phrase
+
+	switch (effective) {
+	case 0:
+		temp = "It had no effect on " + defender->getName() + "...";
+		resultHolder->push_back(temp);
+		phraseCount++;
+		temp = "";
+		break;
+	case 1:
+		temp = attacker->getName() + "'s attack missed!";
+		resultHolder->push_back(temp);
+		phraseCount++;
+		temp = "";
+		break;
+	case 2:
+		temp = "It's not very effective...";
+		resultHolder->push_back(temp);
+		phraseCount++;
+		temp = "";
+		break;
+	case 4:
+		temp = "It's super effective!";
+		resultHolder->push_back(temp);
+		phraseCount++;
+		temp = "";
+		break;
+	default:
+		break;
+	}
+
+
+
+
+	//Stat changes
+	std::string direction = "";
+	std::string effectedName = "";
+	std::string twoStages = "";
+	if (directStatus == "d")
+	{
+		direction = " fell!";
+	}
+	else if (directStatus == "u")
+	{
+		direction = " rose!";
+	}
+
+	if (statJump == 3 || statJump == 4)
+	{
+		effectedName = attacker->getName() + "'s";
+	}
+	else if (statJump == 1||statJump == 2)
+	{
+		effectedName = defender->getName() + "'s";
+	}
+
     if (statJump==2||statJump==4) {
         if(directStatus=="d")
         {
-        twoStages=" harshly";
+			twoStages=" harshly";
         }
-        else
+        else if(directStatus == "u")
         {
             twoStages=" sharply";
         }
@@ -398,6 +409,7 @@ int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHol
             resultHolder->push_back(attacker->getName()+" is damaged by recoil!");
             phraseCount++;
             temp="";
+			break;
             
         default:
             break;
@@ -678,14 +690,25 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
         return resultString;
     }
     
-    //See if hit or miss
-    double percentage=1;
+    //Calc the chance of hit
+    int percentage=100;
+	bool hitConfirm = false;
     if(usedMove->getAccuracy()!=0)
     {
-        percentage = ((usedMove->getAccuracy())/100.0)*((attacker->getAccuracy())/(defender->getEvasion()));
+        percentage = ((usedMove->getAccuracy()))*((attacker->getAccuracy())/(defender->getEvasion()));
+
+		//See if attack hit
+
+		int diceRoll = rand() % 100;
+		if (diceRoll<percentage) 
+		{
+			hitConfirm = true;
+		}
     }
+
+	
     
-    if(percentage<1)//Attack missed
+    if(!hitConfirm)//Attack missed
     {
         result=1;
         result=result+(attackNo*10000);
