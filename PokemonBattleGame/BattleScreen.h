@@ -57,8 +57,8 @@ public:
 	void setSelfPokemon(Pokemon * p);
 	void setRandomBackground();
 	void resetBattleBarState();
-	void showMessage(std::string message);
-	int getUserInput();
+	void showMessage(std::string message);//tells the battle bar to display a messsage (blocks until the user confirms the message)
+	int getUserInput();//blocks untill the user selected a valid input
 	BattleBar::states getBattleBarState();
 };
 
