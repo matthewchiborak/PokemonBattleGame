@@ -705,6 +705,10 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
 			hitConfirm = true;
 		}
     }
+	else
+	{
+		hitConfirm = true;
+	}
 
 	
     
@@ -719,6 +723,7 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     //Calculate the multiplyer for the attack
     double multiplier = calcMultiplier(usedMove->getType(), defender->getType1(), defender->getType2());
     if (multiplier==0) {
+		result -= 3;
         result=result+(attackNo*10000);
         resultString = statusDirect+ statusNew + statusOld + std::to_string(result);
         return resultString;
