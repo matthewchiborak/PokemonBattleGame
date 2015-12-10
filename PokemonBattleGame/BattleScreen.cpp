@@ -216,12 +216,6 @@ void BattleScreen::refreshHealth()
 	//refresh();
 }
 
-void BattleScreen::refreshStatus()
-{
-	ScreenTex.draw(opStatusEffect);
-	ScreenTex.draw(selfStatusEffect);
-}
-
 void BattleScreen::keysPressed(std::vector<sf::Keyboard::Key> keys)//respond to key presses
 {
 	for (int i = 0; i < keys.size(); i++)
