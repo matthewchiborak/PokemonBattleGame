@@ -46,6 +46,10 @@ void PokeSelectScreen::refresh()
 	if (selecting)
 	{
 		int index = top;
+		if (top > pokemon->size())
+		{
+			top = 0;
+		}
 		for (int i = 0; i < 6 && i < pokemon->size(); i++)
 		{
 			boxes[i].deselect();
@@ -152,6 +156,8 @@ void PokeSelectScreen::getParty(std::vector<Pokemon*>* pokemon, std::vector<Poke
 {
 	std::mutex mtx;
 	std::unique_lock<std::mutex> lock(mtx);
+	top = 0;
+	this->selected = 0;
 	selectedPokemon = selected;
 	setPokemonList(pokemon);
 	partySize = amount;
@@ -163,6 +169,8 @@ void PokeSelectScreen::getParty(std::vector<Pokemon*>* party, int amount)
 {
 	std::mutex mtx;
 	std::unique_lock<std::mutex> lock(mtx);
+	top = 0;
+	selected = 0;
 	selectedPokemon = party;
 	partySize = amount;
 	selecting = true;

@@ -32,11 +32,11 @@ class PokeSelectScreen : public sf::Drawable
 public:
 	PokeSelectScreen(const sf::Vector2i WIN_SIZE);
 	~PokeSelectScreen();
-	void setPokemonList(std::vector<Pokemon*>* p);
-	void refresh();
+	void setPokemonList(std::vector<Pokemon*>* p);//set the list of pokemon
+	void refresh();//redraw the texture for this screen
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
 	void getParty(std::vector<Pokemon*>* pokemon, std::vector<Pokemon*> *selected, int amount);//will block untill the user selects their pokemon. "selected" is where the party is put.
-	void getParty(std::vector<Pokemon*>* party, int amount);
+	void getParty(std::vector<Pokemon*>* party, int amount);//block untill the user selects a party from the existing list of pokemon
 };
 
 #endif
