@@ -369,7 +369,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
@@ -562,7 +562,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				}
 				else
 				{
-					numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+					numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
 				}
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
