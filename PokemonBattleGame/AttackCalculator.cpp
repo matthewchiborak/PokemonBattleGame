@@ -705,6 +705,10 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
 			hitConfirm = true;
 		}
     }
+	else
+	{
+		hitConfirm = true;
+	}
 
 	
     
