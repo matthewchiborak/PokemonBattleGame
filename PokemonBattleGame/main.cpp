@@ -285,15 +285,28 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				activePokemon = myPokemon[userInput - 5];
-
-				std::string stringToBeSent = "swap" + std::to_string(userInput - 5) + "~";
-				//SEND THIS TO YOUR FOE!!!!!!!
+				response = "swap" + std::to_string(userInput - 5);
+				std::string stringToBeSent = response + "~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
+				std::string acknowledge = client->recieveMessage();								
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = "I'm swapping~";												
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = "I'm swapping~";												
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();											
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				//NEED UPDATE SCREEN ASDF
 			}
-			else if (userInput == 8)
-			{
-				//WORRY ABOUT THIS LATER THIS IS RUN BY THE WAY
-			}
+			
 
 		}
 		else
@@ -334,6 +347,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
 				activeOppoPokemon = yourPokemon[checkedSwap];
 
+				//UPDATE SCREEN ASDF
+
 			}
 			else //ITS AN ATTACK
 			{
@@ -356,6 +371,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			{
 				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
 			}
+			else if (userInput == 5 || userInput == 6 || userInput == 7)
+			{
+				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+			}
 
 		}
 
@@ -365,11 +384,13 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		if (checkedSwap != 0)
 		{
 			//CHANGE POKEMON ICON TO CURRENT POKEMON AND PRINT OUT  THE SWAP STRING
+			std::cout << swapString << "\n";
+			objStr->bScreen->showMessage(swapString);
 		}
 		else
 		{
 			//OUTPUT ALL THE STRING FROM THE STRING HOLDER NOTE THAT THE USED MOVE INDEX IS WHERE THE HEALTH SHOULD PROBABLY DECREASE
-			std::vector<string> resultHolder;
+			/*std::vector<string> resultHolder;
 			if (recievedPlacing == "1")
 			{
 				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
@@ -377,13 +398,16 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else
 			{
 				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
-			}
+			}*/
 
 			for (int i = 0; i < numberOfPhrases; i++)
 			{
-				std::cout << resultHolder.at(i);
+				std::cout << responsePhraseHolder.at(i);
+				objStr->bScreen->showMessage(responsePhraseHolder.at(i));
 			}
 		}
+
+		responsePhraseHolder.clear();
 
 		//OTHER TURN
 
@@ -391,9 +415,25 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (activePokemon->getHP() == 0)
 			{
-				std::string faintedString = "Faint~";
+				response = "Faint";
+				std::string faintedString = response+"~";
 				//SEND THIS TO THE OTHER PLAYER BECAUSE YOU CANT ATTACK
+				std::cout << "We sent this as response: " << faintedString << std::endl;
 				client->sendMessage(faintedString);
+				std::string acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				std::string stringToBeSent = "I fainted~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = "I fainted~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 			}
 			//User Picks an option. 1,2,3,4 Are the attacks, 5, 6, 7 are swap and 8 is run
 			else if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
@@ -432,14 +472,26 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				activePokemon = myPokemon[userInput - 5];
-
-				std::string stringToBeSent = "swap" + std::to_string(userInput - 5) + "~";
-				//SEND THIS TO YOUR FOE!!!!!!!
+				response = "swap" + std::to_string(userInput - 5);
+				std::string stringToBeSent = response + "~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-			}
-			else if (userInput == 8)
-			{
-				//WORRY ABOUT THIS LATER THIS IS RUN BY THE WAY
+				std::string acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = "I'm swapping~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				stringToBeSent = "I'm swapping~";
+				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
+				client->sendMessage(stringToBeSent);
+				acknowledge = client->recieveMessage();
+				std::cout << "Acknowledgement: " << acknowledge << std::endl;
+
+				//NEED UPDATE SCREEN ASDF
 			}
 
 		}
@@ -475,7 +527,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		if (recievedPlacing == "1")
 		{
-			if (checkedSwap != 0)
+			if (checkedSwap == 4)
+			{
+				swapString = "There was no target\n";
+			}
+			else if (checkedSwap != 0)
 			{
 				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
 				activeOppoPokemon = yourPokemon[checkedSwap];
@@ -500,35 +556,49 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				if (activePokemon->getHP() == 0)
+				{
+					swapString = "There was no target\n";
+				}
+				else
+				{
+					numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				}
+			}
+			else if (userInput == 5 || userInput == 6 || userInput == 7)
+			{
+				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
 			}
 
-
+		}
 
 			//Update UI
 			if (checkedSwap != 0)
 			{
 				//CHANGE POKEMON ICON TO CURRENT POKEMON AND PRINT OUT  THE SWAP STRING
+				std::cout << swapString << "\n";
+				objStr->bScreen->showMessage(swapString);
 			}
 			else
 			{
 				//OUTPUT ALL THE STRING FROM THE STRING HOLDER NOTE THAT THE USED MOVE INDEX IS WHERE THE HEALTH SHOULD PROBABLY DECREASE
-				std::vector<string> resultHolder;
-				if (recievedPlacing == "2")
+				//std::vector<string> resultHolder;
+				/*if (recievedPlacing == "2")
 				{
 					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
 				}
 				else
 				{
 					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
-				}
+				}*/
 
 				for (int i = 0; i < numberOfPhrases; i++)
 				{
-					std::cout << resultHolder.at(i);
+					std::cout << responsePhraseHolder.at(i);
+					objStr->bScreen->showMessage(responsePhraseHolder.at(i));
 				}
 			}
-		}
+		
 
 		std::string endMessageToSend = "0~";
 
@@ -539,12 +609,18 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
+		else if (objStr->uP1->getHP() == 0 || objStr->uP2->getHP() == 0 || objStr->uP2->getHP() == 0)
+		{
+			endMessageToSend = "4~";
+			//SEND THIS
+			client->sendMessage(endMessageToSend);
+		}
 		else
 		{
 			//User selects new pokemon 1,2, or 3
 			int selection = 2;
 			activePokemon = myPokemon[1];
-			endMessageToSend = "2~"; //Or 2 or 3 Whatever they picked and send it
+			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
