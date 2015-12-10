@@ -7,6 +7,7 @@ void BattleBar::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	switch (state)
 	{
 	case BattleBar::ACTION:
+	case BattleBar::SELECTION:
 		target.draw(bar, states);
 		target.draw(select, states);
 		target.draw(arrow, states);
@@ -42,7 +43,7 @@ void BattleBar::updateArrowPosition()
 	{
 		arrow.setPosition(movePositions[selected]);
 	}
-	else if (state == ACTION)
+	else if (state == ACTION || state == SELECTION)
 	{	
 		arrow.setPosition(selectPositions[selected]);
 	}
@@ -97,7 +98,7 @@ BattleBar::BattleBar()
 
 void BattleBar::keyPressed(sf::Keyboard::Key key)
 {
-	if (state == MOVE || state == ACTION)
+	if (state == MOVE || state == ACTION || state == SELECTION)
 	{
 		//move the arrow
 		if (key == sf::Keyboard::Up)

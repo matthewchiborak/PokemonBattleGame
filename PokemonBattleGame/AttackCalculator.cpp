@@ -823,7 +823,7 @@ int AttackCalculator::checkIfSwap(std::string recievedString)
 
 	if (tempString == "swap")
 	{
-		return (int)recievedString.at(4);
+		return recievedString.at(4);
 	}
 	else if (tempString == "Fain")
 	{
