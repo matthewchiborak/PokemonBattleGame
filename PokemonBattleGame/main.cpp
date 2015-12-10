@@ -612,7 +612,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
 		}
-		else if (objStr->uP1->getHP() == 0 && objStr->uP2->getHP() == 0 && objStr->uP2->getHP() == 0)
+		else if (objStr->uP1->getHP() == 0 && objStr->uP2->getHP() == 0 && objStr->uP3->getHP() == 0)
 		{
 			endMessageToSend = "4~";
 			//SEND THIS
@@ -652,7 +652,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			endOfTurnMessage = "4";
 			// Check if we still have pokemon left
-			if (objStr->uP1->getHP() != 0 || objStr->uP2->getHP() != 0 || objStr->uP2->getHP() != 0)	// You win!
+			if (objStr->uP1->getHP() != 0 || objStr->uP2->getHP() != 0 || objStr->uP3->getHP() != 0)	// You win!
 			{
 				std::cout << "You win!\n";
 				objStr->bScreen->showMessage("You win!\n");
