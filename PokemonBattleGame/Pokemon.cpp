@@ -441,7 +441,7 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         setCurrentStatis(5);
         *newStatus="s";
     }
-    else if(stat=="Confusion")
+    else if(stat=="Confuse")
     {
         setCurrentStatis(7);
         *newStatus="c";
