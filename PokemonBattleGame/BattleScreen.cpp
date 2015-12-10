@@ -119,7 +119,7 @@ void BattleScreen::refreshHealth()
 
 	// Set status effect for the pokemon
 	
-
+	std::cout << "Opponent current Pokemon status: " << oppPokemon->getCurrentStatis() << std::endl;
 	// Set a status effect for opponent
 	switch (oppPokemon->getCurrentStatis())
 	{
@@ -166,6 +166,7 @@ void BattleScreen::refreshHealth()
 	}
 
 	// Set status effect for our pokemon
+	std::cout << "Our current Pokemon status: " << oppPokemon->getCurrentStatis() << std::endl;
 	switch (selfPokemon->getCurrentStatis())
 	{
 	case 0:															// No Status Effect, set to blank texture
