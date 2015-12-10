@@ -98,9 +98,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	myPokemon[0] = objStr->uP1;
 	myPokemon[1] = objStr->uP2;
 	myPokemon[2] = objStr->uP3;
-	yourPokemon[0] = &oppoPokemon1;
-	yourPokemon[1] = &oppoPokemon2;
-	yourPokemon[2] = &oppoPokemon3;
+	
 
 	// Create three send and recieve statements for to send your three pokemon and recieve the opponents 3 pokemon
 	std::string ourPokemonStats = objStr->uP1->sendCreationStats() + "~";			// Send first pokemon stats to server
@@ -126,6 +124,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 3 Stats: " << oppoPokemonStats << std::endl;
 
+	yourPokemon[0] = objStr->oP1;
+	yourPokemon[1] = objStr->oP2;
+	yourPokemon[2] = objStr->oP3;
 
 	//std::string creationString = testPokemon1.sendCreationStats() + "-" + testPokemon2.sendCreationStats() + "-" + testPokemon3.sendCreationStats() + "~";
 
@@ -641,7 +642,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		if (recievedMessage != "0" && recievedMessage != "4")
 		{
 			int newPoke = std::stoi(recievedMessage);
-			activeOppoPokemon = yourPokemon[newPoke-1];
+			//activeOppoPokemon = yourPokemon[newPoke-1];
+			activeOppoPokemon = yourPokemon[newPoke - 1];
 			objStr->bScreen->setOppPokemon(activeOppoPokemon);
 			objStr->bScreen->refreshHealth();
 			//objStr->bScreen->refreshStatus(); //asdfg
