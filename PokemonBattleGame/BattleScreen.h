@@ -52,7 +52,6 @@ public:
 	void SetOPHealth(int health);//set the HP of the opponet
 	void SetSelfHealth(int health);//set the health of the user's current pokemone
 	void refreshHealth();
-	void refreshStatus();
 	void keysPressed(std::vector<sf::Keyboard::Key> key);//respond to pressed keys
 	void setOppPokemon(Pokemon * p);
 	void setSelfPokemon(Pokemon * p);
