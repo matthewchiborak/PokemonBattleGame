@@ -345,7 +345,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (checkedSwap != 0)
 			{
 				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
-				activeOppoPokemon = yourPokemon[checkedSwap];
+				activeOppoPokemon = yourPokemon[checkedSwap-1];
 
 				//UPDATE SCREEN ASDF
 
@@ -534,7 +534,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (checkedSwap != 0)
 			{
 				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
-				activeOppoPokemon = yourPokemon[checkedSwap];
+				activeOppoPokemon = yourPokemon[checkedSwap-1];
 
 			}
 			else //ITS AN ATTACK
@@ -619,7 +619,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			//User selects new pokemon 1,2, or 3
 			int selection = 2;
-			activePokemon = myPokemon[1];
+			activePokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			client->sendMessage(endMessageToSend);
@@ -632,7 +632,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		if (recievedMessage != "0" && recievedMessage != "4")
 		{
 			int newPoke = std::stoi(recievedMessage);
-			activeOppoPokemon = yourPokemon[newPoke];
+			activeOppoPokemon = yourPokemon[newPoke-1];
 		}
 		if (recievedMessage == "4")									// If the game has ended
 		{
