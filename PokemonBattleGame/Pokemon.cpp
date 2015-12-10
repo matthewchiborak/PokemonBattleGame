@@ -203,10 +203,10 @@ void Pokemon::updateStats(std::string stats)
     accuarcy=std::stoi(parsedStrings.at(7));
     currentStatis=std::stoi(parsedStrings.at(8));
     isStruggling=std::stoi(parsedStrings.at(9))==1;
-    move1->setPP(std::stoi(parsedStrings.at(10)));
-    move2->setPP(std::stoi(parsedStrings.at(11)));
-    move3->setPP(std::stoi(parsedStrings.at(12)));
-    move4->setPP(std::stoi(parsedStrings.at(13)));
+    //move1->setPP(std::stoi(parsedStrings.at(10)));
+    //move2->setPP(std::stoi(parsedStrings.at(11)));
+    //move3->setPP(std::stoi(parsedStrings.at(12)));
+    //move4->setPP(std::stoi(parsedStrings.at(13)));
 }
 
 int Pokemon::getMaxHP()
@@ -489,11 +489,11 @@ std::string Pokemon::getNewStats()
     result=result+std::to_string(evasion)+",";
     result=result+std::to_string(accuarcy)+",";
     result=result+std::to_string(currentStatis)+",";
-    result=result+std::to_string(isStruggling)+",";
-    result=result+std::to_string(move1->getCurrentPP())+",";
-    result=result+std::to_string(move2->getCurrentPP())+",";
-    result=result+std::to_string(move3->getCurrentPP())+",";
-    result=result+std::to_string(move4->getCurrentPP());
+    result=result+std::to_string(isStruggling);
+    //result=result+std::to_string(move1->getCurrentPP())+",";
+    //result=result+std::to_string(move2->getCurrentPP())+",";
+    //result=result+std::to_string(move3->getCurrentPP())+",";
+    //result=result+std::to_string(move4->getCurrentPP());
     
     return result;
     
