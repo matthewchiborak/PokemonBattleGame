@@ -618,12 +618,16 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		else
 		{
 			//User selects new pokemon 1,2, or 3
+			//PLACEHOLDER BECAUSE WIL BE SET FROM UI
 			int selection = 2;
 			activePokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			std::cout << "End Message I am sending: " << endMessageToSend << "\n";
 			client->sendMessage(endMessageToSend);
+
+			//Update screen
+			objStr->bScreen->setSelfPokemon(activePokemon);
 		}
 
 		//RECIEVE THE OTHER PLAYERS MESSAGE
@@ -634,6 +638,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			int newPoke = std::stoi(recievedMessage);
 			activeOppoPokemon = yourPokemon[newPoke-1];
+			objStr->bScreen->setOppPokemon(activeOppoPokemon);
+			objStr->bScreen->refreshHealth();
 		}
 		if (recievedMessage == "4")									// If the game has ended
 		{
