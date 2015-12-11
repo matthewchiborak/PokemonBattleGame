@@ -366,7 +366,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		//THESE ARE ALSO FOR THE UI
 		std::string swapString = "";
 		int checkedSwap = testCalc.checkIfSwap(response);
-		std::cout << "Value of checkedSwap: " << checkedSwap + 1 << "\n";
+		//std::cout << "Value of checkedSwap: " << checkedSwap + 1 << "\n";
 		std::vector<std::string> responsePhraseHolder;
 		int usedMoveIndex;
 		int numberOfPhrases;
