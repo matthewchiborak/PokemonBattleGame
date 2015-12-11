@@ -231,6 +231,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					activePokemon = myPokemon[userInput - 5];
 					successSelection = true;
 				}*/
+				successSelection = true;
 
 			}
 			else if (userInput == 8)
