@@ -201,7 +201,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 						userInput = 7;
 					}
 					
-					if (objStr->currentOpponentPokemon->getHP() != 0)
+					if (objStr->currentPokemon->getHP() != 0)
 					{
 						choseFainted = false;
 					}
@@ -733,7 +733,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					selection = 3;
 				}
 
-				if (objStr->currentOpponentPokemon->getHP() != 0)
+				if (objStr->currentPokemon->getHP() != 0)
 				{
 					choseFainted = false;
 				}
