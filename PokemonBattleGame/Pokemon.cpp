@@ -286,7 +286,7 @@ void Pokemon::setCurrentStatis(int statis)
 
 void Pokemon::removeConfusion()
 {
-    if (currentStatis==6||currentStatis==7) {
+    if (currentStatis==8||currentStatis==7) {
         currentStatis=0;
     }
 }
@@ -412,49 +412,48 @@ void Pokemon::changeStages(Move* usedMove, int* result, std::string* newStatus, 
         dealDamage(maxHp/4);
         (*result)+=80;
     }
-    
-    
-    if(currentStatis==0)
-    {
-    if(stat=="Burn")
-    {
-        setCurrentStatis(1);
-        *newStatus="b";
-    }
-    else if(stat=="Freeze")
-    {
-        setCurrentStatis(2);
-        *newStatus="f";
-    }
-    else if(stat=="Paralysis")
-    {
-        setCurrentStatis(3);
-        *newStatus="p";
-    }
-    else if(stat=="Poison")
-    {
-        setCurrentStatis(4);
-        *newStatus="a";
-    }
-    else if(stat=="Sleep")
-    {
-        setCurrentStatis(5);
-        *newStatus="s";
-    }
-    else if(stat=="Confuse")
-    {
-        setCurrentStatis(7);
-        *newStatus="c";
-    }
-    }
-    else{
-        *result=0;
-    }
-    
-    //if(direct<0)
-    //{
-     //   (*result)*=-1;
-    //}
+	else
+	{
+
+		if (currentStatis == 0)
+		{
+			if (stat == "Burn")
+			{
+				setCurrentStatis(1);
+				*newStatus = "b";
+			}
+			else if (stat == "Freeze")
+			{
+				setCurrentStatis(2);
+				*newStatus = "f";
+			}
+			else if (stat == "Paralysis")
+			{
+				setCurrentStatis(3);
+				*newStatus = "p";
+			}
+			else if (stat == "Poison")
+			{
+				setCurrentStatis(4);
+				*newStatus = "a";
+			}
+			else if (stat == "Sleep")
+			{
+				setCurrentStatis(5);
+				*newStatus = "s";
+			}
+			else if (stat == "Confuse")
+			{
+				setCurrentStatis(7);
+				*newStatus = "c";
+			}
+		}
+		else 
+		{
+			*result = 0;
+		}
+	}
+   
 }
 
 int Pokemon::getSpeed()

@@ -617,7 +617,7 @@ bool AttackCalculator::effectedByStatis(Pokemon* attacker, int* result, std::str
                 attacker->setCurrentStatis(0);
             }
             else{
-                *result=*result+60000;
+                //*result=*result+60000;
                 skipRest=true;
                 *statusOld="s";
             }
@@ -753,7 +753,7 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     float crit=1;//Check for a critical hit
     if(usedMove->getPower()!=0)
     {
-    if(usedMove->getAccuracy()!=0)
+    //if(usedMove->getAccuracy()!=0)
     {
         if(rand()%16==15)
         {
@@ -766,14 +766,14 @@ std::string AttackCalculator::applyDamage(Pokemon* attacker, Pokemon* defender, 
     //Calculated the amount of HP damage done by the attack. If has no power avoids unneed calcs
     if(usedMove->getPower()!=0)
     {
-    if(usedMove->getPhysOrSpec())
-    {
-        damage = (int) ((110.0/250.0)*((attacker->getAtt()/defender->getDef()))*usedMove->getPower())*(STAB*multiplier*crit*((85+(rand()%15))/100.0));
-    }
-    else
-    {
-        damage = (int) ((110.0/250.0)*((attacker->getSpAtt()/defender->getSpDef()))*usedMove->getPower())*(STAB*multiplier*crit*((85+(rand()%15))/100.0));
-    }
+		if(usedMove->getPhysOrSpec())
+		{
+			damage = (int) ((110.0/250.0)*((attacker->getAtt()/defender->getDef()))*usedMove->getPower())*(STAB*multiplier*crit*((85+(rand()%15))/100.0));
+		}
+		else
+		{
+			damage = (int) ((110.0/250.0)*((attacker->getSpAtt()/defender->getSpDef()))*usedMove->getPower())*(STAB*multiplier*crit*((85+(rand()%15))/100.0));
+		}
     }
     else
     {
