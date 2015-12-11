@@ -458,6 +458,14 @@ int AttackCalculator::attackResultTranslator(std::vector<std::string>* resultHol
         resultHolder->push_back(defender->getName()+" was hurt from poison!");
         phraseCount++;
     }
+
+	//COut the fainted message
+	if (defender->getHP() == 0)
+	{
+		//objStr->bScreen->showMessage(activeOppoPokemon->getName() + " fainted!");
+		resultHolder->push_back(defender->getName() + " fainted!");
+		phraseCount++;
+	}
     
     return phraseCount;
 }

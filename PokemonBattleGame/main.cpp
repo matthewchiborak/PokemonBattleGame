@@ -435,6 +435,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::cout << responsePhraseHolder.at(i);
 				objStr->bScreen->showMessage(responsePhraseHolder.at(i));
 			}
+
 		}
 
 		responsePhraseHolder.clear();
@@ -584,6 +585,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (checkedSwap == 4)
 			{
+				//swapString = activeOppoPokemon->getName() + " fainted!";
 				swapString = "There was no target\n";
 			}
 			else if (checkedSwap != 0)
@@ -614,7 +616,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			{
 				if (activePokemon->getHP() == 0)
 				{
-					swapString = "There was no target\n";
+					swapString = "There was no target.";
+					//swapString = activePokemon->getName() + " fainted!";
 				}
 				else
 				{
