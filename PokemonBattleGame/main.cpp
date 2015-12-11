@@ -226,11 +226,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 
-				if (myPokemon[userInput - 5]->getHP() != 0)
+				/*if (myPokemon[userInput - 5]->getHP() != 0)
 				{
 					activePokemon = myPokemon[userInput - 5];
 					successSelection = true;
-				}
+				}*/
 
 			}
 			else if (userInput == 8)
@@ -365,6 +365,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		//THESE ARE ALSO FOR THE UI
 		std::string swapString = "";
 		int checkedSwap = testCalc.checkIfSwap(response);
+		std::cout << "Value of checkedSwap: " << checkedSwap + 1 << "\n";
 		std::vector<std::string> responsePhraseHolder;
 		int usedMoveIndex;
 		int numberOfPhrases;
@@ -410,7 +411,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
 				swapString = "Sent out " + activePokemon->getName();
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				objStr->bScreen->setSelfPokemon(activePokemon);
+				//objStr->bScreen->setSelfPokemon(activePokemon);
 				objStr->bScreen->refreshHealth();
 			}
 
@@ -642,7 +643,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
 				swapString = "Sent out " + activePokemon->getName();
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				objStr->bScreen->setSelfPokemon(activePokemon);
+				//objStr->bScreen->setSelfPokemon(activePokemon);
 				objStr->bScreen->refreshHealth();
 			}
 
@@ -718,14 +719,14 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 
 			
-			activePokemon = myPokemon[selection-1];
+			//activePokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			std::cout << "End Message I am sending: " << endMessageToSend << "\n";
 			client->sendMessage(endMessageToSend);
 
 			//Update screen
-			objStr->bScreen->setSelfPokemon(activePokemon);
+			//objStr->bScreen->setSelfPokemon(activePokemon);
 			objStr->bScreen->refreshHealth();
 
 			std::string endTurnSwapString = "Sent out " + activePokemon->getName();
