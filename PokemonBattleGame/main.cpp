@@ -159,6 +159,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	//Pokemon* objStr->currentOpponentPokemon = objStr->currentOpponentPokemon;
 
 	std::string endOfTurnMessage = "0";
+	std::string endMessageToSend = "0~";
 	std::string response;
 	std::string response2;
 	std::string response3;
@@ -685,7 +686,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 		
 
-		std::string endMessageToSend = "0~";
+		endMessageToSend = "0~";
 
 		//END OF MESSAGE TRANSACTION
 		if (objStr->currentPokemon->getHP() != 0)
@@ -778,7 +779,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		}
 
-	} while (endOfTurnMessage != "4");
+	} while (endOfTurnMessage != "4"&& endMessageToSend!="4~");
 }
 
 void threadFunction(ObjectStorage *objectStorage, bool *active)
