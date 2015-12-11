@@ -48,6 +48,11 @@ string Client::recieveMessage()							// Recieve Message from the client
 		else
 			text += buffer[i];
 	}
+	// If the server closes or sends empty response with no ~
+	if (text == "close" || text.length > 250)
+	{
+		return "close";
+	}
 	std::cout << "Server sends: " << text << std::endl;
 	//if (text == "Server is closing")					// If server is closing then it will show an error 
 	//{

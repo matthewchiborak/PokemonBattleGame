@@ -105,6 +105,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 1 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
+	/* Return the function if the server closes */
+	if (oppoPokemonStats == "close")
+		return;
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 1 Stats: " << oppoPokemonStats << std::endl;
 	objStr->currentOpponentPokemon = objStr->oP1;
@@ -114,6 +117,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 2 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive second opponent pokemon
+	/* Return the function if the server closes */
+	if (oppoPokemonStats == "close")
+		return;
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 2 Stats: " << oppoPokemonStats << std::endl;
 
@@ -121,6 +127,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 3 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive third opponent pokemon
+	/* Return the function if the server closes */
+	if (oppoPokemonStats == "close")
+		return;
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
 	std::cout << "Opponent Pokemon 3 Stats: " << oppoPokemonStats << std::endl;
 
@@ -242,6 +251,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		client->sendMessage(speedToBeSent);
 		std::cout << "Our speed: " << speedToBeSent << std::endl;
 		std::string recievedPlacing = client->recieveMessage();
+		if (recievedPlacing == "close")												// Return function if server closes
+			return;
 		std::cout << "Their speed: " << recievedPlacing << std::endl;
 		//std::string recievedPlacing = "1";
 		//std::string responseString = "";
@@ -267,16 +278,22 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemonasdfg
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				stringToBeSent = attackersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				acknowledge = client->recieveMessage();											// Receive second opponent pokemon
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = defendersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				acknowledge = client->recieveMessage();											// Receive third opponent pokemon
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 				objStr->bScreen->refreshHealth();
 				//objStr->bScreen->refreshStatus(); //asdfg
@@ -289,19 +306,25 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::string stringToBeSent = response + "~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-				std::string acknowledge = client->recieveMessage();								
+				std::string acknowledge = client->recieveMessage();	
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = "I'm swapping~";												
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-				acknowledge = client->recieveMessage();											
+				acknowledge = client->recieveMessage();	
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = "I'm swapping~";												
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
-				acknowledge = client->recieveMessage();											
+				acknowledge = client->recieveMessage();
+				if (acknowledge == "close")													// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				//NEED UPDATE SCREEN ASDF
@@ -316,14 +339,20 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//client->sendMessage(syncString);
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Receive message and then ui will change based on this
+			if (response == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response2 = client->recieveMessage();								// Get response and then update the stats for our pokemon
+			if (response2 == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response2 << std::endl;
 			
 			client->sendMessage(syncString);									// Send random syncstring
 			response3 = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
+			if (response3 == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response3 << std::endl;
 		}
 
@@ -422,18 +451,24 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::cout << "We sent this as response: " << faintedString << std::endl;
 				client->sendMessage(faintedString);
 				std::string acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				std::string stringToBeSent = "I fainted~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = "I fainted~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 			}
 			//User Picks an option. 1,2,3,4 Are the attacks, 5, 6, 7 are swap and 8 is run
@@ -454,18 +489,24 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();								// Receive first opponent pokemon
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = attackersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = defendersNewStats + "~";												// Send first response stats to server
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();											// Receive first opponent pokemon
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 				objStr->bScreen->refreshHealth();
 				//objStr->bScreen->refreshStatus(); //asdfg
@@ -479,18 +520,24 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				std::string acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = "I'm swapping~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				stringToBeSent = "I'm swapping~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
 				acknowledge = client->recieveMessage();
+				if (acknowledge == "close")														// Return function if server closes
+					return;
 				std::cout << "Acknowledgement: " << acknowledge << std::endl;
 
 				//NEED UPDATE SCREEN ASDF
@@ -504,14 +551,20 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//SENT TO SERVER
 			client->sendMessage(syncString);									// Send random syncstring
 			response = client->recieveMessage();								// Receive message and then ui will change based on this
+			if (response == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response2 = client->recieveMessage();								// Get response and then update the stats for our pokemon
+			if (response2 == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response2 << std::endl;
 
 			client->sendMessage(syncString);									// Send random syncstring
 			response3 = client->recieveMessage();								// Get response and then update the stats for opponent pokemon
+			if (response3 == "close")											// Return function if server closes
+				return;
 			std::cout << "Not my turn response: " << response3 << std::endl;
 		}
 
@@ -637,6 +690,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		//RECIEVE THE OTHER PLAYERS MESSAGE
 		std::string recievedMessage = client->recieveMessage();
+		if (recievedMessage == "close")											// Return function if server closes
+			return;
 		//std::string recievedMessage = "0";
 
 		if (recievedMessage != "0" && recievedMessage != "4")
