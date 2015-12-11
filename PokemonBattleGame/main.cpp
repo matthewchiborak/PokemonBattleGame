@@ -183,17 +183,24 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					objStr->bScreen->resetBattleBarState();
 					*objStr->whatToDraw = 0;
 					objStr->bScreen->setSelfPokemon(selected[0]);
-					if (objStr->currentPokemon = objStr->uP1)
+					if (objStr->currentPokemon == objStr->uP1)
 					{
+						//std::cout << "Got to 1\n";
 						userInput = 5;
 					}
 					else if (objStr->currentPokemon == objStr->uP2)
 					{
 						userInput = 6;
+						//std::cout << "Got to 2\n";
 					}
 					else if (objStr->currentPokemon == objStr->uP3)
 					{
 						userInput = 7;
+						//std::cout << "Got to 3\n";
+					}
+					else
+					{
+						std::cout << "Didnt go in any\n";
 					}
 			}
 		}
