@@ -105,7 +105,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 1 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	std::string oppoPokemonStats = client->recieveMessage();						// Receive first opponent pokemon
-	/* Return the function if the server closes */
+	/* Return function if the server closes */
 	if (oppoPokemonStats == "close")
 		return;
 	objStr->oP1 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
@@ -117,7 +117,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 2 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive second opponent pokemon
-	/* Return the function if the server closes */
+	/* Return function if the server closes */
 	if (oppoPokemonStats == "close")
 		return;
 	objStr->oP2 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
@@ -127,7 +127,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::cout << "Our Pokemon 3 Stats: " << ourPokemonStats << std::endl;
 	client->sendMessage(ourPokemonStats);
 	oppoPokemonStats = client->recieveMessage();									// Receive third opponent pokemon
-	/* Return the function if the server closes */
+	/* Return function if the server closes */
 	if (oppoPokemonStats == "close")
 		return;
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), oppoPokemonStats);
