@@ -225,7 +225,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 					if (objStr->currentPokemon->useMove(userInput))
 					{
-						std::cout << "Out of pp" << std::endl;
+						std::cout << "Out of pp." << std::endl;
 						//Pick a new attack
 					}
 					else
@@ -390,7 +390,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
 				objStr->currentOpponentPokemon = yourPokemon[checkedSwap-1];
-				swapString = "Sent out " + objStr->currentOpponentPokemon->getName();
+				swapString = "Sent out " + objStr->currentOpponentPokemon->getName()+"!";
 				//UPDATE SCREEN ASDF
 				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
@@ -422,7 +422,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, objStr->currentPokemon);
-				swapString = "Sent out " + objStr->currentPokemon->getName();
+				swapString = "Sent out " + objStr->currentPokemon->getName()+"!";
 				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
 				//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 				objStr->bScreen->refreshHealth();
@@ -608,14 +608,14 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (checkedSwap == 4)
 			{
 				//swapString = objStr->currentOpponentPokemon->getName() + " fainted!";
-				swapString = "There was no target\n";
+				swapString = "There was no target.\n";
 			}
 			else if (checkedSwap != 0)
 			{
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
 				objStr->currentOpponentPokemon = yourPokemon[checkedSwap-1];
-				swapString = "Sent out " + objStr->currentOpponentPokemon->getName();
+				swapString = "Sent out " + objStr->currentOpponentPokemon->getName() +"!";
 				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
 				objStr->bScreen->refreshHealth();
@@ -654,7 +654,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, objStr->currentPokemon);
-				swapString = "Sent out " + objStr->currentPokemon->getName();
+				swapString = "Sent out " + objStr->currentPokemon->getName() + "!";
 				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
 				//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 				objStr->bScreen->refreshHealth();
@@ -749,7 +749,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 			objStr->bScreen->refreshHealth();
 
-			std::string endTurnSwapString = "Sent out " + objStr->currentPokemon->getName();
+			std::string endTurnSwapString = "Sent out " + objStr->currentPokemon->getName()+"!";
 			std::cout << endTurnSwapString << "\n";
 			objStr->bScreen->showMessage(endTurnSwapString);
 			//objStr->bScreen->refreshStatus(); //asdfg
@@ -769,7 +769,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
 			objStr->bScreen->refreshHealth();
 
-			std::string endTurnSwapString = "Sent out " + objStr->currentOpponentPokemon->getName();
+			std::string endTurnSwapString = "Sent out " + objStr->currentOpponentPokemon->getName() + "!";
 			std::cout << endTurnSwapString << "\n";
 			objStr->bScreen->showMessage(endTurnSwapString);
 		}
