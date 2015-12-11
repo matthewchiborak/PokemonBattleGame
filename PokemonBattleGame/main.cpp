@@ -762,7 +762,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			std::cout << endTurnSwapString << "\n";
 			objStr->bScreen->showMessage(endTurnSwapString);
 		}
-		if (recievedMessage == "4")									// If the game has ended
+		if (recievedMessage == "4" || endMessageToSend == "4~")									// If the game has ended
 		{
 			endOfTurnMessage = "4";
 			// Check if we still have pokemon left
@@ -780,6 +780,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		}
 
 	} while (endOfTurnMessage != "4"&& endMessageToSend!="4~");
+
+	std::cout << "Thanks for playing!\n";
 }
 
 void threadFunction(ObjectStorage *objectStorage, bool *active)
