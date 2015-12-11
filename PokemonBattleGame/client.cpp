@@ -49,7 +49,7 @@ string Client::recieveMessage()							// Recieve Message from the client
 			text += buffer[i];
 	}
 	// If the server closes or sends empty response with no ~
-	if (text == "close" || text.length > 250)
+	if (text == "close" || text.length() > 250)
 	{
 		return "close";
 	}
