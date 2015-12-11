@@ -185,7 +185,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					objStr->bScreen->setSelfPokemon(selected[0]);
 					if (objStr->currentPokemon = objStr->uP1)
 					{
-						userInput == 5;
+						userInput = 5;
 					}
 					else if (objStr->currentPokemon == objStr->uP2)
 					{
@@ -373,9 +373,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (checkedSwap != 0)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
+				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
 				activeOppoPokemon = yourPokemon[checkedSwap-1];
-
+				swapString = "Sent out " + activeOppoPokemon->getName();
 				//UPDATE SCREEN ASDF
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setOppPokemon(activeOppoPokemon);
@@ -406,7 +407,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				swapString = "Sent out " + activePokemon->getName();
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setSelfPokemon(activePokemon);
 				objStr->bScreen->refreshHealth();
@@ -596,8 +598,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (checkedSwap != 0)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
+				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
 				activeOppoPokemon = yourPokemon[checkedSwap-1];
+				swapString = "Sent out " + activeOppoPokemon->getName();
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setOppPokemon(activeOppoPokemon);
 				objStr->bScreen->refreshHealth();
@@ -635,7 +639,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				swapString = "Sent out " + activePokemon->getName();
 				//activeOppoPokemon = yourPokemon[newPoke - 1];
 				objStr->bScreen->setSelfPokemon(activePokemon);
 				objStr->bScreen->refreshHealth();
@@ -722,6 +727,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//Update screen
 			objStr->bScreen->setSelfPokemon(activePokemon);
 			objStr->bScreen->refreshHealth();
+
+			std::string endTurnSwapString = "Sent out " + activePokemon->getName();
+			std::cout << endTurnSwapString << "\n";
+			objStr->bScreen->showMessage(endTurnSwapString);
 			//objStr->bScreen->refreshStatus(); //asdfg
 		}
 
@@ -738,7 +747,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			activeOppoPokemon = yourPokemon[newPoke - 1];
 			objStr->bScreen->setOppPokemon(activeOppoPokemon);
 			objStr->bScreen->refreshHealth();
-			//objStr->bScreen->refreshStatus(); //asdfg
+
+			std::string endTurnSwapString = "Sent out " + activeOppoPokemon->getName();
+			std::cout << endTurnSwapString << "\n";
+			objStr->bScreen->showMessage(endTurnSwapString);
 		}
 		if (recievedMessage == "4")									// If the game has ended
 		{
