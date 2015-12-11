@@ -301,8 +301,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				activePokemon = myPokemon[userInput - 5];
-				response = "swap" + std::to_string(userInput - 5);
+				//activePokemon = myPokemon[userInput - 5];
+				response = "swap" + std::to_string(userInput - 4);
 				std::string stringToBeSent = response + "~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
@@ -373,10 +373,13 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (checkedSwap != 0)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
+				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				activeOppoPokemon = yourPokemon[checkedSwap-1];
 
 				//UPDATE SCREEN ASDF
+				//activeOppoPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setOppPokemon(activeOppoPokemon);
+				objStr->bScreen->refreshHealth();
 
 			}
 			else //ITS AN ATTACK
@@ -404,6 +407,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				//activeOppoPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setSelfPokemon(activePokemon);
+				objStr->bScreen->refreshHealth();
 			}
 
 		}
@@ -515,8 +521,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				activePokemon = myPokemon[userInput - 5];
-				response = "swap" + std::to_string(userInput - 5);
+				//activePokemon = myPokemon[userInput - 5];
+				response = "swap" + std::to_string(userInput - 4);
 				std::string stringToBeSent = response + "~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
 				client->sendMessage(stringToBeSent);
@@ -590,8 +596,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (checkedSwap != 0)
 			{
-				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap]);
+				swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				activeOppoPokemon = yourPokemon[checkedSwap-1];
+				//activeOppoPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setOppPokemon(activeOppoPokemon);
+				objStr->bScreen->refreshHealth();
 
 			}
 			else //ITS AN ATTACK
@@ -627,6 +636,9 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
 				swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
+				//activeOppoPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setSelfPokemon(activePokemon);
+				objStr->bScreen->refreshHealth();
 			}
 
 		}
@@ -678,7 +690,29 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			//User selects new pokemon 1,2, or 3
 			//PLACEHOLDER BECAUSE WIL BE SET FROM UI
-			int selection = 2;
+			int selection = 1;
+			std::vector<Pokemon*> selected;
+			*objStr->whatToDraw = 1;
+			objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
+			objStr->currentPokemon = selected[0];
+			objStr->userParty.push_back(objStr->currentPokemon);
+			objStr->bScreen->resetBattleBarState();
+			*objStr->whatToDraw = 0;
+			objStr->bScreen->setSelfPokemon(selected[0]);
+			if (objStr->currentPokemon = objStr->uP1)
+			{
+				selection = 1;
+			}
+			else if (objStr->currentPokemon == objStr->uP2)
+			{
+				selection = 2;
+			}
+			else if (objStr->currentPokemon == objStr->uP3)
+			{
+				selection = 3;
+			}
+
+			
 			activePokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
