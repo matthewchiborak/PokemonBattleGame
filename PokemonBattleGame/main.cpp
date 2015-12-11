@@ -163,7 +163,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	std::string response;
 	std::string response2;
 	std::string response3;
-	objStr->bScreen->showMessage("It's time to du-du-du-du-DUEL!!\n");
+	objStr->bScreen->showMessage("Opponent Found.");
 	do {
 
 		//Turn starts
@@ -176,6 +176,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 5)
 			{
+				bool choseFainted = true;
+				do {
 					std::vector<Pokemon*> selected;
 					*objStr->whatToDraw = 1;
 					objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
@@ -186,23 +188,25 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					objStr->bScreen->setSelfPokemon(selected[0]);
 					if (objStr->currentPokemon == objStr->uP1)
 					{
-						//std::cout << "Got to 1\n";
 						userInput = 5;
+						
 					}
 					else if (objStr->currentPokemon == objStr->uP2)
 					{
 						userInput = 6;
-						//std::cout << "Got to 2\n";
+						
 					}
 					else if (objStr->currentPokemon == objStr->uP3)
 					{
 						userInput = 7;
-						//std::cout << "Got to 3\n";
 					}
-					else
+					
+					if (objStr->currentOpponentPokemon->getHP() != 0)
 					{
-						std::cout << "Didnt go in any\n";
+						choseFainted = false;
 					}
+
+				} while (choseFainted);
 			}
 		}
 		while (!successSelection)
@@ -706,27 +710,34 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			//User selects new pokemon 1,2, or 3
 			//PLACEHOLDER BECAUSE WIL BE SET FROM UI
 			int selection = 1;
-			std::vector<Pokemon*> selected;
-			*objStr->whatToDraw = 1;
-			objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
-			objStr->currentPokemon = selected[0];
-			objStr->userParty.push_back(objStr->currentPokemon);
-			objStr->bScreen->resetBattleBarState();
-			*objStr->whatToDraw = 0;
-			objStr->bScreen->setSelfPokemon(selected[0]);
-			if (objStr->currentPokemon == objStr->uP1)
-			{
-				selection = 1;
-			}
-			else if (objStr->currentPokemon == objStr->uP2)
-			{
-				selection = 2;
-			}
-			else if (objStr->currentPokemon == objStr->uP3)
-			{
-				selection = 3;
-			}
+			bool choseFainted = true;
+			do {
+				std::vector<Pokemon*> selected;
+				*objStr->whatToDraw = 1;
+				objStr->sScreen->getParty(&objStr->userParty, &selected, 1);
+				objStr->currentPokemon = selected[0];
+				objStr->userParty.push_back(objStr->currentPokemon);
+				objStr->bScreen->resetBattleBarState();
+				*objStr->whatToDraw = 0;
+				objStr->bScreen->setSelfPokemon(selected[0]);
+				if (objStr->currentPokemon == objStr->uP1)
+				{
+					selection = 1;
+				}
+				else if (objStr->currentPokemon == objStr->uP2)
+				{
+					selection = 2;
+				}
+				else if (objStr->currentPokemon == objStr->uP3)
+				{
+					selection = 3;
+				}
 
+				if (objStr->currentOpponentPokemon->getHP() != 0)
+				{
+					choseFainted = false;
+				}
+			} while (choseFainted);
 			
 			//objStr->currentPokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
@@ -826,6 +837,8 @@ void threadFunction(ObjectStorage *objectStorage, bool *active)
 		objectStorage->bScreen->setSelfPokemon(objectStorage->currentPokemon);
 
 		turnFunction(objectStorage);
+
+		objectStorage->bScreen->showMessage("Disconnected from the server.");
 
 		//while (active)													// This will run continuously
 		//{
