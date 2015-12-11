@@ -155,8 +155,8 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 	objStr->oP3 = new Pokemon(testReader.getMoveInfo(), recievedStats);*/
 
 
-	Pokemon* activePokemon = objStr->currentPokemon;
-	Pokemon* activeOppoPokemon = objStr->currentOpponentPokemon;
+	//Pokemon* objStr->currentPokemon = objStr->currentPokemon;
+	//Pokemon* objStr->currentOpponentPokemon = objStr->currentOpponentPokemon;
 
 	std::string endOfTurnMessage = "0";
 	std::string response;
@@ -203,7 +203,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
 
-				if (activePokemon->tryStruggling()) {
+				if (objStr->currentPokemon->tryStruggling()) {
 					userInput = 1;
 				}
 				else
@@ -211,7 +211,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 					//Player picks attack
 					//selectedAttack=3;
 
-					if (activePokemon->useMove(userInput))
+					if (objStr->currentPokemon->useMove(userInput))
 					{
 						std::cout << "Out of pp" << std::endl;
 						//Pick a new attack
@@ -242,7 +242,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		}
 
 		//SPEED TIME
-		int tempSpeed = activePokemon->getSpeed();
+		int tempSpeed = objStr->currentPokemon->getSpeed();
 		if (userInput == 5 || userInput == 6 || userInput == 7)
 		{
 			tempSpeed += 1000;
@@ -264,10 +264,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
 
-				response = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
+				response = testCalc.applyDamage(objStr->currentPokemon, objStr->currentOpponentPokemon, userInput);
 
-				std::string attackersNewStats = activePokemon->getNewStats();
-				std::string defendersNewStats = activeOppoPokemon->getNewStats();
+				std::string attackersNewStats = objStr->currentPokemon->getNewStats();
+				std::string defendersNewStats = objStr->currentOpponentPokemon->getNewStats();
 
 				//std::string stringToBeSent = response + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
@@ -302,7 +302,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				//activePokemon = myPokemon[userInput - 5];
+				//objStr->currentPokemon = myPokemon[userInput - 5];
 				response = "swap" + std::to_string(userInput - 4);
 				std::string stringToBeSent = response + "~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
@@ -377,11 +377,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			{
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
-				activeOppoPokemon = yourPokemon[checkedSwap-1];
-				swapString = "Sent out " + activeOppoPokemon->getName();
+				objStr->currentOpponentPokemon = yourPokemon[checkedSwap-1];
+				swapString = "Sent out " + objStr->currentOpponentPokemon->getName();
 				//UPDATE SCREEN ASDF
-				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				objStr->bScreen->setOppPokemon(activeOppoPokemon);
+				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
 				objStr->bScreen->refreshHealth();
 
 			}
@@ -391,13 +391,13 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//std::string translatedYourStats = testCalc.extractAttackStats(response);
 				//std::string translatedOppoStats = testCalc.extractDefenceString(response);
 
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
-				activeOppoPokemon->updateStats(response2);
-				activePokemon->updateStats(response3);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, objStr->currentOpponentPokemon, objStr->currentPokemon, &usedMoveIndex);
+				objStr->currentOpponentPokemon->updateStats(response2);
+				objStr->currentPokemon->updateStats(response3);
 				objStr->bScreen->refreshHealth();
 				//objStr->bScreen->refreshStatus(); //asdfg
-				/*activePokemon->updateStats(translatedYourStats);
-				activeOppoPokemon->updateStats(translatedOppoStats);*/
+				/*objStr->currentPokemon->updateStats(translatedYourStats);
+				objStr->currentOpponentPokemon->updateStats(translatedOppoStats);*/
 
 			}
 		}
@@ -405,14 +405,14 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, objStr->currentPokemon, objStr->currentOpponentPokemon, &usedMoveIndex);
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
-				swapString = "Sent out " + activePokemon->getName();
-				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				//objStr->bScreen->setSelfPokemon(activePokemon);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, objStr->currentPokemon);
+				swapString = "Sent out " + objStr->currentPokemon->getName();
+				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
+				//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 				objStr->bScreen->refreshHealth();
 			}
 
@@ -433,11 +433,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			/*std::vector<string> resultHolder;
 			if (recievedPlacing == "1")
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, objStr->currentPokemon, objStr->currentOpponentPokemon, &usedMoveIndex);
 			}
 			else
 			{
-				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+				numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, objStr->currentOpponentPokemon, objStr->currentPokemon, &usedMoveIndex);
 			}*/
 
 			for (int i = 0; i < numberOfPhrases; i++)
@@ -454,7 +454,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 
 		if (recievedPlacing == "2")
 		{
-			if (activePokemon->getHP() == 0)
+			if (objStr->currentPokemon->getHP() == 0)
 			{
 				response = "Faint";
 				std::string faintedString = response+"~";
@@ -486,10 +486,10 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			else if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
 
-				response = testCalc.applyDamage(activePokemon, activeOppoPokemon, userInput);
+				response = testCalc.applyDamage(objStr->currentPokemon, objStr->currentOpponentPokemon, userInput);
 
-				std::string attackersNewStats = activePokemon->getNewStats();
-				std::string defendersNewStats = activeOppoPokemon->getNewStats();
+				std::string attackersNewStats = objStr->currentPokemon->getNewStats();
+				std::string defendersNewStats = objStr->currentOpponentPokemon->getNewStats();
 
 				std::string stringToBeSent = response + "-" + attackersNewStats + "-" + defendersNewStats + "~";
 				//SEND THIS TO SERVER
@@ -525,7 +525,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				//activePokemon = myPokemon[userInput - 5];
+				//objStr->currentPokemon = myPokemon[userInput - 5];
 				response = "swap" + std::to_string(userInput - 4);
 				std::string stringToBeSent = response + "~";
 				std::cout << "We sent this as response: " << stringToBeSent << std::endl;
@@ -595,17 +595,17 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (checkedSwap == 4)
 			{
-				//swapString = activeOppoPokemon->getName() + " fainted!";
+				//swapString = objStr->currentOpponentPokemon->getName() + " fainted!";
 				swapString = "There was no target\n";
 			}
 			else if (checkedSwap != 0)
 			{
 				//swapString = testCalc.resultSwapTranslator(checkedSwap, yourPokemon[checkedSwap-1]);
 				//swapString = "Sent out " + yourPokemon[checkedSwap - 1]->getName();
-				activeOppoPokemon = yourPokemon[checkedSwap-1];
-				swapString = "Sent out " + activeOppoPokemon->getName();
-				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				objStr->bScreen->setOppPokemon(activeOppoPokemon);
+				objStr->currentOpponentPokemon = yourPokemon[checkedSwap-1];
+				swapString = "Sent out " + objStr->currentOpponentPokemon->getName();
+				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
+				objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
 				objStr->bScreen->refreshHealth();
 
 			}
@@ -615,13 +615,13 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				std::string translatedYourStats = testCalc.extractAttackStats(response);
 				std::string translatedOppoStats = testCalc.extractDefenceString(response);*/
 
-				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
-				activeOppoPokemon->updateStats(response2);
-				activePokemon->updateStats(response3);
+				numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, objStr->currentOpponentPokemon, objStr->currentPokemon, &usedMoveIndex);
+				objStr->currentOpponentPokemon->updateStats(response2);
+				objStr->currentPokemon->updateStats(response3);
 				objStr->bScreen->refreshHealth();
 				//objStr->bScreen->refreshStatus(); //asdfg
-				/*activePokemon->updateStats(translatedYourStats);
-				activeOppoPokemon->updateStats(translatedOppoStats);*/
+				/*objStr->currentPokemon->updateStats(translatedYourStats);
+				objStr->currentOpponentPokemon->updateStats(translatedOppoStats);*/
 
 			}
 		}
@@ -629,22 +629,22 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		{
 			if (userInput == 1 || userInput == 2 || userInput == 3 || userInput == 4)
 			{
-				if (activePokemon->getHP() == 0)
+				if (objStr->currentPokemon->getHP() == 0)
 				{
 					swapString = "There was no target.";
-					//swapString = activePokemon->getName() + " fainted!";
+					//swapString = objStr->currentPokemon->getName() + " fainted!";
 				}
 				else
 				{
-					numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+					numberOfPhrases = testCalc.attackResultTranslator(&responsePhraseHolder, response, objStr->currentPokemon, objStr->currentOpponentPokemon, &usedMoveIndex);
 				}
 			}
 			else if (userInput == 5 || userInput == 6 || userInput == 7)
 			{
-				//swapString = testCalc.resultSwapTranslator(checkedSwap, activePokemon);
-				swapString = "Sent out " + activePokemon->getName();
-				//activeOppoPokemon = yourPokemon[newPoke - 1];
-				//objStr->bScreen->setSelfPokemon(activePokemon);
+				//swapString = testCalc.resultSwapTranslator(checkedSwap, objStr->currentPokemon);
+				swapString = "Sent out " + objStr->currentPokemon->getName();
+				//objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
+				//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 				objStr->bScreen->refreshHealth();
 			}
 
@@ -663,11 +663,11 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 				//std::vector<string> resultHolder;
 				/*if (recievedPlacing == "2")
 				{
-					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activePokemon, activeOppoPokemon, &usedMoveIndex);
+					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, objStr->currentPokemon, objStr->currentOpponentPokemon, &usedMoveIndex);
 				}
 				else
 				{
-					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, activeOppoPokemon, activePokemon, &usedMoveIndex);
+					numberOfPhrases = testCalc.attackResultTranslator(&resultHolder, response, objStr->currentOpponentPokemon, objStr->currentPokemon, &usedMoveIndex);
 				}*/
 
 				for (int i = 0; i < numberOfPhrases; i++)
@@ -681,7 +681,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		std::string endMessageToSend = "0~";
 
 		//END OF MESSAGE TRANSACTION
-		if (activePokemon->getHP() != 0)
+		if (objStr->currentPokemon->getHP() != 0)
 		{
 			endMessageToSend = "0~";
 			//SEND THIS
@@ -720,17 +720,17 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			}
 
 			
-			//activePokemon = myPokemon[selection-1];
+			//objStr->currentPokemon = myPokemon[selection-1];
 			endMessageToSend = std::to_string(selection)+"~"; //Or 2 or 3 Whatever they picked and send it
 			//SEND THIS
 			std::cout << "End Message I am sending: " << endMessageToSend << "\n";
 			client->sendMessage(endMessageToSend);
 
 			//Update screen
-			//objStr->bScreen->setSelfPokemon(activePokemon);
+			//objStr->bScreen->setSelfPokemon(objStr->currentPokemon);
 			objStr->bScreen->refreshHealth();
 
-			std::string endTurnSwapString = "Sent out " + activePokemon->getName();
+			std::string endTurnSwapString = "Sent out " + objStr->currentPokemon->getName();
 			std::cout << endTurnSwapString << "\n";
 			objStr->bScreen->showMessage(endTurnSwapString);
 			//objStr->bScreen->refreshStatus(); //asdfg
@@ -745,12 +745,12 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 		if (recievedMessage != "0" && recievedMessage != "4")
 		{
 			int newPoke = std::stoi(recievedMessage);
-			//activeOppoPokemon = yourPokemon[newPoke-1];
-			activeOppoPokemon = yourPokemon[newPoke - 1];
-			objStr->bScreen->setOppPokemon(activeOppoPokemon);
+			//objStr->currentOpponentPokemon = yourPokemon[newPoke-1];
+			objStr->currentOpponentPokemon = yourPokemon[newPoke - 1];
+			objStr->bScreen->setOppPokemon(objStr->currentOpponentPokemon);
 			objStr->bScreen->refreshHealth();
 
-			std::string endTurnSwapString = "Sent out " + activeOppoPokemon->getName();
+			std::string endTurnSwapString = "Sent out " + objStr->currentOpponentPokemon->getName();
 			std::cout << endTurnSwapString << "\n";
 			objStr->bScreen->showMessage(endTurnSwapString);
 		}
