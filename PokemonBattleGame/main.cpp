@@ -713,7 +713,7 @@ void turnFunction(ObjectStorage *objStr)										// All the game logic will go 
 			objStr->bScreen->resetBattleBarState();
 			*objStr->whatToDraw = 0;
 			objStr->bScreen->setSelfPokemon(selected[0]);
-			if (objStr->currentPokemon = objStr->uP1)
+			if (objStr->currentPokemon == objStr->uP1)
 			{
 				selection = 1;
 			}
